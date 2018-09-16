@@ -94,25 +94,18 @@ namespace Graubakken_Filmsjappe.Models
             for (int i = 0; i < alleKunder.Count(); i++)
             {
                 int AntallFilmer = TilfeldigTall.Next(0, alleFilmer.Count());
-
+                for (int j = 0; j < AntallFilmer; j++)
+                {
+                    int TilfeldigFilm = TilfeldigTall.Next(0, alleFilmer.Count);
+                    if(!alleKunder[i].Filmer.Contains(alleFilmer[j]))
+                    {
+                        alleKunder[i].Filmer.Add(alleFilmer[TilfeldigFilm]);
+                    }
+                }
             }
 
             return alleKunder;
         }
-
-        /*
-            // Oppretter tilfeldige dataset av skuespillere for å legge inn i Filmer
-            List<Skuespiller> skuespillere01 = new List<Skuespiller>
-            {
-                alleSkuespillere[0],
-                alleSkuespillere[3],
-                alleSkuespillere[6]
-            };
-
-            // Legger skuespillere inn i Filmer
-            alleFilmer[0].Skuespillere = skuespillere01;
-            alleFilmer[15].Skuespillere = skuespillere01;         
-         * */
 
     }
 }
