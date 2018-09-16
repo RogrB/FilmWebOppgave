@@ -1,0 +1,41 @@
+﻿.body-content {
+    background-color: #191142;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#headerDiv {
+    background-color: #ffffff;
+    
+}
+
+#footerDiv {
+    background-color: #acd9f8;
+    padding: 25px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    min-height: 200px;
+}
+
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+/*
+    Farger:
+    #191142
+    #135565
+    #226085
+    #2e719e
+    #acd9f8
+*/

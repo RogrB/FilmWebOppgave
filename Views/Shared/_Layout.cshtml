@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Grautbakken Filmsjappe</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Grautbakken.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
-<body>
+<body style="background-color: #ffffff">
+    <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -25,13 +26,31 @@
             </div>
         </div>
     </div>
-
+    -->
+    <div id="headerDiv" class="container">
+        <table>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Index", "Film")" title="List View" class="links">
+                        <img alt="Logo" src="@Url.Content("~/Content/images/logo.jpg")" class="img-responsive" width="180" height="126">
+                    </a>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                    <h2>Grautbakken Filmsjappe</h2>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div class="container body-content">
+
         @RenderBody()
         <hr />
-        <footer>
+        <div id="footerDiv">
             <p>&copy; @DateTime.Now.Year - Grautbakken Filmsjappe</p>
-        </footer>
+        </div>
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

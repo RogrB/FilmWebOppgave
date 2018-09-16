@@ -19,6 +19,7 @@ namespace Graubakken_Filmsjappe.Models
         public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Film> Filmer { get; set; }
         public DbSet<Skuespiller> Skuespillere { get; set; }
+        public DbSet<Nyhet> Nyheter { get; set; }
         public DbSet<Stemmer> Stemmer { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
