@@ -71,6 +71,30 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Land = "USA"
         };
 
+        Skuespiller Skuespiller09 = new Skuespiller
+        {
+            Alder = 40,
+            Fornavn = "Roald",
+            Etternavn = "Amundsen",
+            Land = "Norge"
+        };
+
+        Skuespiller Skuespiller10 = new Skuespiller
+        {
+            Alder = 27,
+            Fornavn = "Olga",
+            Etternavn = "Pietronick",
+            Land = "Russland"
+        };
+
+        Skuespiller Skuespiller11 = new Skuespiller
+        {
+            Alder = 23,
+            Fornavn = "Geralt",
+            Etternavn = "Drue",
+            Land = "Sverige"
+        };
+
         public List<Skuespiller> HentSkuespillerListe()
         {
             List<Skuespiller> skuespillere = new List<Skuespiller>();
@@ -82,6 +106,9 @@ namespace Graubakken_Filmsjappe.Models.DBData
             skuespillere.Add(Skuespiller06);
             skuespillere.Add(Skuespiller07);
             skuespillere.Add(Skuespiller08);
+            skuespillere.Add(Skuespiller09);
+            skuespillere.Add(Skuespiller10);
+            skuespillere.Add(Skuespiller11);
 
             return skuespillere;
         }
