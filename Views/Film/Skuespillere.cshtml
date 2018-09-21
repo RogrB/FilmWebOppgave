@@ -1,0 +1,46 @@
+﻿@model List<Graubakken_Filmsjappe.Models.Skuespiller>
+
+@{
+    ViewBag.Title = "Skuespillere";
+}
+
+<h2>Skuespillere</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Etternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Land)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Alder)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fornavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etternavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Land)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alder)
+        </td>
+        <td>
+            @Html.ActionLink("Detaljer", "VisSkuespillerDetaljer", new { id=item.id }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>

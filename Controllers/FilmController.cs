@@ -11,7 +11,17 @@ namespace Graubakken_Filmsjappe.Controllers
         // GET: Film
         public ActionResult Index()
         {
-            return View();
+            var db = new DB();
+            List <Models.Film> alleFilmer = db.HentAlleFilmer();
+            return View(alleFilmer);
+        }
+
+        public ActionResult Skuespillere()
+        {
+            var db = new DB();
+            db.testInsert();
+            List<Models.Skuespiller> alleSkuespillere = db.HentAlleSkuespillere();
+            return View(alleSkuespillere);
         }
     }
 }

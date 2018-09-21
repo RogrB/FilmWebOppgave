@@ -14,7 +14,7 @@ namespace Graubakken_Filmsjappe.Models
         {
             Database.CreateIfNotExists();
 
-            Database.SetInitializer(new DBInit());
+            //Database.SetInitializer(new DBInit());
         }
         public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Film> Filmer { get; set; }

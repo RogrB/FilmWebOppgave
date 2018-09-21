@@ -1,136 +1,112 @@
-﻿
+﻿@model List<Graubakken_Filmsjappe.Models.Film>
 @{
     ViewBag.Title = "Index";
 }
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                </ol>
 
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                    </ol>
-
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="https://placehold.it/800x400?text=FILM" alt="Film01">
-                            <div class="carousel-caption">
-                                <h3>Film01</h3>
-                                <p>Film01 Beskrivelse</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="https://placehold.it/800x400?text=Film02" alt="Film02">
-                            <div class="carousel-caption">
-                                <h3>Film02</h3>
-                                <p>Film02 Beskrivelse</p>
-                            </div>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="https://placehold.it/800x400?text=FILM" alt="Film01">
+                        <div class="carousel-caption">
+                            <h3>Film01</h3>
+                            <p>Film01 Beskrivelse</p>
                         </div>
                     </div>
 
-                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Forrige</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Neste</span>
-                    </a>
+                    <div class="item">
+                        <img src="https://placehold.it/800x400?text=Film02" alt="Film02">
+                        <div class="carousel-caption">
+                            <h3>Film02</h3>
+                            <p>Film02 Beskrivelse</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="well">
-                    <p>Nyhet03</p>
-                </div>
-                <div class="well">
-                    <p>Nyhet02</p>
-                </div>
-                <div class="well">
-                    <p>Nyhet01</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-    </div>
 
-    <div class="container text-center">
-        <h3>Se film når det passer deg!</h3>
-        <br>
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=Film01" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film01</p>
-            </div>
-            <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=Film02" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film02</p>
-            </div>
-            <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=Film03" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film03</p>
-            </div>
-            <div class="col-sm-3">
-                <img src="https://placehold.it/150x80?text=Film04" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film04</p>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Forrige</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Neste</span>
+                </a>
             </div>
         </div>
-        <hr>
+        <div class="col-sm-4">
+            <div class="well">
+                <p>Nyhet03</p>
+            </div>
+            <div class="well">
+                <p>Nyhet02</p>
+            </div>
+            <div class="well">
+                <p>Nyhet01</p>
+            </div>
+        </div>
     </div>
+    <hr>
+</div>
 
-    <div class="container text-center">
-        <h3>En annen sjanger</h3>
-        <br>
-        <div class="row">
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film01" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film01</p>
-            </div>
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film02" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film02</p>
-            </div>
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film03" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film03</p>
-            </div>
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film04" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film04</p>
-            </div>
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film05" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film05</p>
-            </div>
-            <div class="col-sm-2">
-                <img src="https://placehold.it/150x80?text=Film06" class="img-responsive" style="width:100%" alt="Image">
-                <p>Film06</p>
-            </div>
+<div class="container text-center">
+    <h3>Se film når det passer deg!</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="https://placehold.it/150x80?text=Film01" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film01</p>
         </div>
-    </div><br>
+        <div class="col-sm-3">
+            <img src="https://placehold.it/150x80?text=Film02" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film02</p>
+        </div>
+        <div class="col-sm-3">
+            <img src="https://placehold.it/150x80?text=Film03" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film03</p>
+        </div>
+        <div class="col-sm-3">
+            <img src="https://placehold.it/150x80?text=Film04" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film04</p>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<div class="container text-center">
+    <h3>En annen sjanger</h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film01" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film01</p>
+        </div>
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film02" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film02</p>
+        </div>
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film03" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film03</p>
+        </div>
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film04" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film04</p>
+        </div>
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film05" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film05</p>
+        </div>
+        <div class="col-sm-2">
+            <img src="https://placehold.it/150x80?text=Film06" class="img-responsive" style="width:100%" alt="Image">
+            <p>Film06</p>
+        </div>
+    </div>
+</div><br>

@@ -29,6 +29,7 @@ namespace Graubakken_Filmsjappe.Models
 
         protected override void Seed(DBContext context)
         {
+            /*
             // Kaller metode for å legge skuespillere inn i filmene
             SettSkuespillereInnIFilmer();
 
@@ -58,6 +59,21 @@ namespace Graubakken_Filmsjappe.Models
             {
                 context.Nyheter.Add(alleNyheter[i]);
             }
+            */
+            // Legger til en ny skuespiller "manuelt"
+            var NySkuespiller = new Skuespiller
+            {
+                Fornavn = "Ole",
+                Etternavn = "Olsen",
+                Alder = 26,
+                Land = "Norge"
+            };
+            List<Film> noenFilmer = new List<Film>();
+            noenFilmer.Add(alleFilmer[3]);
+            noenFilmer.Add(alleFilmer[7]);
+            NySkuespiller.Filmer = noenFilmer;
+            context.Skuespillere.Add(NySkuespiller);
+
 
             base.Seed(context);
         }
@@ -68,6 +84,7 @@ namespace Graubakken_Filmsjappe.Models
             Random TilfeldigTall = new Random();
             for (int i = 0; i < alleFilmer.Count(); i++)
             {
+                alleFilmer[i].Skuespillere = new List<Skuespiller>();
                 int AntallSkuespillere = TilfeldigTall.Next(2, 6); // Antall skuespillere i denne filmen
                 List<int> BrukteSkuespillere = new List<int>(); // Liste over skuespillere som allerede har blitt lagt til i filmen
                 for (int j = 0; j < AntallSkuespillere; j++)
@@ -100,6 +117,7 @@ namespace Graubakken_Filmsjappe.Models
             Random TilfeldigTall = new Random();
             for (int i = 0; i < alleKunder.Count(); i++)
             {
+                alleKunder[i].Filmer = new List<Film>();
                 int AntallFilmer = TilfeldigTall.Next(0, alleFilmer.Count());
                 for (int j = 0; j < AntallFilmer; j++)
                 {
