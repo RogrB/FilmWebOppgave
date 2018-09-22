@@ -15,7 +15,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Renkli Studios",
             Produksjonsår = 1945,
             Bilde = "Content/images/posters/3devadam.jpg",
-            Visninger = 12341
+            Visninger = 12341,
+            Beskrivelse = "Kaptein Amerika blir sendt til Tyrkia for å stoppe en krimbølge"
         };
 
         Film Film02 = new Film
@@ -27,7 +28,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Duff Studios",
             Produksjonsår = 1938,
             Bilde = "Content/images/posters/310_to_Yuma.jpg",
-            Visninger = 2541
+            Visninger = 2541,
+            Beskrivelse = "En beryktet fredløs må stilles for retten, og en gruppe frivillige må eskortere han til 310 toget mot Yuma"
         };
 
         Film Film03 = new Film
@@ -39,7 +41,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "BBC",
             Produksjonsår = 1954,
             Bilde = "Content/images/posters/30_poster.jpg",
-            Visninger = 4566
+            Visninger = 4566,
+            Beskrivelse = "En film basert på virkelige hendelser som følger 2 redaktører for Los Angeles Herald i det aktive livet til en storbyavis"
         };
 
         Film Film04 = new Film
@@ -50,8 +53,9 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Indiedev Studios",
             Produksjonsår = 2003,
             Bilde = "Content/images/posters/16_days_poster.jpeg",
-            Visninger = 225541
-        };
+            Visninger = 225541,
+            Beskrivelse = "Film og dokumentarskaperen Anwar Hajher reiser tilbake til hjelmandet Afghanistan etter 25 år for å gjennoppdage landet sitt"
+    };
 
         Film Film05 = new Film
         {
@@ -62,31 +66,34 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Made-up Studios",
             Produksjonsår = 1986,
             Bilde = "Content/images/posters/100_Million_BC.jpg",
-            Visninger = 221453
+            Visninger = 221453,
+            Beskrivelse = "Etter et mislykket tidsreise eksperiment må et redningsteam finne overlevende som har blitt sendt tilbake til forhistoriske tider"
         };
 
         Film Film06 = new Film
         {
             Navn = "100 Days With Mr Arrogant",
-            Kontinent = "USA",
+            Kontinent = "Korea",
             Sjanger1 = "Romantikk",
             Sjanger2 = "Komedie",
             Studio = "Sappy Lovestories",
             Produksjonsår = 2004,
             Bilde = "Content/images/posters/100_Days_With_Mr_Arrogant_poster.jpg",
-            Visninger = 1244
+            Visninger = 1244,
+            Beskrivelse = "I denne romantiske komedien fra 2004 blir Ha-Young kastet inn i et tjener-liv for den arrogante Shin i 100 dager."
         };
 
         Film Film07 = new Film
         {
             Navn = "5 Weddings",
-            Kontinent = "USA",
-            Sjanger1 = "Komedie",
+            Kontinent = "India",
+            Sjanger1 = "Drama",
             Sjanger2 = "Romantikk",
             Studio = "Sappy Lovestories",
             Produksjonsår = 1998,
             Bilde = "Content/images/posters/5_Weddings_Poster.jpg",
-            Visninger = 3325
+            Visninger = 3325,
+            Beskrivelse = "En amerikansk journalist reiser til India for å skrive en historie om Bollywood bryllup. Oppdraget hennes blir avbrutt av en politimann som er overbevist om at det ligger spionasje bak artikkelen"
         };
 
         Film Film08 = new Film
@@ -98,19 +105,21 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Renkli Studios",
             Produksjonsår = 1964,
             Bilde = "Content/images/posters/633_Squadron_1964_poster.jpg",
-            Visninger = 251546
+            Visninger = 251546,
+            Beskrivelse = "En jagerpilot skvadron får i oppdrag å bombe en Tysk rakettbensinfabrikk i Norge under andre verdenskrig"
         };
 
         Film Film09 = new Film
         {
             Navn = "7 Hours To Go",
-            Kontinent = "Japan",
+            Kontinent = "India",
             Sjanger1 = "Action",
-            Sjanger2 = "Thriller",
+            Sjanger2 = "Krim",
             Studio = "Weabo Studios",
             Produksjonsår = 2014,
             Bilde = "Content/images/posters/7_Hours_To_Go_-_Movie_Poster.jpg",
-            Visninger = 12341
+            Visninger = 12341,
+            Beskrivelse = "En desperat mann kidnapper 7 mennesker, og gir politiet begrenset tid til å finne bevis mot mannen som drepte hans forlovede"
         };
 
         Film Film10 = new Film
@@ -122,7 +131,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Walt Disney",
             Produksjonsår = 1992,
             Bilde = "Content/images/posters/Aladdinposter.jpg",
-            Visninger = 855423
+            Visninger = 855423,
+            Beskrivelse = "I denne klassiske animasjonsfilmen finner fattiggutten Aladdin en magisk lampe, men finner fort ut at onde krefter har andre planer for lampen"
         };
 
         Film Film11 = new Film
@@ -134,7 +144,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "PastaWrangler Studios",
             Produksjonsår = 1958,
             Bilde = "Content/images/posters/Along_Came_Jones.jpg",
-            Visninger = 45633
+            Visninger = 45633,
+            Beskrivelse = "Melody Jones, en lovlydig Cowboy ankommer en liten landsby hvor innbyggerne tror han er en beryktet lovløs"
         };
 
         Film Film12 = new Film
@@ -146,7 +157,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Walt Disney",
             Produksjonsår = 2001,
             Bilde = "Content/images/posters/Atlantis_The_Lost_Empire_poster.jpg",
-            Visninger = 12234
+            Visninger = 12234,
+            Beskrivelse = "En ung eventyrer blir nøkkelen til å løse et gammel mysterium i jakten på Atlantis"
         };
 
         Film Film13 = new Film
@@ -156,9 +168,10 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Sjanger1 = "Action",
             Sjanger2 = "Western",
             Studio = "PastaWrangler Studios",
-            Produksjonsår = 1948,
+            Produksjonsår = 1937,
             Bilde = "Content/images/posters/Born_to_the_West_FilmPoster.jpeg",
-            Visninger = 12224
+            Visninger = 12224,
+            Beskrivelse = "Kan den skruppeløse gambleren Dare Rudd bevise at han er ansvarlig nok til å kapre hjertet til Judy, og også utmanøvrere den slu saloon eieren?"
         };
 
         Film Film14 = new Film
@@ -170,7 +183,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Randolf Studios",
             Produksjonsår = 1953,
             Bilde = "Content/images/posters/Calamity_Jane_poster.jpg",
-            Visninger = 14552
+            Visninger = 14552,
+            Beskrivelse = "I ensomme Deadwood, Dakota faller skarpskytteren Calamity Jane for kavalerimannen hun må redde fra indianerne"
         };
 
         Film Film15 = new Film
@@ -180,9 +194,10 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Sjanger1 = "Komedie",
             Sjanger2 = "Action",
             Studio = "Swingstyle Studios",
-            Produksjonsår = 1974,
+            Produksjonsår = 1971,
             Bilde = "Content/images/posters/dollars.jpg",
-            Visninger = 75543
+            Visninger = 75543,
+            Beskrivelse = "I Hamburg, Tyskland blir bankbokser brukt av kriminelle for å gjemme tyvegods. Bankmannen Joe Collins kommer opp med en plan for å prøve å stjele tilbake pengene"
         };
 
         Film Film16 = new Film
@@ -194,7 +209,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Walt Disney",
             Produksjonsår = 1996,
             Bilde = "Content/images/posters/Hunchbackposter.jpg",
-            Visninger = 19985
+            Visninger = 19985,
+            Beskrivelse = "Denne animerte filmen følger ringeren i Notre Damme som lengter etter å være blant andre mennesker"
         };
 
         Film Film17 = new Film
@@ -204,9 +220,10 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Sjanger1 = "Western",
             Sjanger2 = "Action",
             Studio = "PastaWrangler Studios",
-            Produksjonsår = 1957,
+            Produksjonsår = 1939,
             Bilde = "Content/images/posters/jesse_james.jpg",
-            Visninger = 69542
+            Visninger = 69542,
+            Beskrivelse = "Jesse James og broren Frank sverger hevn mot St. Louis Midland Railroad etter at en representant for firmaet drepte moren deres"
         };
 
         Film Film18 = new Film
@@ -218,7 +235,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Paramount Studio",
             Produksjonsår = 1982,
             Bilde = "Content/images/posters/Star_Trek_II_The_Wrath_of_Khan.png",
-            Visninger = 75441
+            Visninger = 75441,
+            Beskrivelse = "Med hjelp av besetningen på The Enterprise, må admiral James Kirk stoppe sin gamle fiende Khan Noonien Singh"
         };
 
         Film Film19 = new Film
@@ -230,7 +248,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Paramount Studio",
             Produksjonsår = 1989,
             Bilde = "Content/images/posters/Star_Trek_V_The_Final_Frontier.png",
-            Visninger = 22354
+            Visninger = 22354,
+            Beskrivelse = "Kaptein Kirk og hans besetning må kjempe mot Spock's halvbror som kaprer The Enterprise i søken etter en Gud ved galaksens midtpunkt"
         };
 
         Film Film20 = new Film
@@ -242,7 +261,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Lucasfilm LTD",
             Produksjonsår = 2002,
             Bilde = "Content/images/posters/Star_Wars_-_Episode_II_Attack_of_the_Clones.jpg",
-            Visninger = 88542
+            Visninger = 88542,
+            Beskrivelse = "Ti år etter de opprinnelig møttes, deler Padmè og Anakin Skywalker en fordudt romanse, mens Obi-Wan Kenobi undersøker et attentattforsøk på en senator og oppdater en hemmelig klone armé"
         };
 
         Film Film21 = new Film
@@ -254,7 +274,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Paramount Studio",
             Produksjonsår = 2013,
             Bilde = "Content/images/posters/StarTrekIntoDarkness_FinalUSPoster.jpg",
-            Visninger = 55474
+            Visninger = 55474,
+            Beskrivelse = "Besetningen på The Enterprise returnerer hjem etter at en terroraksjon innenfor organisasjonen ødelegger det meste av Starfleet"
         };
 
         Film Film22 = new Film
@@ -266,19 +287,21 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Lucasfilm LTD",
             Produksjonsår = 1987,
             Bilde = "Content/images/posters/SW-RadioPoster.jpg",
-            Visninger = 7745
+            Visninger = 7745,
+            Beskrivelse = "En utvided radio dramatisering av den originale Star Wars trilogien"
         };
 
         Film Film23 = new Film
         {
-            Navn = "Star Wars - Empiore Strikes Back",
+            Navn = "Star Wars - Empire Strikes Back",
             Kontinent = "USA",
             Sjanger1 = "Action",
             Sjanger2 = "Science Fiction",
             Studio = "Lucasfilm LTD",
             Produksjonsår = 1980,
             Bilde = "Content/images/posters/SW_-_Empire_Strikes_Back.jpg",
-            Visninger = 22548
+            Visninger = 22548,
+            Beskrivelse = "Luke Skywalker begynner sin trening som en Jedi med Yoda, mens vennene hans blir forfulgt av Darth Vader"
         };
 
         Film Film24 = new Film
@@ -290,7 +313,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Walt Disney",
             Produksjonsår = 1994,
             Bilde = "Content/images/posters/The_Lion_King_poster.jpg",
-            Visninger = 88564
+            Visninger = 88564,
+            Beskrivelse = "I denne klassiske animasjonsperlen blir en ung løve lurt av sin slu onkel til å tro at han forårsaket farens død og flykter"
         };
 
         Film Film25 = new Film
@@ -301,7 +325,8 @@ namespace Graubakken_Filmsjappe.Models.DBData
             Studio = "Sappy Lovestories",
             Produksjonsår = 1964,
             Bilde = "Content/images/posters/twofamilyposter.jpg",
-            Visninger = 55648
+            Visninger = 55648,
+            Beskrivelse = "En kronisk drømmer finner ut at hans kone og venner holder han fast til hans middelmådige liv"
         };
 
         public List<Film> HentFilmListe()

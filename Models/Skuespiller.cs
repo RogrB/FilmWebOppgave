@@ -12,6 +12,7 @@ namespace Graubakken_Filmsjappe.Models
         public string Etternavn { get; set; }
         public string Land { get; set; }
         public int Alder { get; set; }
+        public string Bilde { get; set; }
         public virtual List<Film> Filmer { get; set; }
     }
 }
