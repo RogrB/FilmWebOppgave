@@ -68,20 +68,6 @@ namespace Graubakken_Filmsjappe
                 ok = false;
             }
 
-            // Legger kundene inn i databasen
-            try
-            {
-                for (int i = 0; i < alleKunder.Count(); i++)
-                {
-                    db.Kunder.Add(alleKunder[i]);
-                }
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                ok = false;
-            }
-
             // Legger nyheter inn i databasen
             try
             {
@@ -95,35 +81,24 @@ namespace Graubakken_Filmsjappe
             {
                 ok = false;
             }
-
-            return ok;
-            
             /*
-            // Legger til en ny skuespiller "manuelt"
-            var NySkuespiller = new Skuespiller
-            {
-                Fornavn = "Ole",
-                Etternavn = "Olsen",
-                Alder = 26,
-                Land = "Norge",
-                Bilde = "halloder"
-            };
-            List<Film> noenFilmer = new List<Film>();
-            noenFilmer.Add(alleFilmer[3]);
-            noenFilmer.Add(alleFilmer[7]);
-            NySkuespiller.Filmer = noenFilmer;
 
+            // Legger kundene inn i databasen
             try
             {
-                db.Skuespillere.Add(NySkuespiller);
+                for (int i = 0; i < alleKunder.Count(); i++)
+                {
+                    alleKunder[i].Stemmer = new List<Stemmer>();
+                    db.Kunder.Add(alleKunder[i]);
+                }
                 db.SaveChanges();
-                return true;
             }
             catch (Exception e)
             {
-                return false;
+                ok = false;
             }*/
 
+            return ok;
         }
 
         // Metode som setter et tilfeldig utvalg av skuespillere fra skuespiller-Datasettet inn i hver enkelt film
