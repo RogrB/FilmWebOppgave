@@ -19,9 +19,23 @@ namespace Graubakken_Filmsjappe.Controllers
         public ActionResult Skuespillere()
         {
             var db = new DB();
-            db.testInsert();
+            //db.testInsert();
             List<Models.Skuespiller> alleSkuespillere = db.HentAlleSkuespillere();
             return View(alleSkuespillere);
+        }
+
+        public ActionResult Dbinsert()
+        {
+            var db = new DB();
+            if (db.InsertDBData())
+            {
+                ViewBag.Message = "DB insert OK";
+            }
+            else
+            {
+                ViewBag.Message = "DB insert feilet";
+            }
+            return View();
         }
     }
 }

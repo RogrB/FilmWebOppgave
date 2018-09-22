@@ -10,6 +10,6 @@ namespace Graubakken_Filmsjappe.Models
         public int id { get; set; }
         public string Tittel { get; set; }
         public string Beskjed { get; set; }
-        public DateTime Dato { get; set; }
+        public string Dato { get; set; }
     }
 }

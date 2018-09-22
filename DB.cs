@@ -118,7 +118,8 @@ namespace Graubakken_Filmsjappe
                 Fornavn = "Ole",
                 Etternavn = "Olsen",
                 Alder = 26,
-                Land = "Norge"
+                Land = "Norge",
+                Bilde = "hallo"
             };
             List<Film> noenFilmer = new List<Film>();
             noenFilmer.Add(alleFilmer[3]);
@@ -132,6 +133,20 @@ namespace Graubakken_Filmsjappe
             catch(Exception e)
             {
                 // jepp..
+            }
+        }
+
+        public bool InsertDBData()
+        {
+            var dbInsert = new DBinsert();
+            bool ok = dbInsert.settInnIDB();
+            if (ok)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

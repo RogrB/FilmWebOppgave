@@ -18,7 +18,7 @@ namespace Graubakken_Filmsjappe.Models
         public string Bilde { get; set; }
         public int Visninger { get; set; }
         public string Beskrivelse { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
         public virtual List<Skuespiller> Skuespillere { get; set; }
         public virtual List<Stemmer> Stemmer { get; set; }
     }

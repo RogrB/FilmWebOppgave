@@ -13,6 +13,14 @@ textarea {
     
 }
 
+.navbar {
+    position: relative;
+    z-index: 1000;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+
 #footerDiv {
     background-color: #acd9f8;
     padding: 25px;

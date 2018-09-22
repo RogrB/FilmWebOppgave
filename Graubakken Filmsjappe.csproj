@@ -125,6 +125,25 @@
     <Content Include="Content\images\posters\SW_-_Empire_Strikes_Back.jpg" />
     <Content Include="Content\images\posters\The_Lion_King_poster.jpg" />
     <Content Include="Content\images\posters\twofamilyposter.jpg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1040879.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1059180.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1162462.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1406547.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-220453.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-249760.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-355178.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-415829.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-428364.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-555790.png" />
+    <Content Include="Content\images\skuespillere\pexels-photo-610738.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-638700.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-681637.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-697509.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-736715.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-762020.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-935969.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-952005.jpeg" />
+    <Content Include="Content\images\skuespillere\readme.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -139,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="DBinsert.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +187,7 @@
     <Content Include="Views\Film\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Film\Skuespillere.cshtml" />
+    <Content Include="Views\Film\Dbinsert.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
