@@ -188,6 +188,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Film\Skuespillere.cshtml" />
     <Content Include="Views\Film\Dbinsert.cshtml" />
+    <Content Include="Views\Film\Nyheter.cshtml" />
+    <Content Include="Views\Film\Filmer.cshtml" />
+    <Content Include="Views\Film\Sjangere.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

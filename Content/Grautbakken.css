@@ -1,5 +1,6 @@
 ﻿.body-content {
     background-color: #191142;
+    color: white;
 }
 
 input,
@@ -33,7 +34,7 @@ textarea {
 }
 
 #footerDiv {
-    background-color: #00ff21;
+    background-color: #b6ff00;
     padding: 25px;
 }
 

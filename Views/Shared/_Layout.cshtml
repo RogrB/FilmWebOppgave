@@ -4,20 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Grautbakken Filmsjappe</title>
-    <link href="~/Content/Grautbakken.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Grautbakken.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-        <style>
-            .carousel-inner > .item > img {
-                width: 321px;
-                height: 487px;
-                margin: 0 auto;
-                color: #808080;
-            }
-            .navbar {
-                margin-bottom: 0px; 
-            }
-        </style>
+    <style>
+        .carousel-inner > .item > img {
+            width: 321px;
+            height: 487px;
+            margin: 0 auto;
+            color: #808080;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+    </style>
 </head>
 <body style="background-color: #ffffff">
 
@@ -51,11 +52,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Filmer</a></li>
-                    <li><a href="#">Sjangere</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Film")">Home</a></li>
+                    <li><a href="@Url.Action("Filmer", "Film")">Filmer</a></li>
+                    <li><a href="@Url.Action("Sjangere", "Film")">Sjangere</a></li>
                     <li><a href="@Url.Action("Skuespillere", "Film")">Skuespillere</a></li>
-                    <li><a href="#">Nyheter</a></li>
+                    <li><a href="@Url.Action("Nyheter", "Film")">Nyheter</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

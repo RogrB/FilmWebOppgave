@@ -24,6 +24,28 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(alleSkuespillere);
         }
 
+
+        public ActionResult Nyheter()
+        {
+            var db = new DB();
+            List<Models.Nyhet> alleNyheter = db.HentAlleNyheter();
+            return View(alleNyheter);
+        }
+
+        public ActionResult Filmer()
+        {
+            var db = new DB();
+            List<Models.Film> alleFilmer = db.HentAlleFilmer();
+            return View(alleFilmer);
+        }
+
+        public ActionResult Sjangere()
+        {
+            var db = new DB();
+            List<Models.Film> alleFilmer = db.HentAlleFilmer();
+            return View(alleFilmer);
+        }
+
         public ActionResult Dbinsert()
         {
             var db = new DB();
@@ -37,5 +59,6 @@ namespace Graubakken_Filmsjappe.Controllers
             }
             return View();
         }
+
     }
 }

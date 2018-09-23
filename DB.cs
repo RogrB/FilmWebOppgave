@@ -110,6 +110,12 @@ namespace Graubakken_Filmsjappe
             return db.Skuespillere.ToList();
         }
 
+        public List<Models.Nyhet> HentAlleNyheter()
+        {
+            var db = new Models.DBContext();
+            return db.Nyheter.ToList();
+        }
+
         public bool InsertDBData()
         {
             var dbInsert = new DBinsert();
