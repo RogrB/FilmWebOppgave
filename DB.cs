@@ -48,7 +48,8 @@ namespace Graubakken_Filmsjappe
             var db = new Models.DBContext();
 
             var Skuespiller = db.Skuespillere.Find(id);
-
+            return Skuespiller;
+            /*
             if(Skuespiller == null)
             {
                 return null;
@@ -67,7 +68,7 @@ namespace Graubakken_Filmsjappe
                 utSkuespiller.Filmer = filmer;
 
                 return utSkuespiller;
-            }
+            }*/
         }
 
         public Models.Film HentFilm(int id)
@@ -75,7 +76,8 @@ namespace Graubakken_Filmsjappe
             var db = new Models.DBContext();
 
             var Film = db.Filmer.Find(id);
-
+            return Film;
+            /*
             if(Film == null)
             {
                 return null;
@@ -99,7 +101,7 @@ namespace Graubakken_Filmsjappe
                 utFilm.Skuespillere = skuespillere;
 
                 return utFilm;
-            }
+            }*/
         }
 
         public List<Models.Skuespiller> HentAlleSkuespillere()
@@ -108,6 +110,21 @@ namespace Graubakken_Filmsjappe
             return db.Skuespillere.ToList();
         }
 
+        public bool InsertDBData()
+        {
+            var dbInsert = new DBinsert();
+            bool ok = dbInsert.settInnIDB();
+            if (ok)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /*
         public void testInsert()
         {
             var db = new DBContext();
@@ -134,21 +151,7 @@ namespace Graubakken_Filmsjappe
             {
                 // jepp..
             }
-        }
-
-        public bool InsertDBData()
-        {
-            var dbInsert = new DBinsert();
-            bool ok = dbInsert.settInnIDB();
-            if (ok)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        }*/
 
     }
 }

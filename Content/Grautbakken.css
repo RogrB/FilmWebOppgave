@@ -9,8 +9,12 @@ textarea {
 }
 
 #headerDiv {
-    background-color: #ffffff;
-    
+    background-color: #ffffff;   
+}
+
+.carousel-inner > .item > img {
+    width: 214px;
+    height: 325px;
 }
 
 .navbar {
@@ -21,8 +25,15 @@ textarea {
     border: 1px solid transparent;
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 #footerDiv {
-    background-color: #acd9f8;
+    background-color: #00ff21;
     padding: 25px;
 }
 

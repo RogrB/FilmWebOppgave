@@ -6023,8 +6023,8 @@ body.modal-open,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  height: auto;
-  max-width: 100%;
+  height: 325px;
+  width: 214px;
   line-height: 1;
 }
 
