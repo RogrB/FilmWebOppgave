@@ -13,17 +13,16 @@ namespace Graubakken_Filmsjappe.Controllers
         {
             var db = new DB();
             List <Models.Film> alleFilmer = db.HentAlleFilmer();
+            //ViewBag["IndexNyheter"] = db.HentIndexNyheter();
             return View(alleFilmer);
         }
 
         public ActionResult Skuespillere()
         {
             var db = new DB();
-            //db.testInsert();
             List<Models.Skuespiller> alleSkuespillere = db.HentAlleSkuespillere();
             return View(alleSkuespillere);
         }
-
 
         public ActionResult Nyheter()
         {
@@ -42,8 +41,8 @@ namespace Graubakken_Filmsjappe.Controllers
         public ActionResult Sjangere()
         {
             var db = new DB();
-            List<Models.Film> alleFilmer = db.HentAlleFilmer();
-            return View(alleFilmer);
+            List<Models.Sjanger> alleSjangere = db.HentAlleSjangere();
+            return View(alleSjangere);
         }
 
         public ActionResult Dbinsert()

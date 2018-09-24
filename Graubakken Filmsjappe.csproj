@@ -166,11 +166,13 @@
     <Compile Include="Models\DBData\FilmData.cs" />
     <Compile Include="Models\DBData\KundeData.cs" />
     <Compile Include="Models\DBData\NyhetsData.cs" />
+    <Compile Include="Models\DBData\SjangerData.cs" />
     <Compile Include="Models\DBData\SkuespillerData.cs" />
     <Compile Include="Models\DBData\StemmeData.cs" />
     <Compile Include="Models\DBInit.cs" />
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\Nyhet.cs" />
+    <Compile Include="Models\Sjanger.cs" />
     <Compile Include="Models\Skuespiller.cs" />
     <Compile Include="Models\Stemmer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

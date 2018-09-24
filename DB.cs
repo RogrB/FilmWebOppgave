@@ -9,111 +9,69 @@ namespace Graubakken_Filmsjappe
 {
     public class DB
     {
-        public List<Models.Film> HentAlleFilmer()
+        public List<Film> HentAlleFilmer()
         {
             var db = new Models.DBContext();
-            List<Models.Film> alleFilmer = new List<Models.Film>();
-            /*
-            List<Models.Film> alleFilmer = db.Filmer.Select(f => new Models.Film()
-            {
-                id = f.id,
-                Navn = f.Navn,
-                Produksjonsår = f.Produksjonsår,
-                Kontinent = f.Kontinent,
-                Sjanger1 = f.Sjanger1,
-                Sjanger2 = f.Sjanger2,
-                Studio = f.Studio,
-                Visninger = f.Visninger,
-                Beskrivelse = f.Beskrivelse,
-                Skuespillere = f.Skuespillere,
-                Stemmer = f.Stemmer
-            }).ToList();*/
+            List<Film> alleFilmer = new List<Film>();
 
             alleFilmer = db.Filmer.ToList();
 
             return alleFilmer;
         }
 
-        public List<Skuespiller> HentSkuespillereIFilm(int id)
+        public Skuespiller HentSkuespiller(int id)
         {
-            var db = new Models.DBContext();
-
-            //List<Models.Skuespiller> skuespillere = db.Skuespillere.Where(f => f.Filmer[0].id = id).ToList();
-            var skuespillere = new List<Models.Skuespiller>(); // Trenger riktig query her
-            return skuespillere;
-        }
-
-        public Models.Skuespiller HentSkuespiller(int id)
-        {
-            var db = new Models.DBContext();
+            var db = new DBContext();
 
             var Skuespiller = db.Skuespillere.Find(id);
             return Skuespiller;
-            /*
-            if(Skuespiller == null)
-            {
-                return null;
-            }
-            else
-            {
-                var utSkuespiller = new Models.Skuespiller()
-                {
-                    id = Skuespiller.id,
-                    Fornavn = Skuespiller.Fornavn,
-                    Etternavn = Skuespiller.Etternavn,
-                    Alder = Skuespiller.Alder,
-                    Land = Skuespiller.Land
-                };
-                var filmer = new List<Models.Film>(); // Husk å oppdatere med riktig query
-                utSkuespiller.Filmer = filmer;
-
-                return utSkuespiller;
-            }*/
         }
 
-        public Models.Film HentFilm(int id)
+        public Film HentFilm(int id)
         {
-            var db = new Models.DBContext();
+            var db = new DBContext();
 
             var Film = db.Filmer.Find(id);
             return Film;
-            /*
-            if(Film == null)
-            {
-                return null;
-            }
-            else
-            {
-                var utFilm = new Models.Film()
-                {
-                    id = Film.id,
-                    Navn = Film.Navn,
-                    Produksjonsår = Film.Produksjonsår,
-                    Beskrivelse = Film.Beskrivelse,
-                    Bilde = Film.Bilde,
-                    Kontinent = Film.Kontinent,
-                    Sjanger1 = Film.Sjanger1,
-                    Sjanger2 = Film.Sjanger2,
-                    Studio = Film.Studio,
-                    Visninger = Film.Visninger
-                };
-                var skuespillere = new List<Models.Skuespiller>(); // Husk å oppdatere med riktig query, og legge til stemmer
-                utFilm.Skuespillere = skuespillere;
-
-                return utFilm;
-            }*/
         }
 
-        public List<Models.Skuespiller> HentAlleSkuespillere()
+        public List<Skuespiller> HentAlleSkuespillere()
         {
-            var db = new Models.DBContext();
+            var db = new DBContext();
             return db.Skuespillere.ToList();
         }
 
-        public List<Models.Nyhet> HentAlleNyheter()
+        public List<Nyhet> HentAlleNyheter()
         {
-            var db = new Models.DBContext();
+            var db = new DBContext();
             return db.Nyheter.ToList();
+        }
+
+        public List<Nyhet> HentIndexNyheter()
+        {
+            var db = new DBContext();
+            List<Nyhet> alleNyheter = db.Nyheter.OrderByDescending(n => n.id).ToList();
+            List<Nyhet> utNyheter = new List<Nyhet>();
+            if (alleNyheter != null)
+            {
+                for (int i = 0; i < alleNyheter.Count(); i++)
+                {
+                    utNyheter[i].id = alleNyheter[i].id;
+                    utNyheter[i].Tittel = alleNyheter[i].Tittel;
+                    utNyheter[i].Beskjed = alleNyheter[i].Beskjed;
+                    utNyheter[i].Dato = alleNyheter[i].Dato;
+                }
+            }
+
+            return utNyheter;
+        }
+
+        public List<Sjanger> HentAlleSjangere()
+        {
+            var db = new DBContext();
+            List<Sjanger> alleSjangere = db.Sjangere.ToList();
+
+            return alleSjangere;
         }
 
         public bool InsertDBData()

@@ -5,9 +5,11 @@ using System.Web;
 
 namespace Graubakken_Filmsjappe.Models
 {
-    public class Stemmer
+    public class Sjanger
     {
         public int id { get; set; }
-        public int AntallStjerner { get; set; }
+        public string sjanger { get; set; }
+        public string Bilde { get; set; }
+        public virtual List<Film> Filmer { get; set; }
     }
 }
