@@ -18,34 +18,34 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <img src='../@(Model[0].Bilde)' alt="@(Model[0].Navn)" class="img-responsive" />
-                        
-                            <h3>@(Model[0].Navn)</h3>
-                            <p>@(Model[0].Beskrivelse)</p>
-                        
+
+                        <h3>@(Model[0].Navn)</h3>
+                        <p>@(Model[0].Beskrivelse)</p>
+
                     </div>
 
                     <div class="item">
-                        <img src='../@(Model[5].Bilde)' alt="@(Model[5].Navn)" class="img-responsive"/>
-                        
-                            <h3>@(Model[5].Navn)</h3>
-                            <p>@(Model[5].Beskrivelse)</p>
-                        
+                        <img src='../@(Model[5].Bilde)' alt="@(Model[5].Navn)" class="img-responsive" />
+
+                        <h3>@(Model[5].Navn)</h3>
+                        <p>@(Model[5].Beskrivelse)</p>
+
                     </div>
 
                     <div class="item">
                         <img src='../@(Model[3].Bilde)' alt="@(Model[3].Navn)" class="img-responsive" />
-                        
-                            <h3>@(Model[3].Navn)</h3>
-                            <p>@(Model[3].Beskrivelse)</p>
-                        
+
+                        <h3>@(Model[3].Navn)</h3>
+                        <p>@(Model[3].Beskrivelse)</p>
+
                     </div>
 
                     <div class="item">
                         <img src='../@(Model[7].Bilde)' alt="@(Model[7].Navn)" class="img-responsive" />
-                        
-                            <h3>@(Model[7].Navn)</h3>
-                            <p>@(Model[7].Beskrivelse)</p>
-                        
+
+                        <h3>@(Model[7].Navn)</h3>
+                        <p>@(Model[7].Beskrivelse)</p>
+
                     </div>
                 </div>
 
@@ -82,23 +82,33 @@
     <br>
     <div class="row">
         <div class="col-sm-3">
-            <img src='../@(Model[1].Bilde)' alt="@(Model[1].Navn)" class="img-responsive center" width="250" height="300" />
+            <img src='../@(Model[1].Bilde)' alt="@(Model[1].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[1].id))"  style="cursor: pointer" />
             <p>@(Model[1].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[2].Bilde)' alt="@(Model[2].Navn)" class="img-responsive center" width="250" height="300" />
+            <img src='../@(Model[2].Bilde)' alt="@(Model[2].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[2].id))"  style="cursor: pointer" />
             <p>@(Model[2].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[4].Bilde)' alt="@(Model[4].Navn)" class="img-responsive center" width="250" height="300" />
+            <img src='../@(Model[4].Bilde)' alt="@(Model[4].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[4].id))"  style="cursor: pointer" />
             <p>@(Model[4].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[6].Bilde)' alt="@(Model[6].Navn)" class="img-responsive center" width="250" height="300" />
+            <img src='../@(Model[6].Bilde)' alt="@(Model[6].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[6].id))"  style="cursor: pointer" />
             <p>@(Model[6].Navn)</p>
         </div>
     </div>
     <hr>
+</div>
+
+
+<div id="filmCollapse" class="collapse">
+    <span hidden id="collapseID"></span>
+    <div id="collapseContent">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
 </div>
 
 <div class="container text-center">
@@ -131,3 +141,24 @@
         </div>
     </div>
 </div><br>
+
+<script type="text/javascript">
+    function filmCollapse(id) {
+        if (!$("#filmCollapse").is(":visible")) {
+            // Første trykk på collapsen
+            $("#filmCollapse").collapse("show");
+            $("#collapseID").html(id);
+            $("#collapseContent").html(id);
+        }
+        else if ($("#collapseID").html() == id) {
+            // Trykker på samme collapse - Gjemmer innhold
+            $("#filmCollapse").collapse("hide");
+        }
+        else {
+            // Ny content i collapsen
+            $("#collapseID").html(id);
+            $("#collapseContent").html(id);
+        }
+        
+    }
+</script>
