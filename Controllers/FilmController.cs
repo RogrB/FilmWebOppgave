@@ -13,7 +13,9 @@ namespace Graubakken_Filmsjappe.Controllers
         {
             var db = new DB();
             List <Models.Film> alleFilmer = db.HentAlleFilmer();
-            //ViewBag["IndexNyheter"] = db.HentIndexNyheter();
+            List<Models.Nyhet> alleNyheter = db.HentIndexNyheter();
+            ProsesserIndexNyheter(alleNyheter); // Setter de 3 siste nyhetene inn i ViewBags
+
             return View(alleFilmer);
         }
 
@@ -43,6 +45,22 @@ namespace Graubakken_Filmsjappe.Controllers
             var db = new DB();
             List<Models.Sjanger> alleSjangere = db.HentAlleSjangere();
             return View(alleSjangere);
+        }
+
+        // Metode som setter de 3 siste nyhetene inn i ViewBags for å vises på indexsiden
+        public void ProsesserIndexNyheter(List<Models.Nyhet> nyheter)
+        {
+            ViewBag.Beskjed0 = nyheter[0].Beskjed;
+            ViewBag.Tittel0 = nyheter[0].Tittel;
+            ViewBag.Dato0 = nyheter[0].Dato;
+
+            ViewBag.Beskjed1 = nyheter[1].Beskjed;
+            ViewBag.Tittel1 = nyheter[1].Tittel;
+            ViewBag.Dato1 = nyheter[1].Dato;
+
+            ViewBag.Beskjed2 = nyheter[2].Beskjed;
+            ViewBag.Tittel2 = nyheter[2].Tittel;
+            ViewBag.Dato2 = nyheter[2].Dato;
         }
 
         public ActionResult Dbinsert()

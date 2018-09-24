@@ -51,19 +51,8 @@ namespace Graubakken_Filmsjappe
         {
             var db = new DBContext();
             List<Nyhet> alleNyheter = db.Nyheter.OrderByDescending(n => n.id).ToList();
-            List<Nyhet> utNyheter = new List<Nyhet>();
-            if (alleNyheter != null)
-            {
-                for (int i = 0; i < alleNyheter.Count(); i++)
-                {
-                    utNyheter[i].id = alleNyheter[i].id;
-                    utNyheter[i].Tittel = alleNyheter[i].Tittel;
-                    utNyheter[i].Beskjed = alleNyheter[i].Beskjed;
-                    utNyheter[i].Dato = alleNyheter[i].Dato;
-                }
-            }
 
-            return utNyheter;
+            return alleNyheter;
         }
 
         public List<Sjanger> HentAlleSjangere()
