@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Graubakken_Filmsjappe.Controllers
 {
@@ -61,6 +62,35 @@ namespace Graubakken_Filmsjappe.Controllers
             ViewBag.Beskjed2 = nyheter[2].Beskjed;
             ViewBag.Tittel2 = nyheter[2].Tittel;
             ViewBag.Dato2 = nyheter[2].Dato;
+        }
+
+        public string HentEnFilm(int id)
+        {
+            var db = new DB();
+            Models.Film enFilm = db.HentFilm(id);
+            var utFilm = new Models.Film()
+            {
+                id = enFilm.id,
+                Navn = enFilm.Navn,
+                Beskrivelse = enFilm.Beskrivelse,
+                Bilde = enFilm.Bilde,
+                Produksjonsår = enFilm.Produksjonsår,
+                Kontinent = enFilm.Kontinent,
+                ReleaseDate = enFilm.ReleaseDate,
+                Studio = enFilm.Studio,
+                Visninger = enFilm.Visninger,
+                Sjanger = new List<Models.Sjanger>(),
+                Stemmer = new List<Models.Stemmer>(),
+                Skuespillere = new List<Models.Skuespiller>()
+            };
+
+            //utFilm.Skuespillere = enFilm.Skuespillere;
+            //utFilm.Stemmer = enFilm.Stemmer;
+            //utFilm.Sjanger = enFilm.Sjanger;
+            
+            var jsonSerializer = new JavaScriptSerializer();
+            string jsonData = jsonSerializer.Serialize(utFilm);
+            return jsonData;
         }
 
         public ActionResult Dbinsert()

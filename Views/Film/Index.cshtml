@@ -78,7 +78,7 @@
 </div>
 
 <div class="container text-center">
-    <h3>Se film når det passer deg!</h3>
+    <h3 id="scrollTarget">Se film når det passer deg!</h3>
     <br>
     <div class="row">
         <div class="col-sm-3">
@@ -105,9 +105,7 @@
 <div id="filmCollapse" class="collapse">
     <span hidden id="collapseID"></span>
     <div id="collapseContent">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        
     </div>
 </div>
 
@@ -148,7 +146,12 @@
             // Første trykk på collapsen
             $("#filmCollapse").collapse("show");
             $("#collapseID").html(id);
-            $("#collapseContent").html(id);
+
+            $('html, body').animate({
+                scrollTop: $("#scrollTarget").offset().top // Flytter nettleseren til collapse innholdet
+            }, 1000);
+
+            hentFilmData(id);
         }
         else if ($("#collapseID").html() == id) {
             // Trykker på samme collapse - Gjemmer innhold
@@ -157,8 +160,51 @@
         else {
             // Ny content i collapsen
             $("#collapseID").html(id);
-            $("#collapseContent").html(id);
+            hentFilmData(id);
         }
         
+    }
+
+    function hentFilmData(innID) {
+
+        $.ajax({
+            url: '/Film/HentEnFilm/' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterFilmData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente filminformasjon");
+            }
+        });
+
+    }
+
+    function formaterFilmData(data) {
+        var utData = "";
+        utData += '<div class="container">';
+        utData += '<div class="row">';
+
+        utData += '<div class="col-xs-4"><div class="float-right">';
+        utData += '<img src="../' + data.Bilde + '" alt="' + data.Navn + '" class="img-responsive">';
+        utData += '</div></div>';
+
+        utData += '<div class="col-xs-8">';
+        utData += '<h3>' + data.Navn + '</h3>';
+        utData += '<h5>Sjanger</h5>';
+        utData += '<p>' + data.Beskrivelse + '</p>';
+        utData += '<br><br>';
+        utData += '<p>Utgivelsesår: ' + data.Produksjonsår + ' &nbsp;&nbsp; Fra: ' + data.Kontinent + ' &nbsp;&nbsp;';
+        utData += 'Studio: ' + data.Studio + '<br>';
+        utData += 'Antall Visninger: ' + data.Visninger + '</p>';
+        utData += '</div>';
+
+        utData += '</div>';
+        utData += '</div>';
+        utData += '<hr>';
+
+        $("#collapseContent").html(utData);
     }
 </script>
