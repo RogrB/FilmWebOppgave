@@ -27,8 +27,9 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="skuespillerRad" data-visSkuespiller="true" data-toggle="modal" data-navn="@item.Fornavn">
         <td>
+            
             <img alt="@Html.DisplayFor(modelitem => item.Fornavn) @Html.DisplayFor(modelitem => item.Etternavn)" 
                  src="../@item.Bilde" class="img-responsive img-rounded" width="180" height="126">
         </td>
@@ -45,9 +46,47 @@
             @Html.DisplayFor(modelItem => item.Alder)
         </td>
         <td>
-            @Html.ActionLink("Detaljer", "VisSkuespillerDetaljer", new { id=item.id }, new { @class = "btn btn-primary" })
+            <a href="#skuespillerModal" class="btn btn-large btn-info" id="skuespillerKnapp"
+               data-navn="@item.Fornavn @item.Etternavn @item.Alder @item.Bilde"
+               data-filmer="@item.Filmer"
+               data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">Detaljer</a>
         </td>
     </tr>
 }
 
 </table>
+
+<div id="skuespillerModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><span id="skuespillerNavn"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p>SkuespillerInformasjon:</p>
+                <div id="modalContent">
+
+                </div>
+                <div id="filmer">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // lag en hendelse som utføres når en a-href med "data-SletteModal = true" trykkes.
+        $('a[data-visSkuespiller=true]').click(function () {
+            var navn = $(this).data("navn");
+            var filmer = $(this).data("filmer");
+            $("#modalContent").html(navn);
+            $("#filmer").html(filmer[0]);
+            })
+        });
+</script>
