@@ -29,10 +29,23 @@ namespace Graubakken_Filmsjappe
 
         public Film HentFilm(int id)
         {
-            var db = new DBContext();
+            using (var db = new DBContext())
+            {
+                var Film = db.Filmer.Find(id);
+                return Film;
+            }
 
-            var Film = db.Filmer.Find(id);
-            return Film;
+        }
+
+        public List<Film> HentActionFilmer()
+        {
+            using (var db = new DBContext())
+            {
+                List<Film> actionFilmer = new List<Film>();
+                //actionFilmer = db.Filmer.Where(film => db.Sjangere.Where(k => k.sjanger == "Action")).ToList();
+
+                return actionFilmer;
+            }
         }
 
         public List<Skuespiller> HentAlleSkuespillere()

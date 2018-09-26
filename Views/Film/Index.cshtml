@@ -1,4 +1,4 @@
-﻿@model List<Graubakken_Filmsjappe.Models.Film>
+﻿@model List<Graubakken_Filmsjappe.Models.IndexView>
 @{
     ViewBag.Title = "Index";
 }
@@ -17,34 +17,34 @@
 
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src='../@(Model[0].Bilde)' alt="@(Model[0].Navn)" class="img-responsive" />
+                        <img src='../@(Model[0].Filmer[0].Bilde)' alt="@(Model[0].Filmer[0].Navn)" class="img-responsive" />
 
-                        <h3>@(Model[0].Navn)</h3>
-                        <p>@(Model[0].Beskrivelse)</p>
-
-                    </div>
-
-                    <div class="item">
-                        <img src='../@(Model[5].Bilde)' alt="@(Model[5].Navn)" class="img-responsive" />
-
-                        <h3>@(Model[5].Navn)</h3>
-                        <p>@(Model[5].Beskrivelse)</p>
+                        <h3>@(Model[0].Filmer[0].Navn)</h3>
+                        <p>@(Model[0].Filmer[0].Beskrivelse)</p>
 
                     </div>
 
                     <div class="item">
-                        <img src='../@(Model[3].Bilde)' alt="@(Model[3].Navn)" class="img-responsive" />
+                        <img src='../@(Model[0].Filmer[5].Bilde)' alt="@(Model[0].Filmer[5].Navn)" class="img-responsive" />
 
-                        <h3>@(Model[3].Navn)</h3>
-                        <p>@(Model[3].Beskrivelse)</p>
+                        <h3>@(Model[0].Filmer[5].Navn)</h3>
+                        <p>@(Model[0].Filmer[5].Beskrivelse)</p>
 
                     </div>
 
                     <div class="item">
-                        <img src='../@(Model[7].Bilde)' alt="@(Model[7].Navn)" class="img-responsive" />
+                        <img src='../@(Model[0].Filmer[3].Bilde)' alt="@(Model[0].Filmer[3].Navn)" class="img-responsive" />
 
-                        <h3>@(Model[7].Navn)</h3>
-                        <p>@(Model[7].Beskrivelse)</p>
+                        <h3>@(Model[0].Filmer[3].Navn)</h3>
+                        <p>@(Model[0].Filmer[3].Beskrivelse)</p>
+
+                    </div>
+
+                    <div class="item">
+                        <img src='../@(Model[0].Filmer[7].Bilde)' alt="@(Model[0].Filmer[7].Navn)" class="img-responsive" />
+
+                        <h3>@(Model[0].Filmer[7].Navn)</h3>
+                        <p>@(Model[0].Filmer[7].Beskrivelse)</p>
 
                     </div>
                 </div>
@@ -61,16 +61,16 @@
         </div>
         <div class="col-sm-4" style="color:#2e2e2e">
             <div class="well">
-                <p><b>@(ViewBag.Tittel0)</b> &nbsp;&nbsp; <br /><i>@(ViewBag.Dato0)</i></p>
-                <p>@(ViewBag.Beskjed0)</p>
+                <p><b>@(Model[0].Nyheter[0].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[0].Dato)</i></p>
+                <p>@(Model[0].Nyheter[0].Beskjed)</p>
             </div>
             <div class="well">
-                <p><b>@(ViewBag.Tittel1)</b> &nbsp;&nbsp; <br /><i>@(ViewBag.Dato1)</i></p>
-                <p>@(ViewBag.Beskjed1)</p>
+                <p><b>@(Model[0].Nyheter[1].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[1].Dato)</i></p>
+                <p>@(Model[0].Nyheter[1].Beskjed)</p>
             </div>
             <div class="well">
-                <p><b>@(ViewBag.Tittel2)</b> &nbsp;&nbsp; <br /><i>@(ViewBag.Dato2)</i></p>
-                <p>@(ViewBag.Beskjed2)</p>
+                <p><b>@(Model[0].Nyheter[2].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[2].Dato)</i></p>
+                <p>@(Model[0].Nyheter[2].Beskjed)</p>
             </div>
         </div>
     </div>
@@ -82,20 +82,20 @@
     <br>
     <div class="row">
         <div class="col-sm-3">
-            <img src='../@(Model[1].Bilde)' alt="@(Model[1].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[1].id))"  style="cursor: pointer" />
-            <p>@(Model[1].Navn)</p>
+            <img src='../@(Model[0].Filmer[1].Bilde)' alt="@(Model[0].Filmer[1].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[1].id))"  style="cursor: pointer" />
+            <p>@(Model[0].Filmer[1].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[2].Bilde)' alt="@(Model[2].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[2].id))"  style="cursor: pointer" />
-            <p>@(Model[2].Navn)</p>
+            <img src='../@(Model[0].Filmer[2].Bilde)' alt="@(Model[0].Filmer[2].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[2].id))"  style="cursor: pointer" />
+            <p>@(Model[0].Filmer[2].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[4].Bilde)' alt="@(Model[4].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[4].id))"  style="cursor: pointer" />
-            <p>@(Model[4].Navn)</p>
+            <img src='../@(Model[0].Filmer[4].Bilde)' alt="@(Model[0].Filmer[4].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[4].id))"  style="cursor: pointer" />
+            <p>@(Model[0].Filmer[4].Navn)</p>
         </div>
         <div class="col-sm-3">
-            <img src='../@(Model[6].Bilde)' alt="@(Model[6].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[6].id))"  style="cursor: pointer" />
-            <p>@(Model[6].Navn)</p>
+            <img src='../@(Model[0].Filmer[6].Bilde)' alt="@(Model[0].Filmer[6].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[6].id))"  style="cursor: pointer" />
+            <p>@(Model[0].Filmer[6].Navn)</p>
         </div>
     </div>
     <hr>
