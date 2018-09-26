@@ -60,20 +60,6 @@ namespace Graubakken_Filmsjappe
                 ok = false;
             }
 
-            // Legger skuespillerne inn i databasen
-            try
-            {
-                for (int i = 0; i < alleSkuespillere.Count(); i++)
-                {
-                    db.Skuespillere.Add(alleSkuespillere[i]);
-                }
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                ok = false;
-            }
-
             // Legger nyheter inn i databasen
             try
             {
@@ -88,7 +74,7 @@ namespace Graubakken_Filmsjappe
                 ok = false;
             }
             
-
+            
             // Legger kundene inn i databasen
             try
             {
@@ -104,19 +90,7 @@ namespace Graubakken_Filmsjappe
                 ok = false;
             }
 
-            // Legger sjangere inn i databasen
-            try
-            {
-                for (int i = 0; i < alleSjangere.Count(); i++)
-                {
-                    db.Sjangere.Add(alleSjangere[i]);
-                }
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                ok = false;
-            }
+            // Note: Skuespillere og Sjangere blir lagt inn i databasen gjennom Film-objektet
 
             return ok;
         }
@@ -128,29 +102,16 @@ namespace Graubakken_Filmsjappe
             for (int i = 0; i < alleFilmer.Count(); i++)
             {
                 alleFilmer[i].Skuespillere = new List<Skuespiller>();
-                int AntallSkuespillere = TilfeldigTall.Next(2, 6); // Antall skuespillere i denne filmen
-                List<int> BrukteSkuespillere = new List<int>(); // Liste over skuespillere som allerede har blitt lagt til i filmen
+                int AntallSkuespillere = TilfeldigTall.Next(2, 5); // Antall skuespillere i denne filmen
                 for (int j = 0; j < AntallSkuespillere; j++)
                 {
-                    int TilfeldigSkuespiller = FinnNySkuespiller(BrukteSkuespillere);
-                    BrukteSkuespillere.Add(TilfeldigSkuespiller);
-                    alleFilmer[i].Skuespillere.Add(alleSkuespillere[TilfeldigSkuespiller]);
+                    int TilfeldigSkuespiller = TilfeldigTall.Next(0, alleSkuespillere.Count());
+                    if (!alleFilmer[i].Skuespillere.Contains(alleSkuespillere[TilfeldigSkuespiller]))
+                    {
+                        alleFilmer[i].Skuespillere.Add(alleSkuespillere[TilfeldigSkuespiller]);
+                    }
                 }
             }
-        }
-
-        // Metode som finner en ny skuespiller - for å sikre at den samme skuespilleren ikke blir lagt til en film flere ganger
-        public int FinnNySkuespiller(List<int> BrukteSkuespillere)
-        {
-            Random TilfeldigTall = new Random();
-            bool UnikSkuespiller = true;
-            int Skuespiller = 0;
-            while (UnikSkuespiller)
-            {
-                Skuespiller = TilfeldigTall.Next(0, alleSkuespillere.Count());
-                UnikSkuespiller = BrukteSkuespillere.Contains(Skuespiller);
-            }
-            return Skuespiller;
         }
 
         // Metode som setter et tilfeldig utvalg av filmer inn i kunde-objektene
@@ -163,8 +124,8 @@ namespace Graubakken_Filmsjappe
                 int AntallFilmer = TilfeldigTall.Next(0, alleFilmer.Count());
                 for (int j = 0; j < AntallFilmer; j++)
                 {
-                    int TilfeldigFilm = TilfeldigTall.Next(0, alleFilmer.Count);
-                    if (!alleKunder[i].Filmer.Contains(alleFilmer[j]))
+                    int TilfeldigFilm = TilfeldigTall.Next(0, alleFilmer.Count());
+                    if (!alleKunder[i].Filmer.Contains(alleFilmer[TilfeldigFilm]))
                     {
                         alleKunder[i].Filmer.Add(alleFilmer[TilfeldigFilm]);
                     }

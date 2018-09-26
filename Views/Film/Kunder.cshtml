@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Graubakken_Filmsjappe.Models.Kunde>
+
+@{
+    ViewBag.Title = "Kunder";
+}
+
+<h2>Kunder</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brukernavn)
+        </th>
+        <th>Filmer</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fornavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etternavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brukernavn)
+        </td>
+        <td>
+            @for (int i = 0; i < item.Filmer.Count(); i++)
+            {
+                @Html.DisplayFor(modelItem => item.Filmer[i].Navn)
+                <br />
+            }
+        </td>
+    </tr>
+}
+
+</table>

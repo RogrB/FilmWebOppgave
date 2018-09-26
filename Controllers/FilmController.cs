@@ -106,5 +106,12 @@ namespace Graubakken_Filmsjappe.Controllers
             return View();
         }
 
+        public ActionResult Kunder()
+        {
+            var db = new DB();
+            var kunder = db.HentKunder();
+            return View(kunder);
+        }
+
     }
 }

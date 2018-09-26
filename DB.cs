@@ -115,6 +115,13 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        public List<Kunde> HentKunder()
+        {
+            var db = new DBContext();
+            return db.Kunder.ToList();
+
+        }
+
         /*
         public void testInsert()
         {
