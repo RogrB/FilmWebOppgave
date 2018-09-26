@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Graubakken_Filmsjappe.Models.Sjanger>
+﻿@model List<Graubakken_Filmsjappe.Models.Sjanger>
 
 @{
     ViewBag.Title = "Sjangere";
@@ -10,7 +10,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.sjanger)
+            <span data-toggle="collapse" style="cursor: pointer" data-target="#@item.id">@Html.DisplayFor(modelItem => item.sjanger)</span>
+            <div class="collapse" id="@item.id">
+                @foreach (var film in item.Filmer)
+                {
+                    <p>@film.Navn</p>
+                }
+            </div>
         </td>
     </tr>
 }

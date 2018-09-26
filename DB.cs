@@ -46,7 +46,7 @@ namespace Graubakken_Filmsjappe
             using (var db = new DBContext())
             {
                 List<Film> actionFilmer = new List<Film>();
-                //actionFilmer = db.Filmer.Where(film => db.Sjangere.Where(k => k.sjanger == "Action")).ToList();
+                //actionFilmer = db.Filmer.Where(film => db.Sjangere.Where(k => k.sjanger == "Action").ToList();
 
                 return actionFilmer;
             }
@@ -80,12 +80,12 @@ namespace Graubakken_Filmsjappe
 
         public List<Sjanger> HentAlleSjangere()
         {
-            using (var db = new DBContext())
-            {
+            var db = new DBContext();
+            
                 List<Sjanger> alleSjangere = db.Sjangere.ToList();
 
                 return alleSjangere;
-            }
+            
         }
 
         public List<Film> HentFilmerFraSkuespillerID(int id)
