@@ -47,8 +47,7 @@
         </td>
         <td>
             <a href="#skuespillerModal" class="btn btn-large btn-info" id="skuespillerKnapp"
-               data-navn="@item.Fornavn @item.Etternavn @item.Alder @item.Bilde"
-               data-filmer="@item.Filmer"
+               data-navn="@item.Fornavn @item.Etternavn" data-alder="@item.Alder" data-bilde="@item.Bilde"
                data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">Detaljer</a>
         </td>
     </tr>
@@ -84,9 +83,38 @@
         // lag en hendelse som utføres når en a-href med "data-SletteModal = true" trykkes.
         $('a[data-visSkuespiller=true]').click(function () {
             var navn = $(this).data("navn");
-            var filmer = $(this).data("filmer");
+            var alder = $(this).data("alder");
+            var bilde = $(this).data("bilde");
+            var id = $(this).data("id");
+            var info = ""; // formater HTML
             $("#modalContent").html(navn);
-            $("#filmer").html(filmer[0]);
+
+            hentFilmData(id);
             })
+    });
+
+    function hentFilmData(innID) {
+        $.ajax({
+            url: '/Film/HentFilmerFraSkuespillerID/' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterFilmData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente filminformasjon");
+            }
         });
+    }
+
+    function formaterFilmData(data) {
+        var filmer = "";
+        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+            filmer += this.id;
+            filmer += this.Navn;
+            filmer += "<br>";
+        });
+        $("#filmer").html(filmer);
+    }
 </script>

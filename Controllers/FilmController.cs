@@ -77,6 +77,18 @@ namespace Graubakken_Filmsjappe.Controllers
             
             var jsonSerializer = new JavaScriptSerializer();
             string jsonData = jsonSerializer.Serialize(utFilm);
+
+            return jsonData;
+        }
+
+        public string HentFilmerFraSkuespillerID(int id)
+        {
+            var db = new DB();
+            List<Models.Film> filmer = db.HentFilmerFraSkuespillerID(id);
+
+            var jsonSerializer = new JavaScriptSerializer();
+            string jsonData = jsonSerializer.Serialize(filmer);
+
             return jsonData;
         }
 

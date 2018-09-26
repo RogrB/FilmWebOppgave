@@ -11,20 +11,23 @@ namespace Graubakken_Filmsjappe
     {
         public List<Film> HentAlleFilmer()
         {
-            var db = new Models.DBContext();
-            List<Film> alleFilmer = new List<Film>();
+            using (var db = new Models.DBContext())
+            {
+                List<Film> alleFilmer = new List<Film>();
+                alleFilmer = db.Filmer.ToList();
 
-            alleFilmer = db.Filmer.ToList();
-
-            return alleFilmer;
+                return alleFilmer;
+            }
         }
 
         public Skuespiller HentSkuespiller(int id)
         {
-            var db = new DBContext();
+            using (var db = new DBContext())
+            {
+                var Skuespiller = db.Skuespillere.Find(id);
 
-            var Skuespiller = db.Skuespillere.Find(id);
-            return Skuespiller;
+                return Skuespiller;
+            }
         }
 
         public Film HentFilm(int id)
@@ -32,6 +35,7 @@ namespace Graubakken_Filmsjappe
             using (var db = new DBContext())
             {
                 var Film = db.Filmer.Find(id);
+
                 return Film;
             }
 
@@ -50,30 +54,51 @@ namespace Graubakken_Filmsjappe
 
         public List<Skuespiller> HentAlleSkuespillere()
         {
-            var db = new DBContext();
-            return db.Skuespillere.ToList();
+            using (var db = new DBContext())
+            {
+                return db.Skuespillere.ToList();
+            }
         }
 
         public List<Nyhet> HentAlleNyheter()
         {
-            var db = new DBContext();
-            return db.Nyheter.ToList();
+            using (var db = new DBContext())
+            {
+                return db.Nyheter.ToList();
+            }
         }
 
         public List<Nyhet> HentIndexNyheter()
         {
-            var db = new DBContext();
-            List<Nyhet> alleNyheter = db.Nyheter.OrderByDescending(n => n.id).ToList();
+            using (var db = new DBContext())
+            {
+                List<Nyhet> alleNyheter = db.Nyheter.OrderByDescending(n => n.id).ToList();
 
-            return alleNyheter;
+                return alleNyheter;
+            }
         }
 
         public List<Sjanger> HentAlleSjangere()
         {
-            var db = new DBContext();
-            List<Sjanger> alleSjangere = db.Sjangere.ToList();
+            using (var db = new DBContext())
+            {
+                List<Sjanger> alleSjangere = db.Sjangere.ToList();
 
-            return alleSjangere;
+                return alleSjangere;
+            }
+        }
+
+        public List<Film> HentFilmerFraSkuespillerID(int id)
+        {
+            var db = new DBContext(); // Får feilmelding om jeg prøver using(var db = new db())
+
+            List<Film> filmer = db.Skuespillere.Find(id).Filmer.Select(f => new Film()
+            {
+                id = f.id,
+                Navn = f.Navn,
+                Bilde = f.Bilde
+            }).ToList();
+            return filmer;
         }
 
         public bool InsertDBData()
