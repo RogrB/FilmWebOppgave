@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
 }
 
+<!-- BildeSlider Filmer -->
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -18,35 +19,17 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <img src='../@(Model[0].Filmer[0].Bilde)' alt="@(Model[0].Filmer[0].Navn)" class="img-responsive" />
-
                         <h3>@(Model[0].Filmer[0].Navn)</h3>
                         <p>@(Model[0].Filmer[0].Beskrivelse)</p>
-
                     </div>
-
-                    <div class="item">
-                        <img src='../@(Model[0].Filmer[5].Bilde)' alt="@(Model[0].Filmer[5].Navn)" class="img-responsive" />
-
-                        <h3>@(Model[0].Filmer[5].Navn)</h3>
-                        <p>@(Model[0].Filmer[5].Beskrivelse)</p>
-
-                    </div>
-
-                    <div class="item">
-                        <img src='../@(Model[0].Filmer[3].Bilde)' alt="@(Model[0].Filmer[3].Navn)" class="img-responsive" />
-
-                        <h3>@(Model[0].Filmer[3].Navn)</h3>
-                        <p>@(Model[0].Filmer[3].Beskrivelse)</p>
-
-                    </div>
-
-                    <div class="item">
-                        <img src='../@(Model[0].Filmer[7].Bilde)' alt="@(Model[0].Filmer[7].Navn)" class="img-responsive" />
-
-                        <h3>@(Model[0].Filmer[7].Navn)</h3>
-                        <p>@(Model[0].Filmer[7].Beskrivelse)</p>
-
-                    </div>
+                    @for (int i = 1; i < 4; i++)
+                    {
+                        <div class="item">
+                            <img src='../@(Model[0].Filmer[i].Bilde)' alt="@(Model[0].Filmer[i].Navn)" class="img-responsive" />
+                            <h3>@(Model[0].Filmer[i].Navn)</h3>
+                            <p>@(Model[0].Filmer[i].Beskrivelse)</p>
+                        </div>
+                    }
                 </div>
 
                 <a class="left carousel-control" href="#bildeSlide" role="button" data-slide="prev">
@@ -60,47 +43,39 @@
             </div>
         </div>
         <div class="col-sm-4" style="color:#2e2e2e">
-            <div class="well">
-                <p><b>@(Model[0].Nyheter[0].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[0].Dato)</i></p>
-                <p>@(Model[0].Nyheter[0].Beskjed)</p>
-            </div>
-            <div class="well">
-                <p><b>@(Model[0].Nyheter[1].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[1].Dato)</i></p>
-                <p>@(Model[0].Nyheter[1].Beskjed)</p>
-            </div>
-            <div class="well">
-                <p><b>@(Model[0].Nyheter[2].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[2].Dato)</i></p>
-                <p>@(Model[0].Nyheter[2].Beskjed)</p>
-            </div>
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="well">
+                    <p><b>@(Model[0].Nyheter[i].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model[0].Nyheter[i].Dato)</i></p>
+                    <p>@(Model[0].Nyheter[i].Beskjed)</p>
+                </div>
+            }
         </div>
     </div>
     <hr>
 </div>
 
+<!-- Collapse Menu Filmer -->
 <div class="container text-center">
     <h3 id="scrollTarget">Se film når det passer deg!</h3>
     <br>
     <div class="row">
-        <div class="col-sm-3">
-            <img src='../@(Model[0].Filmer[1].Bilde)' alt="@(Model[0].Filmer[1].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[1].id))"  style="cursor: pointer" />
-            <p>@(Model[0].Filmer[1].Navn)</p>
-        </div>
-        <div class="col-sm-3">
-            <img src='../@(Model[0].Filmer[2].Bilde)' alt="@(Model[0].Filmer[2].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[2].id))"  style="cursor: pointer" />
-            <p>@(Model[0].Filmer[2].Navn)</p>
-        </div>
-        <div class="col-sm-3">
-            <img src='../@(Model[0].Filmer[4].Bilde)' alt="@(Model[0].Filmer[4].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[4].id))"  style="cursor: pointer" />
-            <p>@(Model[0].Filmer[4].Navn)</p>
-        </div>
-        <div class="col-sm-3">
-            <img src='../@(Model[0].Filmer[6].Bilde)' alt="@(Model[0].Filmer[6].Navn)" class="img-responsive center" width="250" height="300" onclick="filmCollapse(@(Model[0].Filmer[6].id))"  style="cursor: pointer" />
-            <p>@(Model[0].Filmer[6].Navn)</p>
-        </div>
+        @for (int i = 4; i < 8; i++)
+        {
+            <div class="col-sm-3">
+                <a href="#filmCollapse" data-id="@(Model[0].Filmer[i].id)"
+                     data-visCollapse="true" style="cursor: pointer" data-kontinent="@(Model[0].Filmer[i].Kontinent)"
+                     data-bilde="@(Model[0].Filmer[i].Bilde)" data-navn="@(Model[0].Filmer[i].Navn)" data-produksjonsår="@(Model[0].Filmer[i].Produksjonsår)"
+                     data-beskrivelse="@(Model[0].Filmer[i].Beskrivelse)" data-studio="@(Model[0].Filmer[i].Studio)" data-visninger="@(Model[0].Filmer[i].Visninger)">
+
+                <img src='../@(Model[0].Filmer[i].Bilde)' alt="@(Model[0].Filmer[i].Navn)" class="img-responsive center" width="250" height="300" />
+                <p>@(Model[0].Filmer[i].Navn)</p>
+                </a>
+            </div>
+        }
     </div>
     <hr>
 </div>
-
 
 <div id="filmCollapse" class="collapse">
     <span hidden id="collapseID"></span>
@@ -109,8 +84,9 @@
     </div>
 </div>
 
+<!-- Actionfilmer Meny -->
 <div class="container text-center">
-    <h3>En annen sjanger</h3>
+    <h3>Noen filmer fra Action kategorien</h3>
     <br>
     <div class="row">
         <div class="col-sm-2">
@@ -141,48 +117,48 @@
 </div><br>
 
 <script type="text/javascript">
-    function filmCollapse(id) {
-        if (!$("#filmCollapse").is(":visible")) {
-            // Første trykk på collapsen
-            $("#filmCollapse").collapse("show");
-            $("#collapseID").html(id);
-
-            $('html, body').animate({
-                scrollTop: $("#scrollTarget").offset().top // Flytter nettleseren til collapse innholdet
-            }, 500);
-
-            hentFilmData(id);
-        }
-        else if ($("#collapseID").html() == id) {
-            // Trykker på samme collapse - Gjemmer innhold
-            $("#filmCollapse").collapse("hide");
-        }
-        else {
-            // Ny content i collapsen
-            $("#collapseID").html(id);
-            hentFilmData(id);
-        }
-        
-    }
-
-    function hentFilmData(innID) {
-
-        $.ajax({
-            url: '/Film/HentEnFilm/' + innID,
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                formaterFilmData(data);
-            },
-            error: function (x, y, z) {
-                console.log("Feilet API kall for å hente filminformasjon");
+    $(document).ready(function () {
+        // lag en hendelse som utføres når en a-href med "data-SletteModal = true" trykkes.
+        $('a[data-visCollapse=true]').click(function (evt) {
+            evt.preventDefault();
+            var data = {
+                Navn: $(this).data("navn"),
+                Bilde: $(this).data("bilde"),
+                Visninger: $(this).data("visninger"),
+                Produksjonsår: $(this).data("produksjonsår"),
+                Kontinent: $(this).data("kontinent"),
+                Studio: $(this).data("studio"),
+                Beskrivelse: $(this).data("beskrivelse"),
+                id: $(this).data("id")
             }
-        });
+            var id = $(this).data("id");
 
-    }
+            if (!$("#filmCollapse").is(":visible")) {
+                // Første trykk på collapsen
+                $("#filmCollapse").collapse("show");
+                $("#collapseID").html(id);
+
+                $('html, body').animate({
+                    scrollTop: $("#scrollTarget").offset().top // Flytter nettleseren til collapse innholdet
+                }, 500);
+
+                formaterFilmData(data);
+            }
+            else if ($("#collapseID").html() == id) {
+                // Trykker på samme collapse - Gjemmer innhold
+                $("#filmCollapse").collapse("hide");
+            }
+            else {
+                // Ny content i collapsen
+                $("#collapseID").html(id);
+                formaterFilmData(data);
+            }
+
+        });
+    })
 
     function formaterFilmData(data) {
+        console.log(data);
         var utData = "";
         utData += '<div class="container">';
         utData += '<div class="row">';
@@ -207,4 +183,20 @@
 
         $("#collapseContent").html(utData);
     }
+    
+    /* Ubrukt AJAX
+    function hentFilmData(innID) {
+        $.ajax({
+            url: '/Film/HentEnFilm/' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterFilmData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente filminformasjon");
+            }
+        });
+    } */
 </script>
