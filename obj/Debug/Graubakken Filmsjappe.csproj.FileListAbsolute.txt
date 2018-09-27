@@ -73,5 +73,3 @@ C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakke
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakken Filmsjappe\Graubakken Filmsjappe\bin\EntityFramework.SqlServer.dll
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakken Filmsjappe\Graubakken Filmsjappe\bin\EntityFramework.xml
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakken Filmsjappe\Graubakken Filmsjappe\bin\EntityFramework.SqlServer.xml
-C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakken Filmsjappe\Graubakken Filmsjappe\bin\Newtonsoft.Json.dll
-C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 1 - Filmbutikk\Graubakken Filmsjappe\Graubakken Filmsjappe\bin\Newtonsoft.Json.xml

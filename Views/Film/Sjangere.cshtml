@@ -10,12 +10,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <span data-toggle="collapse" style="cursor: pointer" data-target="#@item.id">@Html.DisplayFor(modelItem => item.sjanger)</span>
+            <span data-toggle="collapse" style="cursor: pointer" data-target="#@item.id">@Html.DisplayFor(modelItem => item.sjanger)</span> <span class="badge">@item.antall</span>
             <div class="collapse" id="@item.id">
-                @foreach (var film in item.Filmer)
-                {
-                    <p>@film.Navn</p>
-                }
+                <div class="well" style="background-color: #1e1e1e">
+                    @foreach (var film in item.Filmer)
+                    {
+                        <p>@film.Navn</p>
+                    }
+                </div>
             </div>
         </td>
     </tr>

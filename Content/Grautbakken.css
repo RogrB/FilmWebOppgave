@@ -34,7 +34,7 @@ textarea {
 }
 
 #footerDiv {
-    background-color: #808080;
+    background-color: #1e1e1e;
     padding: 25px;
 }
 
@@ -42,7 +42,6 @@ textarea {
     width: 100%;
     min-height: 200px;
 }
-
 
 @media (max-width: 600px) {
     .carousel-caption {

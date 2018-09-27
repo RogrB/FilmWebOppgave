@@ -9,6 +9,51 @@ namespace Graubakken_Filmsjappe
 {
     public class DB
     {
+        public List<IndexView> HentIndexView()
+        {
+            List<IndexView> indexViewListe = new List<IndexView>();
+            IndexView indexView = new IndexView();
+            indexView.Filmer = HentAlleFilmer();
+            indexView.ActionFilmer = HentActionFilmer();
+            indexView.Nyheter = HentIndexNyheter();
+
+            indexViewListe.Add(indexView);
+            return indexViewListe;
+        }
+
+        public List<Film> HentFilmView(string sortering)
+        {
+            var db = new DBContext();
+            List<Film> alleFilmer = new List<Film>();
+            switch(sortering)
+            {
+                case "Dato":
+                    alleFilmer = db.Filmer.OrderBy(f => f.ReleaseDate).ToList();
+                    break;
+                case "Visninger":
+                    alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
+                    break;
+                case "Stemmer":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Stemmer.Count()).ToList();
+                    break;
+                case "Sjanger":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Sjanger).ToList();
+                    break;
+                case "Kontinent":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Kontinent).ToList();
+                    break;
+                case "Produksjonsår":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Produksjonsår).ToList();
+                    break;
+                case "Alfabetisk":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Navn).ToList();
+                    break;
+                default:
+                    alleFilmer = db.Filmer.ToList();
+                    break;
+            }
+            return alleFilmer;
+        }
         public List<Film> HentAlleFilmer()
         {
             using (var db = new Models.DBContext())
@@ -81,11 +126,13 @@ namespace Graubakken_Filmsjappe
         public List<Sjanger> HentAlleSjangere()
         {
             var db = new DBContext();
-            
-                List<Sjanger> alleSjangere = db.Sjangere.ToList();
+            List<Sjanger> alleSjangere = db.Sjangere.ToList();
+            for(int i = 0; i < alleSjangere.Count(); i++)
+            {
+                alleSjangere[i].antall = alleSjangere[i].Filmer.Count();
+            }
 
-                return alleSjangere;
-            
+            return alleSjangere;
         }
 
         public List<Film> HentFilmerFraSkuespillerID(int id)

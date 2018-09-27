@@ -4,7 +4,29 @@
     ViewBag.Title = "Filmer";
 }
 
-<h2>Filmer</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Filmer</h2>
+    </div>
+    <div class="col-sm-6 pull-right">
+        <br />
+        <div class="dropdown pull-right">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Sorter Etter:
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Alfabetisk", "Filmer", new { sortering = "Alfabetisk" })</li>
+                <li>@Html.ActionLink("Antall Visninger", "Filmer", new { sortering = "Visninger" })</li>
+                <li>@Html.ActionLink("Opplastingsdato", "Filmer", new { sortering = "Dato" })</li>
+                <li>@Html.ActionLink("Stjerner", "Filmer", new { sortering = "Stemmer" })</li>
+                <li>@Html.ActionLink("Sjanger", "Filmer", new { sortering = "Sjanger" })</li>
+                <li>@Html.ActionLink("Kontinent", "Filmer", new { sortering = "Kontinent" })</li>
+                <li>@Html.ActionLink("Produksjonsår", "Filmer", new { sortering = "Produksjonsår" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <table class="table">
     <tr>
@@ -30,38 +52,39 @@
             @Html.DisplayNameFor(model => model.Beskrivelse)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            Opplastingsdato
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Navn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Produksjonsår)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kontinent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Studio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bilde)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visninger)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Beskrivelse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produksjonsår)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kontinent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Studio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bilde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visninger)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beskrivelse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+        </tr>
+    }
 
 </table>

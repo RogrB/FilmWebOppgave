@@ -13,13 +13,8 @@ namespace Graubakken_Filmsjappe.Controllers
         public ActionResult Index()
         {
             var db = new DB();
-            List<Models.IndexView> indexViewListe = new List<Models.IndexView>();
-            Models.IndexView indexView = new Models.IndexView();
-            indexView.Filmer = db.HentAlleFilmer();
-            indexView.ActionFilmer = db.HentActionFilmer();
-            indexView.Nyheter = db.HentIndexNyheter();
+            List<Models.IndexView> indexViewListe = db.HentIndexView();
 
-            indexViewListe.Add(indexView);
             return View(indexViewListe);
         }
 
@@ -37,10 +32,19 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(alleNyheter);
         }
 
-        public ActionResult Filmer()
+        public ActionResult Filmer(string sortering)
         {
+            if (string.IsNullOrEmpty(sortering))
+            {
+                sortering = "Alfabetisk";
+                ViewBag.Sortering = "Alfabetisk";
+            }
+            else
+            {
+                ViewBag.Sortering = sortering;
+            }
             var db = new DB();
-            List<Models.Film> alleFilmer = db.HentAlleFilmer();
+            List<Models.Film> alleFilmer = db.HentFilmView(sortering);
             return View(alleFilmer);
         }
 

@@ -9,7 +9,7 @@ namespace Graubakken_Filmsjappe.Models
     {
         public int id { get; set; }
         public string sjanger { get; set; }
-        public string Bilde { get; set; }
+        public int antall { get; set; }
         public virtual List<Film> Filmer { get; set; }
     }
 }
