@@ -105,6 +105,30 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        public List<Skuespiller> HentSkuespillerView(string sortering)
+        {
+            using (var db = new DBContext())
+            {
+                List<Skuespiller> alleSkuespillere = new List<Skuespiller>();
+                switch (sortering)
+                {
+                    case "Fornavn":
+                        alleSkuespillere = db.Skuespillere.OrderBy(s => s.Fornavn).ToList();
+                        break;
+                    case "Etternavn":
+                        alleSkuespillere = db.Skuespillere.OrderBy(s => s.Etternavn).ToList();
+                        break;
+                    case "Alder":
+                        alleSkuespillere = db.Skuespillere.OrderBy(s => s.Alder).ToList();
+                        break;
+                    case "Land":
+                        alleSkuespillere = db.Skuespillere.OrderBy(s => s.Land).ToList();
+                        break;
+                }
+                return alleSkuespillere;
+            }
+        }
+
         public List<Nyhet> HentAlleNyheter()
         {
             using (var db = new DBContext())

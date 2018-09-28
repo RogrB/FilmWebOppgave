@@ -196,6 +196,7 @@
     <Content Include="Views\Film\Sjangere.cshtml" />
     <Content Include="Views\Film\Kunder.cshtml" />
     <Content Include="Views\Film\SkuespillerModal.cshtml" />
+    <Content Include="Views\Film\FilmModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

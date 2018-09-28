@@ -14,11 +14,22 @@ textarea {
 }
 
 .carousel-inner > .item > img {
-    width: 214px;
-    height: 325px;
+    width: 321px;
+    height: 487px;
+    margin: 0 auto;
+    color: #808080;
 }
 
 .navbar {
+    margin-bottom: 0px;
+}
+
+.img .img-responsive .img-rounded {
+    border: none;
+    border-style: none;
+    outline: none;
+}
+    .navbar {
     position: relative;
     z-index: 1000;
     min-height: 50px;

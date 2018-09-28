@@ -1,0 +1,78 @@
+﻿<div id="filmModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><span id="filmNavn"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p>FilmInformasjon:</p>
+                <div id="modalContent">
+
+                </div>
+                <div id="skuespillere">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Kjøp</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('a[data-visFilm=true]').click(function () {
+            var data = {
+                navn : $(this).data("navn"),
+                produksjonsår : $(this).data("produksjonsår"),
+                kontinent : $(this).data("kontinent"),
+                studio : $(this).data("studio"),
+                visninger : $(this).data("visninger"),
+                bilde : $(this).data("bilde"),
+                id : $(this).data("id"),
+                beskrivelse: $(this).data("beskrivelse"),
+                releasedate: $(this).data("releasedate"),
+                pris : $(this).data("pris")
+            }
+
+            $("#modalContent").html(formaterFilmData(data));
+
+            hentSkuespillerData(id);
+        })
+    });
+
+    function formaterFilmData(data) {
+        var info = "";
+        info += data.navn;
+
+        return info;
+    }
+
+    function hentSkuespillerData(id) {
+        $.ajax({
+            url: '/Film/HentSkuespillereIFilm/' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterSkuespillerData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente skuespillerinformasjon");
+            }
+        });
+    }
+
+    function formaterSkuespillerData(data) {
+        var skuespillere = "";
+        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+            skuespillere += this.id;
+            skuespillere += this.Navn;
+            skuespillere += "<br>";
+        });
+        $("#filmer").html(skuespillere);
+    }
+</script>

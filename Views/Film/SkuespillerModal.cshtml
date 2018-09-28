@@ -20,3 +20,43 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('a[data-visSkuespiller=true]').click(function () {
+            var navn = $(this).data("navn");
+            var alder = $(this).data("alder");
+            var bilde = $(this).data("bilde");
+            var id = $(this).data("id");
+            var info = ""; // formater HTML
+            $("#modalContent").html(navn);
+
+            hentFilmData(id);
+        })
+    });
+
+    function hentFilmData(innID) {
+        $.ajax({
+            url: '/Film/HentFilmerFraSkuespillerID/' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterFilmData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente filminformasjon");
+            }
+        });
+    }
+
+    function formaterFilmData(data) {
+        var filmer = "";
+        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+            filmer += this.id;
+            filmer += this.Navn;
+            filmer += "<br>";
+        });
+        $("#filmer").html(filmer);
+    }
+</script>

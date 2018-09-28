@@ -18,10 +18,19 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(indexViewListe);
         }
 
-        public ActionResult Skuespillere()
+        public ActionResult Skuespillere(string sortering)
         {
+            if (string.IsNullOrEmpty(sortering))
+            {
+                sortering = "Fornavn";
+                ViewBag.SkuespillerSortering = "Fornavn";
+            }
+            else
+            {
+                ViewBag.SkuespillerSortering = sortering;
+            }
             var db = new DB();
-            List<Models.Skuespiller> alleSkuespillere = db.HentAlleSkuespillere();
+            List<Models.Skuespiller> alleSkuespillere = db.HentSkuespillerView(sortering);
             return View(alleSkuespillere);
         }
 

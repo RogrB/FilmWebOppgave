@@ -9,30 +9,63 @@
 <table class="table table-responsive">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].Bilde)
+            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Fornavn)
+            @if (ViewBag.SkuespillerSortering == "Fornavn")
+            {
+                @Html.DisplayNameFor(model => model[0].Fornavn)
+            }
+            else
+            {
+                @Html.ActionLink("Fornavn", "Skuespillere", new { sortering = "Fornavn" })
+            }
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Etternavn)
+            @if (ViewBag.SkuespillerSortering == "Etternavn")
+            {
+                @Html.DisplayNameFor(model => model[0].Etternavn)
+            }
+            else
+            {
+                @Html.ActionLink("Etternavn", "Skuespillere", new { sortering = "Etternavn" })
+            }
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Land)
+            @if (ViewBag.SkuespillerSortering == "Land")
+            {
+                @Html.DisplayNameFor(model => model[0].Land)
+            }
+            else
+            {
+                @Html.ActionLink("Land", "Skuespillere", new { sortering = "Land" })
+            }
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Alder)
+            @if (ViewBag.SkuespillerSortering == "Alder")
+            {
+                @Html.DisplayNameFor(model => model[0].Alder)
+            }
+            else
+            {
+                @Html.ActionLink("Alder", "Skuespillere", new { sortering = "Alder" })
+            }
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr class="skuespillerRad" data-visSkuespiller="true" data-toggle="modal" data-navn="@item.Fornavn">
+        <tr class="skuespillerRad">
             <td>
+                <a href="#skuespillerModal"
+                   data-navn="@item.Fornavn @item.Etternavn" data-alder="@item.Alder" data-bilde="@item.Bilde"
+                   data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">
 
-                <img alt="@Html.DisplayFor(modelitem => item.Fornavn) @Html.DisplayFor(modelitem => item.Etternavn)"
-                     src="../@item.Bilde" class="img-responsive img-rounded" width="180" height="126">
+                    <img alt="@Html.DisplayFor(modelitem => item.Fornavn) @Html.DisplayFor(modelitem => item.Etternavn)"
+                         src="../@item.Bilde" class="img img-responsive img-rounded" width="180" height="126">
+
+                    </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fornavn)
@@ -56,43 +89,3 @@
 </table>
 
 @Html.Partial("skuespillerModal")
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('a[data-visSkuespiller=true]').click(function () {
-            var navn = $(this).data("navn");
-            var alder = $(this).data("alder");
-            var bilde = $(this).data("bilde");
-            var id = $(this).data("id");
-            var info = ""; // formater HTML
-            $("#modalContent").html(navn);
-
-            hentFilmData(id);
-        })
-    });
-
-    function hentFilmData(innID) {
-        $.ajax({
-            url: '/Film/HentFilmerFraSkuespillerID/' + innID,
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                formaterFilmData(data);
-            },
-            error: function (x, y, z) {
-                console.log("Feilet API kall for å hente filminformasjon");
-            }
-        });
-    }
-
-    function formaterFilmData(data) {
-        var filmer = "";
-        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
-            filmer += this.id;
-            filmer += this.Navn;
-            filmer += "<br>";
-        });
-        $("#filmer").html(filmer);
-    }
-</script>
