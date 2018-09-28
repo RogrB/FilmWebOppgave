@@ -7,6 +7,7 @@
 <div class="row">
     <div class="col-sm-6">
         <h2>Filmer</h2>
+        <p>Sortert etter @ViewBag.Sortering</p>
     </div>
     <div class="col-sm-6 pull-right">
         <br />
@@ -19,7 +20,7 @@
                 <li>@Html.ActionLink("Alfabetisk", "Filmer", new { sortering = "Alfabetisk" })</li>
                 <li>@Html.ActionLink("Antall Visninger", "Filmer", new { sortering = "Visninger" })</li>
                 <li>@Html.ActionLink("Opplastingsdato", "Filmer", new { sortering = "Dato" })</li>
-                <li>@Html.ActionLink("Stjerner", "Filmer", new { sortering = "Stemmer" })</li>
+                <li>@Html.ActionLink("Stjerner", "Filmer", new { sortering = "Stjerner" })</li>
                 <li>@Html.ActionLink("Sjanger", "Filmer", new { sortering = "Sjanger" })</li>
                 <li>@Html.ActionLink("Kontinent", "Filmer", new { sortering = "Kontinent" })</li>
                 <li>@Html.ActionLink("Produksjonsår", "Filmer", new { sortering = "Produksjonsår" })</li>

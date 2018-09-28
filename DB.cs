@@ -33,7 +33,7 @@ namespace Graubakken_Filmsjappe
                 case "Visninger":
                     alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
                     break;
-                case "Stemmer":
+                case "Stjerner":
                     alleFilmer = db.Filmer.OrderBy(f => f.Stemmer.Count()).ToList();
                     break;
                 case "Sjanger":
