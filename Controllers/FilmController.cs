@@ -64,6 +64,30 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(alleSjangere);
         }
 
+        public ActionResult Registrer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrer(Models.Kunde innKunde)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            var db = new DB();
+            if(db.RegistrerBruker(innKunde))
+            {
+                return RedirectToAction("Velkommen");
+            }
+            else
+            {
+                ViewBag.RegistreringsStatus = "Feil under registrering";
+                return View();
+            }
+        }
+
         public string HentEnFilm(int id)
         {
             var db = new DB();

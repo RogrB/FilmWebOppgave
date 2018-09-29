@@ -18,7 +18,7 @@ namespace Graubakken_Filmsjappe
 
         DBContext db = new DBContext();
 
-        List<Kunde> alleKunder;
+        List<KundeDB> alleKunder;
         List<Nyhet> alleNyheter;
         List<Skuespiller> alleSkuespillere;
         List<Film> alleFilmer;

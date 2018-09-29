@@ -14,7 +14,7 @@ namespace Graubakken_Filmsjappe.Models
         DBData.NyhetsData nyhetsDB = new DBData.NyhetsData();
         DBData.SkuespillerData skuespillerDB = new DBData.SkuespillerData();
         
-        List<Kunde> alleKunder;
+        List<KundeDB> alleKunder;
         List<Nyhet> alleNyheter;
         List<Skuespiller> alleSkuespillere;
         List<Film> alleFilmer;
@@ -112,7 +112,7 @@ namespace Graubakken_Filmsjappe.Models
         }
 
         // Metode som setter et tilfeldig utvalg av filmer inn i kunde-objektene
-        public List<Kunde> SettFilmerInnIKundeObjekt()
+        public List<KundeDB> SettFilmerInnIKundeObjekt()
         {
             Random TilfeldigTall = new Random();
             for (int i = 0; i < alleKunder.Count(); i++)

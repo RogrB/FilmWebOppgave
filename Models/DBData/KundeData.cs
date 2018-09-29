@@ -7,59 +7,65 @@ namespace Graubakken_Filmsjappe.Models.DBData
 {
     public class KundeData
     {
-        Kunde Kunde1 = new Kunde
+        KundeDB Kunde1 = new KundeDB
         {
             Fornavn = "Ole",
             Etternavn = "Olsen",
-            Brukernavn = "OleOo123"
+            Brukernavn = "OleOo123",
+            Kort = 1234567890123456
         };
 
-        Kunde Kunde2 = new Kunde
+        KundeDB Kunde2 = new KundeDB
         {
             Fornavn = "Per",
             Etternavn = "Pettersen",
-            Brukernavn = "UglerIMosen"
+            Brukernavn = "UglerIMosen",
+            Kort = 4566675847561234
         };
 
-        Kunde Kunde3 = new Kunde
+        KundeDB Kunde3 = new KundeDB
         {
             Fornavn = "Olga",
             Etternavn = "Petrunia",
-            Brukernavn = "Blomst02"
+            Brukernavn = "Blomst02",
+            Kort = 1235521489695852
         };
 
-        Kunde Kunde4 = new Kunde
+        KundeDB Kunde4 = new KundeDB
         {
             Fornavn = "Line",
             Etternavn = "Linesen",
-            Brukernavn = "LitenOgSint"
+            Brukernavn = "LitenOgSint",
+            Kort = 6522321478523695
         };
 
-        Kunde Kunde5 = new Kunde
+        KundeDB Kunde5 = new KundeDB
         {
             Fornavn = "Donald",
             Etternavn = "Duck",
-            Brukernavn = "OnkL_D"
+            Brukernavn = "OnkL_D",
+            Kort = 2565859636985214
         };
 
-        Kunde Kunde6 = new Kunde
+        KundeDB Kunde6 = new KundeDB
         {
             Fornavn = "Gustav",
             Etternavn = "Bernardsen",
-            Brukernavn = "Fanta03"
+            Brukernavn = "Fanta03",
+            Kort = 1236658596985474
         };
 
-        public List<Kunde> HentKundeListe()
+        public List<KundeDB> HentKundeListe()
         {
-            List<Kunde> kunder = new List<Kunde>();
-            kunder.Add(Kunde1);
-            kunder.Add(Kunde2);
-            kunder.Add(Kunde3);
-            kunder.Add(Kunde4);
-            kunder.Add(Kunde5);
-            kunder.Add(Kunde6);
+            List<KundeDB> Kunder = new List<KundeDB>();
+            Kunder.Add(Kunde1);
+            Kunder.Add(Kunde2);
+            Kunder.Add(Kunde3);
+            Kunder.Add(Kunde4);
+            Kunder.Add(Kunde5);
+            Kunder.Add(Kunde6);
 
-            return kunder;
+            return Kunder;
         }
 
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace Graubakken_Filmsjappe
@@ -84,6 +85,64 @@ namespace Graubakken_Filmsjappe
                 return Film;
             }
 
+        }
+
+        public bool RegistrerBruker(Kunde innKunde)
+        {
+            bool resultat = true;
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    string salt = LagSalt();
+                    KundeDB nyKunde = new KundeDB()
+                    {
+                        Brukernavn = innKunde.Brukernavn,
+                        Fornavn = innKunde.Fornavn,
+                        Etternavn = innKunde.Etternavn,
+                        Kort = innKunde.Kort,
+                        Salt = salt,
+                        Passord = LagHash(innKunde.Passord + salt),
+                        Filmer = new List<Film>(),
+                        Stemmer = new List<Stemmer>()
+                    };
+                    db.Kunder.Add(nyKunde);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+            }
+                return resultat;
+        }
+
+        /*
+         Metode for å Generere random salt
+         Skrevet av Faglærer i webapplikasjoner ved Oslomet
+         */
+        private static string LagSalt()
+        {
+            byte[] randomArray = new byte[10];
+            string randomString;
+
+            var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(randomArray);
+            randomString = Convert.ToBase64String(randomArray);
+            return randomString;
+        }
+
+         /*
+         Metode for å Generere passordhash
+         Skrevet av Faglærer i webapplikasjoner ved Oslomet
+         */
+        private static byte[] LagHash(string innStreng)
+        {
+            byte[] innData, utData;
+            var algoritme = SHA256.Create();
+            innData = System.Text.Encoding.UTF8.GetBytes(innStreng);
+            utData = algoritme.ComputeHash(innData);
+            return utData;
         }
 
         public List<Film> HentActionFilmer()
@@ -189,38 +248,17 @@ namespace Graubakken_Filmsjappe
         public List<Kunde> HentKunder()
         {
             var db = new DBContext();
-            return db.Kunder.ToList();
+            var alleKunder = db.Kunder.Select(k => new Kunde()
+            {
+                Fornavn = k.Fornavn,
+                Etternavn = k.Etternavn,
+                id = k.id,
+                Brukernavn = k.Brukernavn,
+                Filmer = k.Filmer
+            }).ToList();
 
+            return alleKunder;
         }
-
-        /*
-        public void testInsert()
-        {
-            var db = new DBContext();
-            Models.DBData.FilmData filmDB = new Models.DBData.FilmData();
-            var alleFilmer = filmDB.HentFilmListe();
-            var NySkuespiller = new Skuespiller
-            {
-                Fornavn = "Ole",
-                Etternavn = "Olsen",
-                Alder = 26,
-                Land = "Norge",
-                Bilde = "hallo"
-            };
-            List<Film> noenFilmer = new List<Film>();
-            noenFilmer.Add(alleFilmer[3]);
-            noenFilmer.Add(alleFilmer[7]);
-            NySkuespiller.Filmer = noenFilmer;
-            try
-            {
-                db.Skuespillere.Add(NySkuespiller);
-                db.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                // jepp..
-            }
-        }*/
 
     }
 }

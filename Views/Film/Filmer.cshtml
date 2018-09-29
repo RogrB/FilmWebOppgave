@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Graubakken_Filmsjappe.Models.Film>
+﻿@model List<Graubakken_Filmsjappe.Models.Film>
 
 @{
     ViewBag.Title = "Filmer";
@@ -29,63 +29,24 @@
     </div>
 </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Navn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Produksjonsår)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kontinent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Studio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bilde)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Visninger)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Beskrivelse)
-        </th>
-        <th>
-            Opplastingsdato
-        </th>
-        <th></th>
-    </tr>
-
+<div class="container">
+    @{ 
+        int teller = 1;
+        int antallKolonner = 3;
+    }
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Navn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Produksjonsår)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kontinent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Studio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bilde)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Visninger)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Beskrivelse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-        </tr>
+        if(teller % antallKolonner == 1)
+        {
+            @:<div class="row">
+        }
+        <div class="col-xs-4">
+            <p>@item.Navn</p>
+        </div>
+        if (teller % antallKolonner == 0 || teller == Model.Count())
+        {
+            @:</div>
+        }
+        teller++;
     }
-
-</table>
+</div>

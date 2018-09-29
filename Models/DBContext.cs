@@ -16,7 +16,7 @@ namespace Graubakken_Filmsjappe.Models
 
             //Database.SetInitializer(new DBInit());
         }
-        public DbSet<Kunde> Kunder { get; set; }
+        public DbSet<KundeDB> Kunder { get; set; }
         public DbSet<Film> Filmer { get; set; }
         public DbSet<Skuespiller> Skuespillere { get; set; }
         public DbSet<Nyhet> Nyheter { get; set; }
