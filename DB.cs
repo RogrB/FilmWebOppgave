@@ -145,6 +145,28 @@ namespace Graubakken_Filmsjappe
             return utData;
         }
 
+        /*
+        Metode for å sjekke innloggingsinfo
+        Skrevet av Faglærer i webapplikasjoner ved Oslomet, og refaktorert for å passe modellene i dette prosjektet
+        */
+        public bool SjekkInnLogging(Kunde innKunde)
+        {
+            using (var db = new DBContext())
+            {
+                KundeDB funnetBruker = db.Kunder.FirstOrDefault(b => b.Brukernavn == innKunde.Brukernavn);
+                if (funnetBruker != null)
+                {
+                    byte[] passordForTest = LagHash(innKunde.Passord + funnetBruker.Salt);
+                    bool riktigBruker = funnetBruker.Passord.SequenceEqual(passordForTest);
+                    return riktigBruker;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public List<Film> HentActionFilmer()
         {
             using (var db = new DBContext())

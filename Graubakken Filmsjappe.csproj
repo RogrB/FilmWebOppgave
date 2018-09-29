@@ -198,6 +198,8 @@
     <Content Include="Views\Film\SkuespillerModal.cshtml" />
     <Content Include="Views\Film\FilmModal.cshtml" />
     <Content Include="Views\Film\Registrer.cshtml" />
+    <Content Include="Views\Film\Velkommen.cshtml" />
+    <Content Include="Views\Film\Loginn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

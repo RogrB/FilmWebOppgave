@@ -27,7 +27,18 @@
                 </td>
             </tr>
         </table>
+        <div class="pull-right">
+            @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+            {
+                <p>Logget inn som @Session["Brukernavn"]</p>
+            }
+            else
+            {
+                <p>Ikke logget inn - <a href="@Url.Action("Loginn", "Film")"> Trykk her for innlogging</a></p>
+            }
+        </div>
     </div>
+
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -37,11 +48,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Logo</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index", "Film")">Home</a></li>
+                    <li><a href="@Url.Action("Index", "Film")">Hjem</a></li>
                     <li><a href="@Url.Action("Filmer", "Film")">Filmer</a></li>
                     <li><a href="@Url.Action("Sjangere", "Film")">Sjangere</a></li>
                     <li><a href="@Url.Action("Skuespillere", "Film")">Skuespillere</a></li>
@@ -49,7 +59,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="@Url.Action("Registrer", "Film")">Bli Medlem</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="@Url.Action("Loginn", "Film")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
         </div>

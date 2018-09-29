@@ -20,7 +20,7 @@ namespace Graubakken_Filmsjappe.Models
         public string Brukernavn { get; set; }
 
         [Required(ErrorMessage = "Passord må oppgis")]
-        //[RegularExpression(@"^ ([a - zA - Z0 - 9@*#]{8,*})$", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 
 
@@ -46,9 +46,3 @@ namespace Graubakken_Filmsjappe.Models
         public virtual List<Stemmer> Stemmer { get; set; }
     }
 }
-
-/*
-[Display(Name = "Postnr")]
-[Required(ErrorMessage = "Postnr må oppgis")]
-[RegularExpression(@"[0-9]{4}", ErrorMessage = "Postnr må være 4 siffer")] 
-*/

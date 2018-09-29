@@ -79,11 +79,53 @@ namespace Graubakken_Filmsjappe.Controllers
             var db = new DB();
             if(db.RegistrerBruker(innKunde))
             {
+                Session["LoggetInn"] = true;
+                Session["Brukernavn"] = innKunde.Brukernavn;
+                ViewBag.Innlogget = true;
                 return RedirectToAction("Velkommen");
             }
             else
             {
                 ViewBag.RegistreringsStatus = "Feil under registrering";
+                return View();
+            }
+        }
+
+        public ActionResult Velkommen()
+        {
+            if (Session["LoggetInn"] != null)
+            {
+                if ((bool)Session["LoggetInn"])
+                {
+                    ViewBag.Brukernavn = Session["Brukernavn"];
+                    return View();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Loginn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Loginn(Models.Kunde innKunde)
+        {
+            var db = new DB();
+            if(db.SjekkInnLogging(innKunde))
+            {
+                Session["LoggetInn"] = true;
+                Session["Brukernavn"] = innKunde.Brukernavn;
+                ViewBag.Brukernavn = innKunde.Brukernavn;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Session["LoggetInn"] = false;
+                Session["Brukernavn"] = "";
+                ViewBag.Brukernavn = "";
                 return View();
             }
         }

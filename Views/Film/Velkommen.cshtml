@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Velkommen";
+}
+
+<h2>Velkommen som bruker hos Grautbakken Filmsjappe</h2>
+<p>Du er logget inn som <b>@ViewBag.Brukernavn</b> </p>
+
+
+@Html.ActionLink("Tilbake", "Index", new { tom = "" }, new { @class = "btn btn-primary" })
