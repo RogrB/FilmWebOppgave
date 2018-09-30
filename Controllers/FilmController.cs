@@ -144,6 +144,21 @@ namespace Graubakken_Filmsjappe.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Bruker(Models.Kunde innKunde)
+        {
+            // Foretar ikke noe innloggingssjekk her, da det ikke skal være mulig å komme hit uten å være innlogget
+            var db = new DB();
+            if (ModelState.IsValid)
+            {
+                if (db.EndreBruker(innKunde))
+                {
+                    return View(db.HentBruker(innKunde.Brukernavn));
+                }
+            }
+            return View(db.HentBruker(innKunde.Brukernavn));
+        }
+
         public string HentEnFilm(int id)
         {
             var db = new DB();

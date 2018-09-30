@@ -193,6 +193,36 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        public bool EndreBruker(Kunde innKunde)
+        {
+            var db = new DBContext();
+            bool resultat = true;
+            try
+            {
+                KundeDB endreKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == innKunde.Brukernavn);
+                if(endreKunde != null)
+                {
+                    endreKunde.Fornavn = innKunde.Fornavn;
+                    endreKunde.Etternavn = innKunde.Etternavn;
+                    endreKunde.Kort = innKunde.Kort;
+                    if (innKunde.Passord != null && innKunde.Passord != "")
+                    {
+                        endreKunde.Passord = LagHash(innKunde.Passord + endreKunde.Salt);
+                    }
+                    db.SaveChanges();
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            catch(Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
+
         public List<Film> HentActionFilmer()
         {
             using (var db = new DBContext())
