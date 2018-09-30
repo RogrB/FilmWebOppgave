@@ -37,10 +37,9 @@
                 releasedate: $(this).data("releasedate"),
                 pris : $(this).data("pris")
             }
-
             $("#modalContent").html(formaterFilmData(data));
 
-            hentSkuespillerData(id);
+            hentSkuespillerData(data.id);
         })
     });
 
@@ -70,9 +69,9 @@
         var skuespillere = "";
         $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
             skuespillere += this.id;
-            skuespillere += this.Navn;
+            skuespillere += this.Fornavn + " " + this.Etternavn;
             skuespillere += "<br>";
         });
-        $("#filmer").html(skuespillere);
+        $("#skuespillere").html(skuespillere);
     }
 </script>

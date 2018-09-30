@@ -221,6 +221,17 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonData;
         }
 
+        public string HentSkuespillereIFilm(int id)
+        {
+            var db = new DB();
+            List<Models.Skuespiller> skuespillere = db.HentSkuespillereIFilm(id);
+
+            var jsonSerializer = new JavaScriptSerializer();
+            string jsonData = jsonSerializer.Serialize(skuespillere);
+
+            return jsonData;
+        }
+
         public ActionResult Dbinsert()
         {
             var db = new DB();

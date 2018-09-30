@@ -30,23 +30,35 @@
 </div>
 
 <div class="container">
-    @{ 
+    @{
         int teller = 1;
         int antallKolonner = 3;
     }
     @foreach (var item in Model)
     {
-        if(teller % antallKolonner == 1)
+        if (teller % antallKolonner == 1)
         {
             @:<div class="row">
-        }
-        <div class="col-xs-4">
-            <p>@item.Navn</p>
-        </div>
-        if (teller % antallKolonner == 0 || teller == Model.Count())
-        {
-            @:</div>
+            }
+            <div class="col-xs-4">
+
+                <a href="#filmModal"
+                   data-navn="@item.Navn" data-produksjonsår="@item.Produksjonsår" data-bilde="@item.Bilde"
+                   data-kontinent="@item.Kontinent" data-studio="@item.Studio" data-visninger="@item.Visninger"
+                   data-beskrivelse="@item.Beskrivelse" data-releasedata="@item.ReleaseDate" data-pris="@item.Pris"
+                   data-id="@item.id" data-toggle="modal" data-visFilm="true">
+
+                    <h4>@item.Navn</h4>
+                    <img src="../@item.Bilde" alt="@item.Navn" class="img img-responsive" />
+
+                </a>
+            </div>
+            if (teller % antallKolonner == 0 || teller == Model.Count())
+            {
+            @:</div><br /><br />
         }
         teller++;
     }
 </div>
+
+@Html.Partial("FilmModal")

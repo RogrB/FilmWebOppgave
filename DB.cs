@@ -327,6 +327,22 @@ namespace Graubakken_Filmsjappe
             return filmer;
         }
 
+        public List<Skuespiller> HentSkuespillereIFilm(int id)
+        {
+            var db = new DBContext();
+
+            List<Skuespiller> skuespillere = db.Filmer.Find(id).Skuespillere.Select(s => new Skuespiller()
+            {
+                id = s.id,
+                Fornavn = s.Fornavn,
+                Etternavn = s.Etternavn,
+                Alder = s.Alder,
+                Bilde = s.Bilde,
+                Land = s.Land
+            }).ToList();
+            return skuespillere;
+        }
+
         public bool InsertDBData()
         {
             var dbInsert = new DBinsert();
