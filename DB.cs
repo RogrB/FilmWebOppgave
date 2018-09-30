@@ -223,6 +223,24 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        public bool EndrePassord(Kunde innKunde)
+        {
+            bool resultat = true;
+            var db = new DBContext();
+            try
+            {
+                KundeDB endreKunde = db.Kunder.Find(innKunde.id);
+                endreKunde.Passord = LagHash(innKunde.Passord + endreKunde.Salt);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                resultat = false;
+            }
+
+            return resultat;
+        }
+
         public List<Film> HentActionFilmer()
         {
             using (var db = new DBContext())

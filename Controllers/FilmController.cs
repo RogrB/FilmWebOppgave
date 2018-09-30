@@ -148,12 +148,33 @@ namespace Graubakken_Filmsjappe.Controllers
         public ActionResult Bruker(Models.Kunde innKunde)
         {
             // Foretar ikke noe innloggingssjekk her, da det ikke skal være mulig å komme hit uten å være innlogget
+            // Foretar ikke noe sjekk på modelstate.isvalid, da man ikke nødvendigvis vil endre passord
             var db = new DB();
-            if (ModelState.IsValid)
+            if (db.EndreBruker(innKunde))
             {
-                if (db.EndreBruker(innKunde))
+                ViewBag.EndreStatus = "Informasjon oppdatert";
+            }
+            else
+            {
+                ViewBag.EndreStatus = "Klarte ikke å oppdatere informasjon";
+
+            }
+            return View(db.HentBruker(innKunde.Brukernavn));
+        }
+
+        [HttpPost]
+        public ActionResult EndrePassord(Models.Kunde innKunde)
+        {
+            var db = new DB();
+            if(ModelState.IsValid)
+            {
+                if(db.EndrePassord(innKunde))
                 {
-                    return View(db.HentBruker(innKunde.Brukernavn));
+                    ViewBag.EndreStatus = "Passord endret";
+                }
+                else
+                {
+                    ViewBag.EndreStatus = "Klarte ikke å endre passordet";
                 }
             }
             return View(db.HentBruker(innKunde.Brukernavn));
