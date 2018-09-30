@@ -30,7 +30,7 @@
         <div class="pull-right">
             @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
             {
-                <p>Logget inn som @Session["Brukernavn"]</p>
+                <p>Logget inn som <a href="~/Film/Bruker/?brukernavn=@Session["Brukernavn"]">@Session["Brukernavn"]</a></p>
             }
             else
             {

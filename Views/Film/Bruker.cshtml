@@ -1,0 +1,119 @@
+﻿@model Graubakken_Filmsjappe.Models.Kunde
+
+@{
+    ViewBag.Title = "Bruker";
+}
+@if (Model != null)
+{
+
+    <h2>Bruker <i>@Model.Brukernavn</i> </h2>
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fornavn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fornavn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fornavn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Etternavn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Etternavn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Etternavn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Brukernavn, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Brukernavn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Brukernavn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Passord, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Passord, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Passord, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Kort, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Kort, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Kort, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                    @Html.ActionLink("Tilbake", "Index", new { tom = "" }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <br />
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                @if (Model.Filmer.Any())
+                {
+                    <h3>Filmer du har sett:</h3>
+                    <table>
+                        @foreach (var film in Model.Filmer)
+                        {
+                            <tr>
+                                <td>
+                                    @film.Navn
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <p>Du har ikke sett noen filmer enda. Trykk <a href="~/Film/Filmer">her for en oversikt over vårt filmutvalg</a> </p>
+                }
+            </div>
+            <div class="col-md-6">
+                @if(Model.Stemmer.Any())
+                {
+                    <h3>Filmer du har gitt en vurdering:</h3>
+                    <table>
+                        @foreach(var stemme in Model.Stemmer)
+                        {
+                            <tr>
+                                @stemme.AntallStjerner
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <p>Her vil du få en oversikt over filmer du har gitt en vurdering</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <br /><br />
+    <p>Fant ikke brukeren</p>
+}

@@ -167,6 +167,32 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        public Kunde HentBruker(string brukernavn)
+        {
+            using (var db = new DBContext())
+            {
+                KundeDB funnetKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
+                if (funnetKunde != null)
+                {
+                    Kunde utKunde = new Kunde()
+                    {
+                        Brukernavn = funnetKunde.Brukernavn,
+                        Fornavn = funnetKunde.Fornavn,
+                        Etternavn = funnetKunde.Etternavn,
+                        id = funnetKunde.id,
+                        Kort = funnetKunde.Kort,
+                        Filmer = funnetKunde.Filmer,
+                        Stemmer = funnetKunde.Stemmer
+                    };
+                    return utKunde;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public List<Film> HentActionFilmer()
         {
             using (var db = new DBContext())

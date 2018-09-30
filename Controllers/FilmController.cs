@@ -9,7 +9,6 @@ namespace Graubakken_Filmsjappe.Controllers
 {
     public class FilmController : Controller
     {
-        // GET: Film
         public ActionResult Index()
         {
             var db = new DB();
@@ -128,6 +127,21 @@ namespace Graubakken_Filmsjappe.Controllers
                 ViewBag.Brukernavn = "";
                 return View();
             }
+        }
+
+        public ActionResult Bruker(string brukernavn)
+        {
+            if (Session["LoggetInn"] != null)
+            {
+                if ((bool)Session["LoggetInn"])
+                {
+                    var db = new DB();
+                    var bruker = db.HentBruker(brukernavn);
+
+                    return View(bruker);
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         public string HentEnFilm(int id)

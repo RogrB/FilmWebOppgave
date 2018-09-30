@@ -200,6 +200,7 @@
     <Content Include="Views\Film\Registrer.cshtml" />
     <Content Include="Views\Film\Velkommen.cshtml" />
     <Content Include="Views\Film\Loginn.cshtml" />
+    <Content Include="Views\Film\Bruker.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
