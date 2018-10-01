@@ -60,7 +60,7 @@
             <td>
                 <a href="#skuespillerModal"
                    data-navn="@item.Fornavn @item.Etternavn" data-alder="@item.Alder" data-bilde="@item.Bilde"
-                   data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">
+                   data-land="@item.Land" data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">
 
                     <img alt="@Html.DisplayFor(modelitem => item.Fornavn) @Html.DisplayFor(modelitem => item.Etternavn)"
                          src="../@item.Bilde" class="img img-responsive img-rounded" width="180" height="126">
@@ -82,7 +82,7 @@
             <td>
                 <a href="#skuespillerModal" class="btn btn-large btn-info" id="skuespillerKnapp"
                    data-navn="@item.Fornavn @item.Etternavn" data-alder="@item.Alder" data-bilde="@item.Bilde"
-                   data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">Detaljer</a>
+                   data-land="@item.Land" data-id="@item.id" data-toggle="modal" data-visSkuespiller="true">Detaljer</a>
             </td>
         </tr>
     }

@@ -322,7 +322,11 @@ namespace Graubakken_Filmsjappe
             {
                 id = f.id,
                 Navn = f.Navn,
-                Bilde = f.Bilde
+                Bilde = f.Bilde,
+                Studio = f.Studio,
+                Visninger = f.Visninger,
+                Beskrivelse = f.Kontinent,
+                ReleaseDate = f.ReleaseDate
             }).ToList();
             return filmer;
         }

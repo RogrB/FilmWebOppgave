@@ -3,10 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><span id="skuespillerNavn"></span></h4>
+                <h2 class="modal-title">Skuespillerinformasjon:</h2>
             </div>
             <div class="modal-body">
-                <p>SkuespillerInformasjon:</p>
                 <div id="modalContent">
 
                 </div>
@@ -27,10 +26,19 @@
             var navn = $(this).data("navn");
             var alder = $(this).data("alder");
             var bilde = $(this).data("bilde");
+            var land = $(this).data("land");
             var id = $(this).data("id");
-            var info = ""; // formater HTML
-            $("#modalContent").html(navn);
-
+            var info = "";
+            info += "<div class='row'>";
+            info += "<div class='col-md-4'>";
+            info += "<img src='../" + bilde + "' alt='" + navn + "' class='img img-responsive' width='250' height='250'>";
+            info += "</div>";
+            info += "<div class='col-md-8'>";
+            info += "<h4>" + navn + "</h4>";
+            info += "<p>Alder: " + alder + " år</p>";
+            info += "<p>Fra: " + land + "</p>";
+            info += "</div></div>";
+            $("#modalContent").html(info);
             hentFilmData(id);
         })
     });
@@ -52,11 +60,20 @@
 
     function formaterFilmData(data) {
         var filmer = "";
+        filmer += '<br><div class="well" style="background - color: #1e1e1e">';
+        filmer += "<h4>Filmer: </h4>";
         $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
-            filmer += this.id;
-            filmer += this.Navn;
+            filmer += "<div class='row'><div class='col-sm-6'>";
+            filmer += "<b>" + this.Navn + "</b><br>";
+            filmer += "<p>Utgiver: " + this.Studio + "<br>";
+            filmer += "Premieredato: " + this.ReleaseDate + "<br>";
+            filmer += "Antall Visninger: " + this.Visninger + "</p>";
+            filmer += "</div><div class='col-sm-6'>";
+            filmer += "<img src='../" + this.Bilde + "' alt='" + this.Navn + "' class='img img-responsive' width='50' height='50'>";
+            filmer += "</div></div>";
             filmer += "<br>";
         });
+        filmer += "</div>";
         $("#filmer").html(filmer);
     }
 </script>
