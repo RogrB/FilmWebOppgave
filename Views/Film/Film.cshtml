@@ -1,0 +1,97 @@
+﻿@model Graubakken_Filmsjappe.Models.Film
+
+@{
+    ViewBag.Title = "Film";
+}
+@if (Model != null)
+{
+    <h2>Film</h2>
+
+    <div>
+        <h4>Film</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Navn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Navn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Produksjonsår)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Produksjonsår)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Kontinent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kontinent)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Studio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Studio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bilde)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bilde)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Visninger)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Visninger)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Beskrivelse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Beskrivelse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Pris)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pris)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}
+else
+{
+    <h3>Fant ikke filminformasjon</h3>
+}

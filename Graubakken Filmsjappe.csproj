@@ -201,6 +201,8 @@
     <Content Include="Views\Film\Velkommen.cshtml" />
     <Content Include="Views\Film\Loginn.cshtml" />
     <Content Include="Views\Film\Bruker.cshtml" />
+    <Content Include="Views\Film\Film.cshtml" />
+    <Content Include="Views\Film\Skuespiller.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

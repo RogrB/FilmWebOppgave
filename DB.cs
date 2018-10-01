@@ -33,10 +33,7 @@ namespace Graubakken_Filmsjappe
                     alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
                     break;
                 case "Stjerner":
-                    alleFilmer = db.Filmer.OrderBy(f => f.Stemmer.Count()).ToList();
-                    break;
-                case "Sjanger":
-                    alleFilmer = db.Filmer.OrderBy(f => f.Sjanger).ToList();
+                    alleFilmer = db.Filmer.OrderBy(f => f.Stemmer[0].AntallStjerner).ToList(); // Trenger riktig query
                     break;
                 case "Kontinent":
                     alleFilmer = db.Filmer.OrderBy(f => f.Kontinent).ToList();
@@ -221,22 +218,24 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
-        public bool EndrePassord(Kunde innKunde)
+        public Film HentFilmInfo(int id)
         {
-            bool resultat = true;
-            var db = new DBContext();
-            try
+            using (var db = new DBContext())
             {
-                KundeDB endreKunde = db.Kunder.Find(innKunde.id);
-                endreKunde.Passord = LagHash(innKunde.Passord + endreKunde.Salt);
-                db.SaveChanges();
+                Film utFilm = db.Filmer.FirstOrDefault(f => f.id == id);
+                // gjør feilhåndtering på null i viewet
+                return utFilm;
             }
-            catch(Exception e)
-            {
-                resultat = false;
-            }
+        }
 
-            return resultat;
+        public Skuespiller HentSkuespillerInfo(int id)
+        {
+            using (var db = new DBContext())
+            {
+                Skuespiller utSkuespiller = db.Skuespillere.FirstOrDefault(s => s.id == id);
+
+                return utSkuespiller;
+            }
         }
 
         public List<Film> HentActionFilmer()

@@ -164,22 +164,20 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(db.HentBruker(innKunde.Brukernavn));
         }
 
-        [HttpPost]
-        public ActionResult EndrePassord(Models.Kunde innKunde)
+        public ActionResult Film(int id)
         {
             var db = new DB();
-            if(ModelState.IsValid)
-            {
-                if(db.EndrePassord(innKunde))
-                {
-                    ViewBag.EndreStatus = "Passord endret";
-                }
-                else
-                {
-                    ViewBag.EndreStatus = "Klarte ikke å endre passordet";
-                }
-            }
-            return View(db.HentBruker(innKunde.Brukernavn));
+            var filmInfo = db.HentFilmInfo(id);
+
+            return View(filmInfo);
+        }
+
+        public ActionResult Skuespiller(int id)
+        {
+            var db = new DB();
+            var skuespillerInfo = db.HentSkuespillerInfo(id);
+
+            return View(skuespillerInfo);
         }
 
         public string HentEnFilm(int id)

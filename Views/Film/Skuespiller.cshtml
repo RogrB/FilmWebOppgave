@@ -1,0 +1,65 @@
+﻿@model Graubakken_Filmsjappe.Models.Skuespiller
+
+@{
+    ViewBag.Title = "Skuespiller";
+}
+@if (Model != null)
+{
+
+    <h2>Skuespiller</h2>
+
+    <div>
+        <h4>Skuespiller</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Fornavn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fornavn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Etternavn)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Etternavn)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Land)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Land)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Alder)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Alder)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bilde)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bilde)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+else
+{
+    <h3>Fant ikke skuespillerinformasjon</h3>
+}
