@@ -13,4 +13,3 @@ namespace Graubakken_Filmsjappe.Models
         public virtual List<Film> Filmer { get; set; }
     }
 }
- 

@@ -165,14 +165,14 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        public Kunde HentBruker(string brukernavn)
+        public EndreKunde HentBruker(string brukernavn)
         {
             using (var db = new DBContext())
             {
                 KundeDB funnetKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
                 if (funnetKunde != null)
                 {
-                    Kunde utKunde = new Kunde()
+                    EndreKunde utKunde = new EndreKunde()
                     {
                         Brukernavn = funnetKunde.Brukernavn,
                         Fornavn = funnetKunde.Fornavn,
@@ -191,21 +191,21 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        public bool EndreBruker(Kunde innKunde)
+        public bool EndreBruker(EndreKunde innKunde)
         {
             var db = new DBContext();
             bool resultat = true;
             try
             {
-                KundeDB endreKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == innKunde.Brukernavn);
-                if(endreKunde != null)
+                KundeDB KundeSomSkalEndres = db.Kunder.FirstOrDefault(k => k.Brukernavn == innKunde.Brukernavn);
+                if(KundeSomSkalEndres != null)
                 {
-                    endreKunde.Fornavn = innKunde.Fornavn;
-                    endreKunde.Etternavn = innKunde.Etternavn;
-                    endreKunde.Kort = innKunde.Kort;
+                    KundeSomSkalEndres.Fornavn = innKunde.Fornavn;
+                    KundeSomSkalEndres.Etternavn = innKunde.Etternavn;
+                    KundeSomSkalEndres.Kort = innKunde.Kort;
                     if (innKunde.Passord != null && innKunde.Passord != "")
                     {
-                        endreKunde.Passord = LagHash(innKunde.Passord + endreKunde.Salt);
+                        KundeSomSkalEndres.Passord = LagHash(innKunde.Passord + KundeSomSkalEndres.Salt);
                     }
                     db.SaveChanges();
                 }

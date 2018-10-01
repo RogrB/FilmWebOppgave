@@ -45,4 +45,31 @@ namespace Graubakken_Filmsjappe.Models
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemmer> Stemmer { get; set; }
     }
+
+    // Klasse for å endre kundeinfo - gjøres i egen klasse så ikke passordfeltet skal være required
+    public class EndreKunde
+    {
+        public int id { get; set; }
+
+        [Required(ErrorMessage = "Fornavn må oppgis")]
+        public string Fornavn { get; set; }
+
+        [Required(ErrorMessage = "Etternavn må oppgis")]
+        public string Etternavn { get; set; }
+
+        [Required(ErrorMessage = "Brukernavn må oppgis")]
+        public string Brukernavn { get; set; }
+
+        [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
+        public string Passord { get; set; }
+
+
+        [Required(ErrorMessage = "Kortinfo må oppgis")]
+        [RegularExpression(@"[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
+        [Display(Name = "Kredittkort")]
+        public long Kort { get; set; }
+
+        public virtual List<Film> Filmer { get; set; }
+        public virtual List<Stemmer> Stemmer { get; set; }
+    }
 }
