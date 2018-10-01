@@ -12,9 +12,9 @@ namespace Graubakken_Filmsjappe.Controllers
         public ActionResult Index()
         {
             var db = new DB();
-            List<Models.IndexView> indexViewListe = db.HentIndexView();
+            Models.IndexView indexView = db.HentIndexView();
 
-            return View(indexViewListe);
+            return View(indexView);
         }
 
         public ActionResult Skuespillere(string sortering)

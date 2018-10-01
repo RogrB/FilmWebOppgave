@@ -10,16 +10,14 @@ namespace Graubakken_Filmsjappe
 {
     public class DB
     {
-        public List<IndexView> HentIndexView()
+        public IndexView HentIndexView()
         {
-            List<IndexView> indexViewListe = new List<IndexView>();
             IndexView indexView = new IndexView();
             indexView.Filmer = HentAlleFilmer();
             indexView.ActionFilmer = HentActionFilmer();
             indexView.Nyheter = HentIndexNyheter();
 
-            indexViewListe.Add(indexView);
-            return indexViewListe;
+            return indexView;
         }
 
         public List<Film> HentFilmView(string sortering)
@@ -246,8 +244,15 @@ namespace Graubakken_Filmsjappe
             using (var db = new DBContext())
             {
                 List<Film> actionFilmer = new List<Film>();
-                //actionFilmer = db.Filmer.Where(film => db.Sjangere.Where(k => k.sjanger == "Action").ToList();
-
+                List<Sjanger> sjangere = db.Sjangere.Where(k => k.sjanger == "Action").ToList();
+                for (int i = 0; i < sjangere.Count(); i++)
+                {
+                    for (int j = 0; j < sjangere[i].Filmer.Count(); j++)
+                    {
+                        actionFilmer.Add(sjangere[i].Filmer[j]);
+                    }
+                }
+           
                 return actionFilmer;
             }
         }
