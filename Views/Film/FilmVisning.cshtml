@@ -1,0 +1,45 @@
+﻿@model Graubakken_Filmsjappe.Models.Film
+@{
+    ViewBag.Title = "FilmVisning";
+}
+@if (Model != null)
+{
+    var tilfeldigtall = new Random();
+    int filmPlakat = tilfeldigtall.Next(1, 5);
+
+
+    <img src="~/Content/images/filmvisning/filmvisning0@(filmPlakat).jpg" alt="Filmen Vises" class="img img-responsive" />
+    <h2>@Model.Navn</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>@Model.Visninger visninger</p>
+        </div>
+        <div class="col-sm-6">
+            <div class="pull-right">
+                <p>(stemmer)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="pull-right">
+                <img src="../@Model.Bilde" alt="@Model.Navn" width="50" height="50" class="img img-responsive" />
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <p>
+                <b>@Model.Studio</b><br />
+                Lastet opp: @Model.ReleaseDate
+            </p>
+            <p>
+                @Model.Beskrivelse
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <h3>Fant ikke filmen</h3>
+}

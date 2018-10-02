@@ -98,6 +98,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Grautbakken.css" />
+    <Content Include="Content\images\filmvisning\filmvisning01.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning02.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning03.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning04.jpg" />
     <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\posters\100_Days_With_Mr_Arrogant_poster.jpg" />
     <Content Include="Content\images\posters\100_Million_BC.jpg" />
@@ -203,6 +207,7 @@
     <Content Include="Views\Film\Bruker.cshtml" />
     <Content Include="Views\Film\Film.cshtml" />
     <Content Include="Views\Film\Skuespiller.cshtml" />
+    <Content Include="Views\Film\FilmVisning.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

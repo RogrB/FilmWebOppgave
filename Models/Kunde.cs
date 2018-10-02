@@ -63,7 +63,6 @@ namespace Graubakken_Filmsjappe.Models
         [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 
-
         [Required(ErrorMessage = "Kortinfo må oppgis")]
         [RegularExpression(@"[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
         [Display(Name = "Kredittkort")]

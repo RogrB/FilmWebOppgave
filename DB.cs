@@ -288,6 +288,44 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        public void OppdaterFilmVisningData(int id)
+        {
+            using (var db= new DBContext())
+            {
+                try
+                {
+                    var oppdaterFilm = db.Filmer.Find(id);
+                    oppdaterFilm.Visninger++;
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    // exception her da..
+                }
+            }
+        }
+
+        public void LeggFilmIKundeObjekt(string innBruker, int filmID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var filmKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == innBruker);
+                    var vistFilm = db.Filmer.Find(filmID);
+                    if(filmKunde != null && vistFilm != null)
+                    {
+                        filmKunde.Filmer.Add(vistFilm);
+                        db.SaveChanges();
+                    }
+                }
+                catch(Exception e)
+                {
+
+                }
+            }
+        }
+
         public List<Nyhet> HentAlleNyheter()
         {
             using (var db = new DBContext())

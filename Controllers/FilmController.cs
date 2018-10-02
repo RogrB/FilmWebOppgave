@@ -141,7 +141,7 @@ namespace Graubakken_Filmsjappe.Controllers
                     return View(bruker);
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Loginn");
         }
 
         [HttpPost]
@@ -178,6 +178,23 @@ namespace Graubakken_Filmsjappe.Controllers
             var skuespillerInfo = db.HentSkuespillerInfo(id);
 
             return View(skuespillerInfo);
+        }
+
+        public ActionResult FilmVisning(int id)
+        {
+            if (Session["LoggetInn"] != null && Session["Brukernavn"] != null)
+            {
+                if ((bool)Session["LoggetInn"])
+                {
+                    var db = new DB();
+                    db.OppdaterFilmVisningData(id);
+                    var film = db.HentFilmInfo(id);
+                    db.LeggFilmIKundeObjekt((string)Session["Brukernavn"], id);
+
+                    return View(film);
+                }
+            }
+            return RedirectToAction("Loginn");
         }
 
         public string HentEnFilm(int id)
