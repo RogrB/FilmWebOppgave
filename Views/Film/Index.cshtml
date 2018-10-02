@@ -18,17 +18,34 @@
 
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src='../@(Model.Filmer[0].Bilde)' alt="@(Model.Filmer[0].Navn)" class="img-responsive" />
+                        <img src='../@(Model.Filmer[0].Bilde)' alt="@(Model.Filmer[0].Navn)" class="img-responsive center" />
                         <h3>@(Model.Filmer[0].Navn)</h3>
                         <p>@(Model.Filmer[0].Beskrivelse)</p>
+                        <a href="#filmModal"
+                           data-navn="@Model.Filmer[0].Navn" data-produksjonsår="@Model.Filmer[0].Produksjonsår" data-bilde="@Model.Filmer[0].Bilde"
+                           data-kontinent="@Model.Filmer[0].Kontinent" data-studio="@Model.Filmer[0].Studio" data-visninger="@Model.Filmer[0].Visninger"
+                           data-beskrivelse="@Model.Filmer[0].Beskrivelse" data-releasedata="@Model.Filmer[0].ReleaseDate" data-pris="@Model.Filmer[0].Pris"
+                           data-id="@Model.Filmer[0].id" data-toggle="modal" data-visFilm="true" class="btn btn-info center">
+                        Mer info
+                        </a>
                     </div>
                     @for (int i = 1; i < 4; i++)
                     {
-                        <div class="item">
-                            <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive" />
-                            <h3>@(Model.Filmer[i].Navn)</h3>
-                            <p>@(Model.Filmer[i].Beskrivelse)</p>
-                        </div>
+                    <div class="item">
+
+
+
+                        <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" />
+                        <h3>@(Model.Filmer[i].Navn)</h3>
+                        <p>@(Model.Filmer[i].Beskrivelse)</p>
+                        <a href="#filmModal"
+                           data-navn="@Model.Filmer[i].Navn" data-produksjonsår="@Model.Filmer[i].Produksjonsår" data-bilde="@Model.Filmer[i].Bilde"
+                           data-kontinent="@Model.Filmer[i].Kontinent" data-studio="@Model.Filmer[i].Studio" data-visninger="@Model.Filmer[i].Visninger"
+                           data-beskrivelse="@Model.Filmer[i].Beskrivelse" data-releasedata="@Model.Filmer[i].ReleaseDate" data-pris="@Model.Filmer[i].Pris"
+                           data-id="@Model.Filmer[i].id" data-toggle="modal" data-visFilm="true" class="btn btn-info center">
+                        Mer info
+                        </a>
+                    </div>
                     }
                 </div>
 
@@ -64,12 +81,12 @@
         {
             <div class="col-sm-3">
                 <a href="#filmCollapse" data-id="@(Model.Filmer[i].id)"
-                     data-visCollapse="true" style="cursor: pointer" data-kontinent="@(Model.Filmer[i].Kontinent)"
-                     data-bilde="@(Model.Filmer[i].Bilde)" data-navn="@(Model.Filmer[i].Navn)" data-produksjonsår="@(Model.Filmer[i].Produksjonsår)"
-                     data-beskrivelse="@(Model.Filmer[i].Beskrivelse)" data-studio="@(Model.Filmer[i].Studio)" data-visninger="@(Model.Filmer[i].Visninger)">
+                   data-visCollapse="true" style="cursor: pointer" data-kontinent="@(Model.Filmer[i].Kontinent)"
+                   data-bilde="@(Model.Filmer[i].Bilde)" data-navn="@(Model.Filmer[i].Navn)" data-produksjonsår="@(Model.Filmer[i].Produksjonsår)"
+                   data-beskrivelse="@(Model.Filmer[i].Beskrivelse)" data-studio="@(Model.Filmer[i].Studio)" data-visninger="@(Model.Filmer[i].Visninger)">
 
-                <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" width="250" height="300" />
-                <p>@(Model.Filmer[i].Navn)</p>
+                    <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" width="250" height="300" />
+                    <p>@(Model.Filmer[i].Navn)</p>
                 </a>
             </div>
         }
@@ -80,45 +97,41 @@
 <div id="filmCollapse" class="collapse">
     <span hidden id="collapseID"></span>
     <div id="collapseContent">
-        
+
     </div>
 </div>
 
 <!-- Actionfilmer Meny -->
 <div class="container text-center">
-    <h3>Noen filmer fra Action kategorien</h3>
+    <h3 id="actionFilmScrollTarget">Noen filmer fra Action kategorien</h3>
     <br>
     <div class="row">
+        @for(int i = 0; i < 6; i++)
+        {
         <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film01" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film01</p>
+            <a href="#actionFilmCollapse" data-id="@(Model.ActionFilmer[i].id)"
+               data-visActionFilmCollapse="true" style="cursor: pointer" data-kontinent="@(Model.ActionFilmer[i].Kontinent)"
+               data-bilde="@(Model.ActionFilmer[i].Bilde)" data-navn="@(Model.ActionFilmer[i].Navn)" data-produksjonsår="@(Model.ActionFilmer[i].Produksjonsår)"
+               data-beskrivelse="@(Model.ActionFilmer[i].Beskrivelse)" data-studio="@(Model.ActionFilmer[i].Studio)" data-visninger="@(Model.ActionFilmer[i].Visninger)">
+
+                <img src="../@Model.ActionFilmer[i].Bilde" alt="@Model.ActionFilmer[i].Navn" class="img-responsive center" width="100" height="100" />
+                <p>@Model.ActionFilmer[i].Navn</p>
+            </a>
         </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film02" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film02</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film03" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film03</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film04" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film04</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film05" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film05</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=Film06" class="img-responsive" style="width:100%" alt="Image">
-            <p>Film06</p>
-        </div>
+        }
     </div>
-</div><br>
+</div>
+<div id="actionFilmCollapse" class="collapse">
+    <span hidden id="actionFilmCollapseID"></span>
+    <div id="actionFilmCollapseContent">
+
+    </div>
+</div>
+
+<br>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        // lag en hendelse som utføres når en a-href med "data-SletteModal = true" trykkes.
         $('a[data-visCollapse=true]').click(function (evt) {
             evt.preventDefault();
             var data = {
@@ -138,27 +151,65 @@
                 $("#filmCollapse").collapse("show");
                 $("#collapseID").html(id);
 
+                // Flytter nettleseren til collapse innholdet
                 $('html, body').animate({
-                    scrollTop: $("#scrollTarget").offset().top // Flytter nettleseren til collapse innholdet
+                    scrollTop: $("#scrollTarget").offset().top
                 }, 500);
 
-                formaterFilmData(data);
+                var formatertData = formaterCollapseFilmData(data);
+                $("#collapseContent").html(formatertData);
             }
             else if ($("#collapseID").html() == id) {
                 // Trykker på samme collapse - Gjemmer innhold
                 $("#filmCollapse").collapse("hide");
             }
             else {
-                // Ny content i collapsen
+                // Ny content i collapsen - når bruker trykker på ny film med collapsen åpen
                 $("#collapseID").html(id);
-                formaterFilmData(data);
+                var formatertData = formaterCollapseFilmData(data);
+                $("#collapseContent").html(formatertData);
             }
 
         });
+
+        $('a[data-visActionFilmCollapse=true]').click(function (evt) {
+            evt.preventDefault();
+            var data = {
+                Navn: $(this).data("navn"),
+                Bilde: $(this).data("bilde"),
+                Visninger: $(this).data("visninger"),
+                Produksjonsår: $(this).data("produksjonsår"),
+                Kontinent: $(this).data("kontinent"),
+                Studio: $(this).data("studio"),
+                Beskrivelse: $(this).data("beskrivelse"),
+                id: $(this).data("id")
+            }
+            var id = $(this).data("id");
+            if (!$("#actionFilmCollapse").is(":visible")) {
+                $("#actionFilmCollapse").collapse("show");
+                $("#actionFilmCollapseID").html(id);
+
+                $('html, body').animate({
+                    scrollTop: $("#actionFilmScrollTarget").offset().top
+                }, 500);
+
+                var formatertData = formaterCollapseFilmData(data);
+                $("#actionFilmCollapseContent").html(formatertData);
+            }
+            else if ($("#actionFilmCollapseID").html() == id) {
+                $("#actionFilmCollapse").collapse("hide");
+            }
+            else {
+                $("#actionFilmCollapseID").html(id);
+                var formatertData = formaterCollapseFilmData(data);
+                $("#actionFilmCollapseContent").html(formatertData);
+            }
+
+        });
+
     })
 
-    function formaterFilmData(data) {
-        console.log(data);
+    function formaterCollapseFilmData(data) {
         var utData = "";
         utData += '<div class="container">';
         utData += '<div class="row">';
@@ -181,22 +232,9 @@
         utData += '</div>';
         utData += '<hr>';
 
-        $("#collapseContent").html(utData);
+        return utData;
     }
-    
-    /* Ubrukt AJAX
-    function hentFilmData(innID) {
-        $.ajax({
-            url: '/Film/HentEnFilm/' + innID,
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                formaterFilmData(data);
-            },
-            error: function (x, y, z) {
-                console.log("Feilet API kall for å hente filminformasjon");
-            }
-        });
-    } */
+
 </script>
+
+@Html.Partial("FilmModal")
