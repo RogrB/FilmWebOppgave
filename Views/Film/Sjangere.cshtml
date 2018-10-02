@@ -7,20 +7,29 @@
 <h2>Sjangere</h2>
 
 <table class="table">
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <span data-toggle="collapse" style="cursor: pointer" data-target="#@item.id">@Html.DisplayFor(modelItem => item.sjanger)</span> <span class="badge">@item.antall</span>
-            <div class="collapse" id="@item.id">
-                <div class="well" style="background-color: #1e1e1e">
-                    @foreach (var film in item.Filmer)
-                    {
-                        <p>@film.Navn</p>
-                    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span data-toggle="collapse" style="cursor: pointer" data-target="#@item.id">@Html.DisplayFor(modelItem => item.sjanger)</span> <span class="badge">@item.antall</span>
+                <div class="collapse" id="@item.id">
+                    <div class="well" style="background-color: #1e1e1e">
+                        @foreach (var film in item.Filmer)
+                        {
+                            <a href="#filmModal"
+                               data-navn="@film.Navn" data-produksjonsår="@film.Produksjonsår" data-bilde="@film.Bilde"
+                               data-kontinent="@film.Kontinent" data-studio="@film.Studio" data-visninger="@film.Visninger"
+                               data-beskrivelse="@film.Beskrivelse" data-releasedata="@film.ReleaseDate" data-pris="@film.Pris"
+                               data-id="@film.id" data-toggle="modal" data-visFilm="true">
+                                <p>@film.Navn</p>
+                            </a>
+                        }
+                        </div>
                 </div>
-            </div>
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.Partial("FilmModal")
