@@ -21,31 +21,19 @@
                         <img src='../@(Model.Filmer[0].Bilde)' alt="@(Model.Filmer[0].Navn)" class="img-responsive center" />
                         <h3>@(Model.Filmer[0].Navn)</h3>
                         <p>@(Model.Filmer[0].Beskrivelse)</p>
-                        <a href="#filmModal"
-                           data-navn="@Model.Filmer[0].Navn" data-produksjonsår="@Model.Filmer[0].Produksjonsår" data-bilde="@Model.Filmer[0].Bilde"
-                           data-kontinent="@Model.Filmer[0].Kontinent" data-studio="@Model.Filmer[0].Studio" data-visninger="@Model.Filmer[0].Visninger"
-                           data-beskrivelse="@Model.Filmer[0].Beskrivelse" data-releasedata="@Model.Filmer[0].ReleaseDate" data-pris="@Model.Filmer[0].Pris"
-                           data-id="@Model.Filmer[0].id" data-toggle="modal" data-visFilm="true" class="btn btn-info center">
-                        Mer info
-                        </a>
+                        <a href="Film/Film?id=@Model.Filmer[0].id" class="btn btn-info center">Mer info</a>
                     </div>
                     @for (int i = 1; i < 4; i++)
                     {
-                    <div class="item">
+                        <div class="item">
 
 
 
-                        <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" />
-                        <h3>@(Model.Filmer[i].Navn)</h3>
-                        <p>@(Model.Filmer[i].Beskrivelse)</p>
-                        <a href="#filmModal"
-                           data-navn="@Model.Filmer[i].Navn" data-produksjonsår="@Model.Filmer[i].Produksjonsår" data-bilde="@Model.Filmer[i].Bilde"
-                           data-kontinent="@Model.Filmer[i].Kontinent" data-studio="@Model.Filmer[i].Studio" data-visninger="@Model.Filmer[i].Visninger"
-                           data-beskrivelse="@Model.Filmer[i].Beskrivelse" data-releasedata="@Model.Filmer[i].ReleaseDate" data-pris="@Model.Filmer[i].Pris"
-                           data-id="@Model.Filmer[i].id" data-toggle="modal" data-visFilm="true" class="btn btn-info center">
-                        Mer info
-                        </a>
-                    </div>
+                            <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" />
+                            <h3>@(Model.Filmer[i].Navn)</h3>
+                            <p>@(Model.Filmer[i].Beskrivelse)</p>
+                            <a href="Film/Film?id=@Model.Filmer[i].id" class="btn btn-info center">Mer info</a>
+                        </div>
                     }
                 </div>
 
@@ -106,18 +94,18 @@
     <h3 id="actionFilmScrollTarget">Noen filmer fra Action kategorien</h3>
     <br>
     <div class="row">
-        @for(int i = 0; i < 6; i++)
+        @for (int i = 0; i < 6; i++)
         {
-        <div class="col-sm-2">
-            <a href="#actionFilmCollapse" data-id="@(Model.ActionFilmer[i].id)"
-               data-visActionFilmCollapse="true" style="cursor: pointer" data-kontinent="@(Model.ActionFilmer[i].Kontinent)"
-               data-bilde="@(Model.ActionFilmer[i].Bilde)" data-navn="@(Model.ActionFilmer[i].Navn)" data-produksjonsår="@(Model.ActionFilmer[i].Produksjonsår)"
-               data-beskrivelse="@(Model.ActionFilmer[i].Beskrivelse)" data-studio="@(Model.ActionFilmer[i].Studio)" data-visninger="@(Model.ActionFilmer[i].Visninger)">
+            <div class="col-sm-2">
+                <a href="#actionFilmCollapse" data-id="@(Model.ActionFilmer[i].id)"
+                   data-visActionFilmCollapse="true" style="cursor: pointer" data-kontinent="@(Model.ActionFilmer[i].Kontinent)"
+                   data-bilde="@(Model.ActionFilmer[i].Bilde)" data-navn="@(Model.ActionFilmer[i].Navn)" data-produksjonsår="@(Model.ActionFilmer[i].Produksjonsår)"
+                   data-beskrivelse="@(Model.ActionFilmer[i].Beskrivelse)" data-studio="@(Model.ActionFilmer[i].Studio)" data-visninger="@(Model.ActionFilmer[i].Visninger)">
 
-                <img src="../@Model.ActionFilmer[i].Bilde" alt="@Model.ActionFilmer[i].Navn" class="img-responsive center" width="100" height="100" />
-                <p>@Model.ActionFilmer[i].Navn</p>
-            </a>
-        </div>
+                    <img src="../@Model.ActionFilmer[i].Bilde" alt="@Model.ActionFilmer[i].Navn" class="img-responsive center" width="100" height="100" />
+                    <p>@Model.ActionFilmer[i].Navn</p>
+                </a>
+            </div>
         }
     </div>
 </div>
@@ -226,12 +214,12 @@
         utData += '<p>Utgivelsesår: ' + data.Produksjonsår + ' &nbsp;&nbsp; Fra: ' + data.Kontinent + ' &nbsp;&nbsp;';
         utData += 'Studio: ' + data.Studio + '<br>';
         utData += 'Antall Visninger: ' + data.Visninger + '</p>';
+        utData += "<br><br>";
+        utData += '<a href="Film/Film?id=' + data.id + '" class="btn btn-info center">Mer info</a>';
         utData += '</div>';
-
         utData += '</div>';
         utData += '</div>';
         utData += '<hr>';
-
         return utData;
     }
 
