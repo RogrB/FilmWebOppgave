@@ -40,11 +40,11 @@ namespace Graubakken_Filmsjappe
             // Kaller metode for å legge skuespillere inn i filmene
             SettSkuespillereInnIFilmer();
 
-            // Kaller metode for å legge filmer inn i Kunde-objekter (filmer som kunder har sett)
-            SettFilmerInnIKundeObjekt();
-
             // Kaller metode for å opprette sjangere og legge sjangere inn i Film-objekter
             OpprettSjangere();
+
+            // Kaller metode for å opprette stemme-data
+            OpprettStemmer();
 
             // Legger filmene inn i databasen
             try
@@ -73,8 +73,8 @@ namespace Graubakken_Filmsjappe
             {
                 ok = false;
             }
-            
-            
+
+            /*
             // Legger kundene inn i databasen
             try
             {
@@ -88,9 +88,12 @@ namespace Graubakken_Filmsjappe
             catch (Exception e)
             {
                 ok = false;
-            }
+            }*/
 
-            // Note: Skuespillere og Sjangere blir lagt inn i databasen gjennom Film-objektet
+            // Note: Skuespillere, Sjangere og Stemmer blir lagt inn i databasen gjennom Film-objektet
+
+            // Kaller metode for å legge filmer inn i Kunde-objekter (filmer som kunder har sett)
+            SettFilmerInnIKundeObjekt();
 
             return ok;
         }
@@ -117,19 +120,29 @@ namespace Graubakken_Filmsjappe
         // Metode som setter et tilfeldig utvalg av filmer inn i kunde-objektene
         public void SettFilmerInnIKundeObjekt()
         {
+            List<Film> alleFilmer = db.Filmer.ToList();
+            List<KundeDB> alleKunder = db.Kunder.ToList();
             Random TilfeldigTall = new Random();
-            for (int i = 0; i < alleKunder.Count(); i++)
+            try
             {
-                alleKunder[i].Filmer = new List<Film>();
-                int AntallFilmer = TilfeldigTall.Next(0, alleFilmer.Count());
-                for (int j = 0; j < AntallFilmer; j++)
+                for (int i = 0; i < alleKunder.Count(); i++)
                 {
-                    int TilfeldigFilm = TilfeldigTall.Next(0, alleFilmer.Count());
-                    if (!alleKunder[i].Filmer.Contains(alleFilmer[TilfeldigFilm]))
+                    alleKunder[i].Filmer = new List<Film>();
+                    int AntallFilmer = TilfeldigTall.Next(0, alleFilmer.Count());
+                    for (int j = 0; j < AntallFilmer; j++)
                     {
-                        alleKunder[i].Filmer.Add(alleFilmer[TilfeldigFilm]);
+                        int TilfeldigFilm = TilfeldigTall.Next(0, alleFilmer.Count());
+                        if (!alleKunder[i].Filmer.Contains(alleFilmer[TilfeldigFilm]))
+                        {
+                            alleKunder[i].Filmer.Add(alleFilmer[TilfeldigFilm]);
+                        }
                     }
                 }
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
@@ -141,6 +154,26 @@ namespace Graubakken_Filmsjappe
                 alleFilmer[i].Sjanger = new List<Sjanger>();
             }
             SettSjangerInnIFilmer();
+        }
+
+        // Metode som oppretter stemmer og legger de inn i film objektene
+        public void OpprettStemmer()
+        {
+            Random TilfeldigTall = new Random();
+            for (int i = 0; i < alleFilmer.Count(); i++)
+            {
+                alleFilmer[i].Stemmer = new List<Stemmer>();
+                int antallStemmer = TilfeldigTall.Next(1, 4);
+                for (int j = 0; j < antallStemmer; j++)
+                {
+                    Stemmer stemme = new Stemmer()
+                    {
+                        AntallStjerner = TilfeldigTall.Next(0, 6),
+                        Kunde = alleKunder[TilfeldigTall.Next(1, alleKunder.Count())]
+                    };
+                    alleFilmer[i].Stemmer.Add(stemme);
+                }
+            }
         }
 
         public void SettSjangerInnIFilmer()

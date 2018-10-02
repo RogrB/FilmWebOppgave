@@ -86,12 +86,39 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-        @Html.ActionLink("Back to List", "Index")
+        <a href="#bekreftModal" type="button" data-visModal="true" data-toggle="modal" class="btn btn-success" id="kjop">Kjøp (@Model.Pris kr)</a>
+        @Html.ActionLink("Til hovedsiden", "Index", null, new { @class="btn btn-default" })
     </p>
 
+    <div id="bekreftModal" class="modal fade" style="color: #242424">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <span hidden id="filmIDSpan">@Model.id</span>
+                    <p>Bekreft kjøp av film <b>@Model.Navn </b>for <b>@Model.Pris </b>kr</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="bekreft">Ok</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
     <h3>Fant ikke filminformasjon</h3>
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#bekreft").click(function () {
+            window.location.href = "FilmVisning?id=" + $("#filmIDSpan").html();
+        })
+
+    });
+</script>
