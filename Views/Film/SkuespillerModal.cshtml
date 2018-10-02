@@ -64,12 +64,12 @@
         filmer += "<h4>Filmer: </h4>";
         $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
             filmer += "<div class='row'><div class='col-sm-6'>";
-            filmer += "<b>" + this.Navn + "</b><br>";
+            filmer += "<a href='Film?id=" + this.id + "'><b>" + this.Navn + "</b></a><br>";
             filmer += "<p>Utgiver: " + this.Studio + "<br>";
             filmer += "Premieredato: " + this.ReleaseDate + "<br>";
             filmer += "Antall Visninger: " + this.Visninger + "</p>";
             filmer += "</div><div class='col-sm-6'>";
-            filmer += "<img src='../" + this.Bilde + "' alt='" + this.Navn + "' class='img img-responsive' width='50' height='50'>";
+            filmer += "<a href='Film?id=" + this.id + "'><img src='../" + this.Bilde + "' alt='" + this.Navn + "' class='img img-responsive' width='50' height='50'></a>";
             filmer += "</div></div>";
             filmer += "<br>";
         });
