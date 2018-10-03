@@ -33,7 +33,21 @@ namespace Graubakken_Filmsjappe
                     alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
                     break;
                 case "Stjerner":
-                    alleFilmer = db.Filmer.OrderBy(f => f.Stemmer[0].AntallStjerner).ToList(); // Trenger riktig query
+                    var filmer = db.Filmer.ToList();
+                    var utregnedeFilmer = new List<Film>();
+
+                    foreach(var film in filmer)
+                    {
+                        int total = 0;
+                        int antallStemmer = film.Stemmer.Count();
+                        for (int i = 0; i < antallStemmer; i++)
+                        {
+                            total += film.Stemmer[i].AntallStjerner;
+                        }
+                        film.Gjennomsnitt = total / antallStemmer;
+                        utregnedeFilmer.Add(film);
+                    }
+                    alleFilmer = utregnedeFilmer.OrderBy(f => f.Gjennomsnitt).ToList();
                     break;
                 case "Kontinent":
                     alleFilmer = db.Filmer.OrderBy(f => f.Kontinent).ToList();
@@ -321,7 +335,7 @@ namespace Graubakken_Filmsjappe
                 }
                 catch(Exception e)
                 {
-
+                    // exception
                 }
             }
         }

@@ -18,6 +18,7 @@ namespace Graubakken_Filmsjappe.Models
         public string Beskrivelse { get; set; }
         public string ReleaseDate { get; set; }
         public int Pris { get; set; }
+        public double Gjennomsnitt { get; set; }
         public virtual List<Skuespiller> Skuespillere { get; set; }
         public virtual List<Sjanger> Sjanger { get; set; }
         public virtual List<Stemmer> Stemmer { get; set; }

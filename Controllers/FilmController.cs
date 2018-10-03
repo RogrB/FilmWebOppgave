@@ -164,7 +164,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(db.HentBruker(innKunde.Brukernavn));
         }
 
-        public ActionResult Film(int id)
+        public ActionResult Film(int id = 0)
         {
             var db = new DB();
             var filmInfo = db.HentFilmInfo(id);
@@ -172,7 +172,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(filmInfo);
         }
 
-        public ActionResult Skuespiller(int id)
+        public ActionResult Skuespiller(int id = 0)
         {
             var db = new DB();
             var skuespillerInfo = db.HentSkuespillerInfo(id);
