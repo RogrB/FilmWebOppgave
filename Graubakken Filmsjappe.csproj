@@ -180,6 +180,7 @@
     <Compile Include="Models\Sjanger.cs" />
     <Compile Include="Models\Skuespiller.cs" />
     <Compile Include="Models\Stemme.cs" />
+    <Compile Include="Models\Ønskeliste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Kunde.cs" />
   </ItemGroup>

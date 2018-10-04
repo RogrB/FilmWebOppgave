@@ -485,5 +485,41 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        public bool LeggIØnskeliste(int FilmID, string Brukernavn)
+        {
+            bool resultat = true;
+            using (var db = new DBContext())
+            {
+                var Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
+                if (Kunde != null)
+                {
+                    if (Kunde.Ønskeliste == null)
+                    {
+                        Kunde.Ønskeliste = new Ønskeliste();
+                    }
+                    if(Kunde.Ønskeliste.Filmer == null)
+                    {
+                        Kunde.Ønskeliste.Filmer = new List<Film>();
+                    }
+                    try
+                    {
+                        var film = db.Filmer.Find(FilmID);
+                        Kunde.Ønskeliste.Filmer.Add(film);
+                        db.SaveChanges();
+                    }
+                    catch(Exception e)
+                    {
+                        resultat = false;
+                    }
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+
+            return resultat;
+        }
+
     }
 } 

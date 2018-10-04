@@ -31,6 +31,7 @@ namespace Graubakken_Filmsjappe.Models
 
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
+        public Ønskeliste Ønskeliste { get; set; }
     }
 
     public class KundeDB
@@ -44,6 +45,7 @@ namespace Graubakken_Filmsjappe.Models
         public long Kort { get; set; }
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
+        public Ønskeliste Ønskeliste { get; set; }
     }
 
     // Klasse for å endre kundeinfo - gjøres i egen klasse så ikke passordfeltet skal være required
