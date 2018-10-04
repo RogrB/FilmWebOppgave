@@ -1,4 +1,6 @@
-﻿<div id="filmModal" class="modal fade" style="color: #242424">
+﻿<span id="tempNavn" hidden></span>
+<span id="tempPris" hidden></span>
+<div id="filmModal" class="modal fade" style="color: #242424">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,10 +29,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><span id="filmNavn"></span></h4>
+                <h4 class="modal-title">Filmkjøp</h4>
             </div>
             <div class="modal-body">
-                <p>Bekreft kjøp av film <b><span id="filmNavn"></span></b> for <b><span id="prisSpan"></span></b> kr</p>
+                <p>Bekreft kjøp av film <b><span id="filmNavnBekreft"></span></b> for <b><span id="prisSpanBekreft"></span></b> kr</p>
                 <div id="modalContent">
 
                 </div>
@@ -63,15 +65,15 @@
                 gjennomsnitt: $(this).data("gjennomsnitt")
             }
             $("#modalContent").html(formaterFilmData(data));
-            $("#filmIDSpan").html(data.id);
-            $("#filmNavn").html(data.navn);
-            $("#prisSpan").html(data.pris);
+            flyttDataTilElementer(data);
 
             hentSkuespillerData(data.id);
         })
 
         $("#kjop").click(function () {
             $("#bekreftModal").modal("show");
+            $("#filmNavnBekreft").html($("#tempNavn").html());
+            $("#prisSpanBekreft").html($("#tempPris").html());
         })
 
         $("#bekreft").click(function () {
@@ -130,5 +132,13 @@
         });
         skuespillere += "</div>";
         $("#skuespillere").html(skuespillere);
+    }
+
+    function flyttDataTilElementer(data) {
+        $("#filmIDSpan").html(data.id);
+        $("#filmNavn").html(data.navn);
+        $("#prisSpan").html(data.pris);
+        $("#tempNavn").html(data.navn);
+        $("#tempPris").html(data.pris);
     }
 </script>
