@@ -169,7 +169,7 @@ namespace Graubakken_Filmsjappe
             {
                 for (int j = 0; j < TilfeldigTall.Next(1, 3); j++)
                 {
-                    int tilfeldigBruker = TilfeldigTall.Next(1, alleKunder.Count());
+                    string tilfeldigBruker = alleKunder[TilfeldigTall.Next(1, alleKunder.Count())].Brukernavn;
                     int stemme = TilfeldigTall.Next(0, 6);
                     if (!dbHandler.StemPåFilm(alleFilmer[i].id, tilfeldigBruker, stemme))
                     {

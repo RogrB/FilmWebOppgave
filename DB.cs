@@ -81,14 +81,15 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        public bool StemPåFilm(int filmID, int kundeID, int stemme)
+        public bool StemPåFilm(int filmID, string brukernavn, int stemme)
         {
             var db = new DBContext();
             bool resultat = true;
-            KundeDB Kunde = db.Kunder.Find(kundeID);
+            KundeDB Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
             Stemme vurdering = new Stemme()
             {
-                AntallStjerner = stemme
+                AntallStjerner = stemme,
+                Kunde = Kunde
             };
             try
             {
@@ -219,27 +220,25 @@ namespace Graubakken_Filmsjappe
 
         public EndreKunde HentBruker(string brukernavn)
         {
-            using (var db = new DBContext())
+            var db = new DBContext();
+            KundeDB funnetKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
+            if (funnetKunde != null)
             {
-                KundeDB funnetKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
-                if (funnetKunde != null)
+                EndreKunde utKunde = new EndreKunde()
                 {
-                    EndreKunde utKunde = new EndreKunde()
-                    {
-                        Brukernavn = funnetKunde.Brukernavn,
-                        Fornavn = funnetKunde.Fornavn,
-                        Etternavn = funnetKunde.Etternavn,
-                        id = funnetKunde.id,
-                        Kort = funnetKunde.Kort,
-                        Filmer = funnetKunde.Filmer,
-                        Stemmer = funnetKunde.Stemmer
-                    };
-                    return utKunde;
-                }
-                else
-                {
-                    return null;
-                }
+                    Brukernavn = funnetKunde.Brukernavn,
+                    Fornavn = funnetKunde.Fornavn,
+                    Etternavn = funnetKunde.Etternavn,
+                    id = funnetKunde.id,
+                    Kort = funnetKunde.Kort,
+                    Filmer = funnetKunde.Filmer,
+                    Stemmer = funnetKunde.Stemmer
+                };
+                return utKunde;
+            }
+            else
+            {
+                return null;
             }
         }
 

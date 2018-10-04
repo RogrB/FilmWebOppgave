@@ -227,6 +227,22 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonData;
         }
 
+        public string StemPåFilm(int FilmID, string Brukernavn, int stemme)
+        {
+            var db = new DB();
+            var jsonSerializer = new JavaScriptSerializer();
+            string resultat = "";
+            if (db.StemPåFilm(FilmID, Brukernavn, stemme))
+            {
+                resultat = "OK";
+            }
+            else
+            {
+                resultat = "Feil";
+            }
+            return jsonSerializer.Serialize(resultat);
+        }
+
         public string HentFilmerFraSkuespillerID(int id)
         {
             var db = new DB();

@@ -102,14 +102,18 @@
                 @if (Model.Stemmer.Any())
                 {
                     <h3>Filmer du har gitt en vurdering:</h3>
-                    <table>
-                        @foreach (var stemme in Model.Stemmer)
-                        {
+                    {
+                        int teller = 0;
+                        <table>
+
+                            @foreach (var stemme in Model.Stemmer)
+                            {
                             <tr>
-                                @stemme.AntallStjerner
+                                @stemme.Filmer[teller].Navn - Din stemme: @stemme.AntallStjerner
                             </tr>
-                        }
-                    </table>
+                            }
+                        </table>
+                    }
                 }
                 else
                 {
