@@ -43,12 +43,6 @@ namespace Graubakken_Filmsjappe
             // Kaller metode for å opprette sjangere og legge sjangere inn i Film-objekter
             OpprettSjangere();
 
-            // Kaller metode for å opprette stemme-data
-            if (!OpprettStemmer())
-            {
-                ok = false;
-            }
-
             // Legger filmene inn i databasen
             try
             {
@@ -94,6 +88,12 @@ namespace Graubakken_Filmsjappe
             }*/
 
             // Note: Skuespillere, Sjangere og Stemmer blir lagt inn i databasen gjennom Film-objektet
+
+            // Kaller metode for å opprette stemme-data
+            if (!OpprettStemmer())
+            {
+                ok = false;
+            }
 
             // Kaller metode for å legge filmer inn i Kunde-objekter (filmer som kunder har sett)
             SettFilmerInnIKundeObjekt();

@@ -93,6 +93,10 @@ namespace Graubakken_Filmsjappe
             try
             {
                 Film film = db.Filmer.Find(filmID);
+                if (film.Stemmer == null)
+                {
+                    film.Stemmer = new List<Stemme>();
+                }
                 film.Stemmer.Add(vurdering);
                 db.SaveChanges();
                 if (!OppdaterGjennomsnitt(filmID))
