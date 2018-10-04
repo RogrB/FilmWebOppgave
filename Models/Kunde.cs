@@ -57,9 +57,6 @@ namespace Graubakken_Filmsjappe.Models
         [Required(ErrorMessage = "Etternavn må oppgis")]
         public string Etternavn { get; set; }
 
-        [Required(ErrorMessage = "Brukernavn må oppgis")]
-        public string Brukernavn { get; set; }
-
         [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 

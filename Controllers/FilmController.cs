@@ -73,9 +73,15 @@ namespace Graubakken_Filmsjappe.Controllers
         {
             if(!ModelState.IsValid)
             {
+                ViewBag.RegistreringsStatus = "Skjemaet er ikke fylt inn riktig";
                 return View();
             }
             var db = new DB();
+            if (!db.SjekkOmBrukernavnErLedig(innKunde.Brukernavn))
+            {
+                ViewBag.RegistreringsStatus = "Brukernavnet er opptatt";
+                return View();
+            }
             if(db.RegistrerBruker(innKunde))
             {
                 Session["LoggetInn"] = true;
@@ -151,17 +157,16 @@ namespace Graubakken_Filmsjappe.Controllers
             var db = new DB();
             if (ModelState.IsValid)
             {
-                if (db.EndreBruker(innKunde))
+                if (db.EndreBruker(innKunde, (string)Session["Brukernavn"]))
                 {
                     ViewBag.EndreStatus = "Informasjon oppdatert";
                 }
                 else
                 {
                     ViewBag.EndreStatus = "Klarte ikke å oppdatere informasjon";
-
                 }
             }
-            return View(db.HentBruker(innKunde.Brukernavn));
+            return View(db.HentBruker((string)Session["Brukernavn"]));
         }
 
         public ActionResult Film(int id = 0)
@@ -263,6 +268,22 @@ namespace Graubakken_Filmsjappe.Controllers
             string jsonData = jsonSerializer.Serialize(skuespillere);
 
             return jsonData;
+        }
+
+        public string SjekkOmBrukernavnErLedig(string brukernavn)
+        {
+            var db = new DB();
+            var jsonSerializer = new JavaScriptSerializer();
+            string resultat = "";
+            if (db.SjekkOmBrukernavnErLedig(brukernavn))
+            {
+                resultat = "Brukernavn Ledig";
+            }
+            else
+            {
+                resultat = "Brukernavn opptatt";
+            }
+            return jsonSerializer.Serialize(resultat);
         }
 
         public ActionResult Dbinsert()

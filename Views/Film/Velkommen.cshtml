@@ -4,7 +4,7 @@
 }
 
 <h2>Velkommen som bruker hos Grautbakken Filmsjappe</h2>
-<p>Du er logget inn som <b>@ViewBag.Brukernavn</b> </p>
+<p>Logget inn som <a href="~/Film/Bruker/?brukernavn=@Session["Brukernavn"]">@Session["Brukernavn"]</a></p>
 
 
 @Html.ActionLink("Tilbake", "Index", new { tom = "" }, new { @class = "btn btn-primary" })

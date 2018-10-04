@@ -226,7 +226,6 @@ namespace Graubakken_Filmsjappe
             {
                 EndreKunde utKunde = new EndreKunde()
                 {
-                    Brukernavn = funnetKunde.Brukernavn,
                     Fornavn = funnetKunde.Fornavn,
                     Etternavn = funnetKunde.Etternavn,
                     id = funnetKunde.id,
@@ -242,13 +241,13 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        public bool EndreBruker(EndreKunde innKunde)
+        public bool EndreBruker(EndreKunde innKunde, string brukernavn)
         {
             var db = new DBContext();
             bool resultat = true;
             try
             {
-                KundeDB KundeSomSkalEndres = db.Kunder.FirstOrDefault(k => k.Brukernavn == innKunde.Brukernavn);
+                KundeDB KundeSomSkalEndres = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
                 if(KundeSomSkalEndres != null)
                 {
                     KundeSomSkalEndres.Fornavn = innKunde.Fornavn;
@@ -410,7 +409,7 @@ namespace Graubakken_Filmsjappe
 
         public List<Film> HentFilmerFraSkuespillerID(int id)
         {
-            var db = new DBContext(); // Får feilmelding om jeg prøver using(var db = new db())
+            var db = new DBContext();
 
             List<Film> filmer = db.Skuespillere.Find(id).Filmer.Select(f => new Film()
             {
@@ -471,5 +470,20 @@ namespace Graubakken_Filmsjappe
             return alleKunder;
         }
 
+        public bool SjekkOmBrukernavnErLedig(string brukernavn)
+        {
+            bool resultat = true;
+            using (var db = new DBContext())
+            {
+                var sjekkBrukernavn = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
+                if (sjekkBrukernavn != null)
+                {
+                    resultat = false;
+                }
+            }
+
+            return resultat;
+        }
+
     }
-}
+} 
