@@ -16,8 +16,10 @@
         </div>
         <div class="col-sm-6">
             <div class="pull-right">
-                <p>Vurdering: @Model.Gjennomsnitt av 5 stjerner<br />
-                Basert på @Model.Stemmer.Count() stemmer</p>
+                <div id="statistikk">
+                    <p>Vurdering: <span id="gjennomsnittSpan">@Model.Gjennomsnitt</span> av 5 stjerner<br />
+                    Basert på <span id="antallSpan">@Model.Stemmer.Count()</span> stemmer</p>
+                </div>
                 <button onclick="stemPåFilm(@Model.id, '@Session["Brukernavn"]', 4)" class="btn btn-info">Stem!</button>
             </div>
         </div>
@@ -57,6 +59,7 @@ else
             success: function (data) {
                 if (data === "OK") {
                     console.log("Stemme registrert");
+                    oppdaterStatistikk();
                 }
                 else {
                     console.log("Klarte ikke å registrere stemme");
@@ -66,6 +69,11 @@ else
                 console.log("Feilet API kall for å stemme på film");
             }
         });
+    }
+
+    function oppdaterStatistikk() {
+        var antall = parseInt($("#antallSpan").html(), 10);
+        $("#antallSpan").html(antall+1);
     }
 
 </script>

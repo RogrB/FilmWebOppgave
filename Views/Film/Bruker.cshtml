@@ -97,23 +97,26 @@
                     {
                         int teller = 0;
                         <table>
-                            <thead><tr>
-                                <th>Film</th><th></th><th>Din stemme</th>
+                            <thead>
+                                <tr>
+                                    <th>Film</th>
+                                    <th></th>
+                                    <th>Din stemme</th>
                                 </tr>
                             </thead>
                             @foreach (var stemme in Model.Stemmer)
                             {
-                            <tr>
-                                <td>
-                                    <a href="../Film?id=@stemme.Filmer[teller].id">@stemme.Filmer[teller].Navn</a>
-                                </td>
-                                <td>
-                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                </td>
-                                <td>
-                                    @stemme.AntallStjerner
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <a href="../Film?id=@stemme.Filmer[teller].id">@stemme.Filmer[teller].Navn</a>
+                                    </td>
+                                    <td>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    </td>
+                                    <td>
+                                        @stemme.AntallStjerner
+                                    </td>
+                                </tr>
                             }
                         </table>
                     }
@@ -124,7 +127,35 @@
                 }
             </div>
         </div>
+        @if (Model.Ønskeliste != null)
+        {
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Ønskeliste</h4>
+                    @foreach (var film in Model.Ønskeliste.Filmer)
+                    {
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <a href="../Film?id=@film.id">@film.Navn</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <button onclick="slettFraØnskeliste(@film.id)" class="btn btn-warning">Slett</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="slettResultat">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    }
+            </div>
+        </div>
+        }
     </div>
+
+
+
 }
 else
 {
@@ -136,3 +167,20 @@ else
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+<script type="text/javascript">
+    // Det her trenger egentlig ikke være et ajax-kall, men jeg får ikke brukt vanlig mvc-slett funksjon pga validate i samme view
+    function slettFraØnskeliste(innID) {
+        $.ajax({
+            url: '/Film/SlettFraØnskeliste?id=' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                location.reload();
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette fra ønskeliste");
+            }
+        });
+    }
+</script>

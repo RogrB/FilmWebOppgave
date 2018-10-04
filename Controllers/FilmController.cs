@@ -286,12 +286,36 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
-        public string LeggIØnskeliste(int FilmID, string Brukernavn)
+        public string LeggIØnskeliste(int FilmID)
         {
             var db = new DB();
             var jsonSerializer = new JavaScriptSerializer();
             string resultat = "";
-            if (db.LeggIØnskeliste(FilmID, Brukernavn))
+            if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+            {
+
+                if (db.LeggIØnskeliste(FilmID, (string)Session["Brukernavn"]))
+                {
+                    resultat = "OK";
+                }
+                else
+                {
+                    resultat = "Feil";
+                }
+            }
+            else
+            {
+                resultat = "Feil innlogging";
+            }
+            return jsonSerializer.Serialize(resultat);
+        }
+
+        public string SlettFraØnskeliste(int id)
+        {
+            var db = new DB();
+            string resultat = "";
+            var jsonSerializer = new JavaScriptSerializer();
+            if (db.SlettFraØnskeliste(id, (string)Session["Brukernavn"]))
             {
                 resultat = "OK";
             }

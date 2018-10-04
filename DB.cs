@@ -231,7 +231,8 @@ namespace Graubakken_Filmsjappe
                     id = funnetKunde.id,
                     Kort = funnetKunde.Kort,
                     Filmer = funnetKunde.Filmer,
-                    Stemmer = funnetKunde.Stemmer
+                    Stemmer = funnetKunde.Stemmer,
+                    Ønskeliste = funnetKunde.Ønskeliste
                 };
                 return utKunde;
             }
@@ -274,9 +275,9 @@ namespace Graubakken_Filmsjappe
         public Film HentFilmInfo(int id)
         {
             var db = new DBContext();
-                Film utFilm = db.Filmer.FirstOrDefault(f => f.id == id);
+            Film utFilm = db.Filmer.FirstOrDefault(f => f.id == id);
 
-                return utFilm;
+            return utFilm;
         }
 
         public Skuespiller HentSkuespillerInfo(int id)
@@ -490,14 +491,14 @@ namespace Graubakken_Filmsjappe
             bool resultat = true;
             using (var db = new DBContext())
             {
-                var Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
+                KundeDB Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
                 if (Kunde != null)
                 {
                     if (Kunde.Ønskeliste == null)
                     {
                         Kunde.Ønskeliste = new Ønskeliste();
                     }
-                    if(Kunde.Ønskeliste.Filmer == null)
+                    if (Kunde.Ønskeliste.Filmer == null)
                     {
                         Kunde.Ønskeliste.Filmer = new List<Film>();
                     }
@@ -521,5 +522,25 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        public bool SlettFraØnskeliste(int FilmID, string brukernavn)
+        {
+            bool resultat = true;
+            using(var db = new DBContext())
+            {
+                try
+                {
+                    var kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
+                    var film = db.Filmer.Find(FilmID);
+                    kunde.Ønskeliste.Filmer.Remove(film);
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    resultat = false;
+                }
+            }
+            return resultat;
+        }
+
     }
-} 
+}

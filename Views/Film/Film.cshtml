@@ -90,7 +90,8 @@
         @Html.ActionLink("Til hovedsiden", "Index", null, new { @class = "btn btn-default" })
         @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
         {
-            <button onclick="leggIØnskeListe(@Model.id, '@Session["Brukernavn"]')" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+            <button onclick="leggIØnskeListe(@Model.id)" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+            <div id="alertTarget"></div>
         }
     </p>
 
@@ -126,24 +127,38 @@ else
 
     });
 
-    function leggIØnskeListe(filmID, brukernavn) {
+    function leggIØnskeListe(filmID) {
         $.ajax({
-            url: '/Film/LeggIØnskeliste?FilmID=' + filmID + "&Brukernavn=" + brukernavn,
+            url: '/Film/LeggIØnskeliste?FilmID=' + filmID,
             type: 'GET',
             dataType: 'json',
             contentType: "application/json;charset=utf-8",
             success: function (data) {
                 if (data === "OK") {
-                    console.log("OK");
-                    
+                    alertFeedback(true);
                 }
                 else {
-                    console.log("Feil");
+                    alertFeedback(false);
                 }
             },
             error: function (x, y, z) {
                 console.log("Feilet API kall for å legge film i ønskeliste");
             }
         });
+    }
+
+    function alertFeedback(resultat) {
+        var output = "";
+        if (resultat) {
+            output += "<div class='alert alert-success alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Film lagt til i Ønskelisten</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Klarte ikke å legge film til i ønskelisten</div>";
+        }
+        $("#alertTarget").html(output);
     }
 </script>

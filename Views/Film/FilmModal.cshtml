@@ -17,8 +17,10 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <div id="alertTarget"></div>
                 <button type="button" class="btn btn-success" id="kjop">Kjøp (<span id="prisSpan"></span> kr)</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+                <button onclick="leggIØnskeListe()" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button><br />
             </div>
         </div>
     </div>
@@ -93,7 +95,7 @@
         info += "<p>Utgiver: " + data.studio + "<br>";
         info += "Fra: " + data.kontinent + "</p>";
         info += "<p>Antall Visninger: " + data.visninger + "<br>";
-        info += "Vurdering: " + data.gjennomsnitt + "</p>";
+        info += "Terningkast: " + data.gjennomsnitt + "</p>";
         info += "</div></div>";
 
         $("#prisSpan").html(data.pris);
@@ -141,4 +143,41 @@
         $("#tempNavn").html(data.navn);
         $("#tempPris").html(data.pris);
     }
+
+    function leggIØnskeListe() {
+        var filmID = $("#filmIDSpan").html();
+        $.ajax({
+            url: '/Film/LeggIØnskeliste?FilmID=' + filmID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    alertFeedback(true);
+                }
+                else {
+                    alertFeedback(false);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å legge film i ønskeliste");
+            }
+        });
+    }
+
+    function alertFeedback(resultat) {
+        var output = "";
+        if (resultat) {
+            output += "<div class='alert alert-success alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Film lagt til i Ønskelisten</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Klarte ikke å legge film til i ønskelisten</div>";
+        }
+        $("#alertTarget").html(output);
+    }
+
 </script>

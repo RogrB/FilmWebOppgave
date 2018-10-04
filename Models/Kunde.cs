@@ -31,7 +31,7 @@ namespace Graubakken_Filmsjappe.Models
 
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
-        public Ønskeliste Ønskeliste { get; set; }
+        public virtual Ønskeliste Ønskeliste { get; set; }
     }
 
     public class KundeDB
@@ -45,7 +45,7 @@ namespace Graubakken_Filmsjappe.Models
         public long Kort { get; set; }
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
-        public Ønskeliste Ønskeliste { get; set; }
+        public virtual Ønskeliste Ønskeliste { get; set; }
     }
 
     // Klasse for å endre kundeinfo - gjøres i egen klasse så ikke passordfeltet skal være required
@@ -66,7 +66,7 @@ namespace Graubakken_Filmsjappe.Models
         [RegularExpression(@"[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
         [Display(Name = "Kredittkort")]
         public long Kort { get; set; }
-
+        public virtual Ønskeliste Ønskeliste { get; set; }
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
     }

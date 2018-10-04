@@ -22,5 +22,6 @@ namespace Graubakken_Filmsjappe.Models
         public virtual List<Skuespiller> Skuespillere { get; set; }
         public virtual List<Sjanger> Sjanger { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
+        public virtual List<Ønskeliste> Ønskeliste { get; set; }
     }
 }
