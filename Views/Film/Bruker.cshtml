@@ -105,11 +105,22 @@
                     {
                         int teller = 0;
                         <table>
-
+                            <thead><tr>
+                                <th>Film</th><th></th><th>Din stemme</th>
+                                </tr>
+                            </thead>
                             @foreach (var stemme in Model.Stemmer)
                             {
                             <tr>
-                                @stemme.Filmer[teller].Navn - Din stemme: @stemme.AntallStjerner
+                                <td>
+                                    <a href="../Film?id=@stemme.Filmer[teller].id">@stemme.Filmer[teller].Navn</a>
+                                </td>
+                                <td>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                </td>
+                                <td>
+                                    @stemme.AntallStjerner
+                                </td>
                             </tr>
                             }
                         </table>

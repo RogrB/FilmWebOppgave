@@ -420,7 +420,8 @@ namespace Graubakken_Filmsjappe
                 Studio = f.Studio,
                 Visninger = f.Visninger,
                 Beskrivelse = f.Kontinent,
-                ReleaseDate = f.ReleaseDate
+                ReleaseDate = f.ReleaseDate,
+                Gjennomsnitt = f.Gjennomsnitt
             }).ToList();
             return filmer;
         }
