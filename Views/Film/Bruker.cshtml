@@ -49,7 +49,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Passord, htmlAttributes: new { @class = "control-label col-md-2", @id = "passord1" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Passord, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.PasswordFor(model => model.Passord, new { @class = "form-control" } )
                     @Html.ValidationMessageFor(model => model.Passord, "", new { @class = "text-danger" })
                 </div>
             </div>
