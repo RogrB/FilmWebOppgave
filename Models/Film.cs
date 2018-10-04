@@ -21,6 +21,6 @@ namespace Graubakken_Filmsjappe.Models
         public double Gjennomsnitt { get; set; }
         public virtual List<Skuespiller> Skuespillere { get; set; }
         public virtual List<Sjanger> Sjanger { get; set; }
-        public virtual List<Stemmer> Stemmer { get; set; }
+        public virtual List<Stemme> Stemmer { get; set; }
     }
 }

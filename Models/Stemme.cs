@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Graubakken_Filmsjappe.Models
 {
-    public class Stemmer
+    public class Stemme
     {
         public int id { get; set; }
         public int AntallStjerner { get; set; }

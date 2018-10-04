@@ -33,21 +33,7 @@ namespace Graubakken_Filmsjappe
                     alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
                     break;
                 case "Stjerner":
-                    var filmer = db.Filmer.ToList();
-                    var utregnedeFilmer = new List<Film>();
-
-                    foreach(var film in filmer)
-                    {
-                        int total = 0;
-                        int antallStemmer = film.Stemmer.Count();
-                        for (int i = 0; i < antallStemmer; i++)
-                        {
-                            total += film.Stemmer[i].AntallStjerner;
-                        }
-                        film.Gjennomsnitt = total / antallStemmer;
-                        utregnedeFilmer.Add(film);
-                    }
-                    alleFilmer = utregnedeFilmer.OrderBy(f => f.Gjennomsnitt).ToList();
+                    alleFilmer = db.Filmer.OrderBy(f => f.Gjennomsnitt).ToList();
                     break;
                 case "Kontinent":
                     alleFilmer = db.Filmer.OrderBy(f => f.Kontinent).ToList();
@@ -93,7 +79,58 @@ namespace Graubakken_Filmsjappe
 
                 return Film;
             }
+        }
 
+        public bool StemPåFilm(int filmID, int kundeID, int stemme)
+        {
+            var db = new DBContext();
+            bool resultat = true;
+            KundeDB Kunde = db.Kunder.Find(kundeID);
+            Stemme vurdering = new Stemme()
+            {
+                AntallStjerner = stemme
+            };
+            try
+            {
+                Film film = db.Filmer.Find(filmID);
+                film.Stemmer.Add(vurdering);
+                db.SaveChanges();
+                if (!OppdaterGjennomsnitt(filmID))
+                {
+                    resultat = false;
+                }
+            }
+            catch (Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
+
+        public bool OppdaterGjennomsnitt(int filmID)
+        {
+            bool resultat = true;
+            var db = new DBContext();
+            try
+            {
+                Film film = db.Filmer.Find(filmID);
+                int antallStemmer = film.Stemmer.Count();
+                int total = 0;
+
+                for (int i = 0; i < antallStemmer; i++)
+                {
+                    total += film.Stemmer[i].AntallStjerner;
+                }
+
+                int Gjennomsnitt = total / antallStemmer;
+                film.Gjennomsnitt = Gjennomsnitt;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
         }
 
         public bool RegistrerBruker(Kunde innKunde)
@@ -113,7 +150,7 @@ namespace Graubakken_Filmsjappe
                         Salt = salt,
                         Passord = LagHash(innKunde.Passord + salt),
                         Filmer = new List<Film>(),
-                        Stemmer = new List<Stemmer>()
+                        Stemmer = new List<Stemme>()
                     };
                     db.Kunder.Add(nyKunde);
                     db.SaveChanges();
@@ -234,12 +271,10 @@ namespace Graubakken_Filmsjappe
 
         public Film HentFilmInfo(int id)
         {
-            using (var db = new DBContext())
-            {
+            var db = new DBContext();
                 Film utFilm = db.Filmer.FirstOrDefault(f => f.id == id);
-                // gjør feilhåndtering på null i viewet
+
                 return utFilm;
-            }
         }
 
         public Skuespiller HentSkuespillerInfo(int id)

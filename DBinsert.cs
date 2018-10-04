@@ -44,7 +44,10 @@ namespace Graubakken_Filmsjappe
             OpprettSjangere();
 
             // Kaller metode for å opprette stemme-data
-            OpprettStemmer();
+            if (!OpprettStemmer())
+            {
+                ok = false;
+            }
 
             // Legger filmene inn i databasen
             try
@@ -157,23 +160,24 @@ namespace Graubakken_Filmsjappe
         }
 
         // Metode som oppretter stemmer og legger de inn i film objektene
-        public void OpprettStemmer()
+        public bool OpprettStemmer()
         {
+            bool resultat = true;
             Random TilfeldigTall = new Random();
+            var dbHandler = new DB();
             for (int i = 0; i < alleFilmer.Count(); i++)
             {
-                alleFilmer[i].Stemmer = new List<Stemmer>();
-                int antallStemmer = TilfeldigTall.Next(1, 4);
-                for (int j = 0; j < antallStemmer; j++)
+                for (int j = 0; j < TilfeldigTall.Next(1, 3); j++)
                 {
-                    Stemmer stemme = new Stemmer()
+                    int tilfeldigBruker = TilfeldigTall.Next(1, alleKunder.Count());
+                    int stemme = TilfeldigTall.Next(0, 6);
+                    if (!dbHandler.StemPåFilm(alleFilmer[i].id, tilfeldigBruker, stemme))
                     {
-                        AntallStjerner = TilfeldigTall.Next(0, 6),
-                        Kunde = alleKunder[TilfeldigTall.Next(1, alleKunder.Count())]
-                    };
-                    alleFilmer[i].Stemmer.Add(stemme);
+                        resultat = false;
+                    }
                 }
             }
+            return resultat;
         }
 
         public void SettSjangerInnIFilmer()

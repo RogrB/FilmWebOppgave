@@ -7,7 +7,7 @@ namespace Graubakken_Filmsjappe.Models.DBData
 {
     public class StemmeData
     {
-        Stemmer stemme01 = new Stemmer
+        Stemme stemme01 = new Stemme
         {
             AntallStjerner = 5
         };

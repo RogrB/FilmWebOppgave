@@ -180,7 +180,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return View(skuespillerInfo);
         }
 
-        public ActionResult FilmVisning(int id)
+        public ActionResult FilmVisning(int id = 0)
         {
             if (Session["LoggetInn"] != null && Session["Brukernavn"] != null)
             {
@@ -213,7 +213,7 @@ namespace Graubakken_Filmsjappe.Controllers
                 Studio = enFilm.Studio,
                 Visninger = enFilm.Visninger,
                 Sjanger = new List<Models.Sjanger>(),
-                Stemmer = new List<Models.Stemmer>(),
+                Stemmer = new List<Models.Stemme>(),
                 Skuespillere = new List<Models.Skuespiller>()
             };
 
