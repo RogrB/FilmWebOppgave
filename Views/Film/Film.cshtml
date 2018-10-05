@@ -5,86 +5,48 @@
 }
 @if (Model != null)
 {
-    <h2>Film</h2>
-
-    <div>
-        <h4>Film</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Navn)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Navn)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Produksjonsår)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Produksjonsår)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Kontinent)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Kontinent)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Studio)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Studio)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Bilde)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Bilde)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Visninger)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Visninger)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Beskrivelse)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Beskrivelse)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ReleaseDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Pris)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Pris)
-            </dd>
-
-        </dl>
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <img src="../@Model.Bilde" alt="@Model.Navn" class="img img-responsive" />
+        </div>
+        <div class="col-md9">
+            <div class="center">
+                <h2>@Model.Navn</h2>
+                <hr />
+                <p>
+                @{
+                    string sjangere = Model.Sjanger[0].sjanger;
+                    if(Model.Sjanger.ElementAtOrDefault(1) != null)
+                    {
+                        sjangere += " | ";
+                        sjangere += Model.Sjanger[1].sjanger;
+                    }
+                }
+                    @sjangere
+                </p>
+                <br />
+                <p>
+                    @Model.Beskrivelse
+                </p>
+                <br />
+                <p>
+                    Utgiver: @Model.Studio &nbsp; &nbsp;
+                    Utgivelsesår: @Model.Produksjonsår &nbsp; &nbsp;
+                    Fra: @Model.Kontinent <br />
+                    Vår preimeredato: @Model.ReleaseDate <br />
+                    Visninger: @Model.Visninger
+                </p>
+                <div id="stemmeStatistikk">
+                    <p>
+                        Terningkast: @Model.Gjennomsnitt <br />
+                        Basert på @Model.Stemmer.Count() stemmer
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    <br /><br />
     <p>
         <a href="#bekreftModal" type="button" data-visModal="true" data-toggle="modal" class="btn btn-success" id="kjop">Kjøp (@Model.Pris kr)</a>
         @Html.ActionLink("Til hovedsiden", "Index", null, new { @class = "btn btn-default" })
@@ -94,6 +56,29 @@
             <div id="alertTarget"></div>
         }
     </p>
+    <hr />
+    
+    <div class="container">
+        <h3>Skuespillere</h3>
+        @foreach(var skuespiller in Model.Skuespillere)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="Skuespiller?id=@skuespiller.id">
+                        <img src="../@skuespiller.Bilde" alt="@skuespiller.Fornavn @skuespiller.Etternavn" class="img img-responsive" width="125" height="125" />
+                    </a>
+                </div>
+                <div class="cold-md-9">
+                    <a href="Skuespiller?id=@skuespiller.id">
+                        <p>@skuespiller.Fornavn @skuespiller.Etternavn</p>
+                    </a>
+                    <p>@skuespiller.Alder år <br />
+                    Fra: @skuespiller.Land </p>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
 
     <div id="bekreftModal" class="modal fade" style="color: #242424">
         <div class="modal-dialog">

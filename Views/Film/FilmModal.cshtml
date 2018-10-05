@@ -96,6 +96,7 @@
         info += "Fra: " + data.kontinent + "</p>";
         info += "<p>Antall Visninger: " + data.visninger + "<br>";
         info += "Terningkast: " + data.gjennomsnitt + "</p>";
+        info += "<br><a href='Film?id=" + data.id + "' class='btn btn-info'>Mer Info</a>"
         info += "</div></div>";
 
         $("#prisSpan").html(data.pris);
