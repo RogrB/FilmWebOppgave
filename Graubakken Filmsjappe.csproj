@@ -102,7 +102,9 @@
     <Content Include="Content\images\filmvisning\filmvisning02.jpg" />
     <Content Include="Content\images\filmvisning\filmvisning03.jpg" />
     <Content Include="Content\images\filmvisning\filmvisning04.jpg" />
+    <Content Include="Content\images\gullstjerne.png" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\nullstjerne.png" />
     <Content Include="Content\images\posters\100_Days_With_Mr_Arrogant_poster.jpg" />
     <Content Include="Content\images\posters\100_Million_BC.jpg" />
     <Content Include="Content\images\posters\16_days_poster.jpeg" />

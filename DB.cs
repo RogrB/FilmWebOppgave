@@ -127,7 +127,7 @@ namespace Graubakken_Filmsjappe
                     total += film.Stemmer[i].AntallStjerner;
                 }
 
-                int Gjennomsnitt = total / antallStemmer;
+                double Gjennomsnitt = total / antallStemmer;
                 film.Gjennomsnitt = Gjennomsnitt;
                 db.SaveChanges();
             }
