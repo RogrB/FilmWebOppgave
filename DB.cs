@@ -282,12 +282,10 @@ namespace Graubakken_Filmsjappe
 
         public Skuespiller HentSkuespillerInfo(int id)
         {
-            using (var db = new DBContext())
-            {
-                Skuespiller utSkuespiller = db.Skuespillere.FirstOrDefault(s => s.id == id);
+            var db = new DBContext();
+            Skuespiller utSkuespiller = db.Skuespillere.FirstOrDefault(s => s.id == id);
 
-                return utSkuespiller;
-            }
+            return utSkuespiller;
         }
 
         public List<Film> HentActionFilmer()

@@ -28,6 +28,7 @@
             var bilde = $(this).data("bilde");
             var land = $(this).data("land");
             var id = $(this).data("id");
+            console.log(id);
             var info = "";
             info += "<div class='row'>";
             info += "<div class='col-md-4'>";
@@ -37,6 +38,7 @@
             info += "<h4>" + navn + "</h4>";
             info += "<p>Alder: " + alder + " år</p>";
             info += "<p>Fra: " + land + "</p>";
+            info += "<br><a href='Skuespiller?id=" + id + "' class='btn btn-info'>Mer info</a>";
             info += "</div></div>";
             $("#modalContent").html(info);
             hentFilmData(id);

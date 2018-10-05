@@ -5,59 +5,51 @@
 }
 @if (Model != null)
 {
-
-    <h2>Skuespiller</h2>
-
-    <div>
-        <h4>Skuespiller</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Fornavn)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Fornavn)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Etternavn)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Etternavn)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Land)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Land)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Alder)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Alder)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Bilde)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Bilde)
-            </dd>
-
-        </dl>
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <img src="../@Model.Bilde" alt="@Model.Fornavn @Model.Etternavn" class="img img-responsive" />
+        </div>
+        <div class="col-md9">
+            <div class="center">
+                <h2>@Model.Fornavn @Model.Etternavn</h2>
+                <hr />
+                <br />
+                <p>
+                    @Model.Alder år <br />
+                    Fra: @Model.Land
+                </p>
+                <br />
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    <br /><br />
+    <hr />
+
+    <div class="container">
+        <h3>Filmer</h3>
+        @foreach (var film in Model.Filmer)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="Film?id=@film.id">
+                        <img src="../@film.Bilde" alt="@film.Navn" class="img img-responsive" width="125" height="125" />
+                    </a>
+                </div>
+                <div class="cold-md-9">
+                    <a href="Film?id=@film.id">
+                        <p>@film.Navn</p>
+                    </a>
+                    <p>
+                        @film.Sjanger[0].sjanger <br />
+                        Visninger: @film.Visninger <br />
+                        Terningkast: @film.Gjennomsnitt
+                </p>
+            </div>
+        </div>
+        <br />
+    }
+    </div>
 }
 else
 {
