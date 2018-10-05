@@ -135,6 +135,15 @@ namespace Graubakken_Filmsjappe.Controllers
             }
         }
 
+        public ActionResult Logut()
+        {
+            Session["LoggetInn"] = false;
+            Session["Brukernavn"] = "";
+            ViewBag.Brukernavn = "";
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Bruker(string brukernavn)
         {
             if (Session["LoggetInn"] != null)

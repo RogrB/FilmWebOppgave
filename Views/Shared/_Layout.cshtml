@@ -58,8 +58,24 @@
                     <li><a href="@Url.Action("Nyheter", "Film")">Nyheter</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Registrer", "Film")">Bli Medlem</a></li>
-                    <li><a href="@Url.Action("Loginn", "Film")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @Session["Brukernavn"]
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Min Side", "Bruker", new { brukernavn = (string)Session["Brukernavn"] })</li>
+                                <li>@Html.ActionLink("Logg ut", "Logut")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Registrer", "Film")">Bli Medlem</a></li>
+                        <li><a href="@Url.Action("Loginn", "Film")"><span class="glyphicon glyphicon-log-in"></span> Logg in</a></li>
+                    }
                 </ul>
             </div>
         </div>
