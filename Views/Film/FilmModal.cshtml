@@ -19,7 +19,10 @@
             <div class="modal-footer">
                 <div id="alertTarget"></div>
                 <button type="button" class="btn btn-success" id="kjop">Kjøp (<span id="prisSpan"></span> kr)</button>
-                <button onclick="leggIØnskeListe()" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+                @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+                {
+                    <button onclick="leggIØnskeListe()" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+                }
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Lukk</button><br />
             </div>
         </div>
