@@ -540,5 +540,37 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        public List<Søkeresultat> HentSøkeforslag(string input)
+        {
+            var db = new DBContext();
+            List<Søkeresultat> søkeresultater = new List<Søkeresultat>();
+            var filmer = db.Filmer.Where(f => f.Navn.Contains(input));
+            var skuespillere = db.Skuespillere.Where(s => s.Fornavn.Contains(input) || s.Etternavn.Contains(input));
+            foreach(var film in filmer)
+            {
+                var resultat = new Søkeresultat()
+                {
+                    Navn = film.Navn,
+                    Bilde = film.Bilde,
+                    id = film.id,
+                    Type = "Film"
+                };
+                søkeresultater.Add(resultat);
+            }
+            foreach(var skuespiller in skuespillere)
+            {
+                var resultat = new Søkeresultat()
+                {
+                    Navn = skuespiller.Fornavn + " " + skuespiller.Etternavn,
+                    Bilde = skuespiller.Bilde,
+                    id = skuespiller.id,
+                    Type = "Skuespiller"
+                };
+                søkeresultater.Add(resultat);
+            }
+            
+            return søkeresultater;
+        }
+
     }
 }

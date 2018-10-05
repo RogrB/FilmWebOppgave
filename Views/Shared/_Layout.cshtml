@@ -56,6 +56,14 @@
                     <li><a href="@Url.Action("Sjangere", "Film")">Sjangere</a></li>
                     <li><a href="@Url.Action("Skuespillere", "Film")">Skuespillere</a></li>
                     <li><a href="@Url.Action("Nyheter", "Film")">Nyheter</a></li>
+                    <li>
+                        <div id="søkeFelt">
+                            <form autocomplete="off">
+                                <input type="text" size="30" onkeyup="visSøk(this.value)" class="form-control" placeholder="Søk på film, person" />
+                                <div id="søkeForslag"></div>
+                            </form>
+                        </div>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
@@ -82,7 +90,6 @@
     </nav>
 
     <div class="container body-content" id="contentDiv">
-        
         @RenderBody()
 
         <hr />
@@ -95,3 +102,64 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+
+    function visSøk(input) {
+        if (input.length < 2) {
+            $("#søkeForslag").html("");
+            $("#søkeForslag").css("border", "0px");
+            return;
+        }
+        else {
+            hentSøkeforslag(input);
+        }
+    }
+
+    function hentSøkeforslag(input) {
+        $.ajax({
+            url: '/Film/HentSøkeforslag/?streng=' + input,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterSøkedata(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente søkeforslag");
+            }
+        });
+    }
+
+    function formaterSøkedata(data) {
+        var output = "";
+        var link = "";
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].Type == "Film") {
+                link = "<a href='Film/Film?id=" + data[i].id + "'>";
+            }
+            else {
+                link = "<a href='Film/Skuespiller?id=" + data[i].id + "'>";
+            }
+            output += "<div class='row'>";
+            output += "<div class='col-sm-4'>";
+            output += link;
+            output += "<img src='" + data[i].Bilde + "' class='img' width='50' height='50' alt='" + data[i].Navn + "'>";
+            output += "</a></div>";
+            output += "<div class='col-sm-8'>";
+            output += link;
+            output += data[i].Navn;
+            output += "</a><br>";
+            if (data[i].Type == "Film") {
+                output += "Film";
+            }
+            else {
+                output += "Skuespiller";
+            }
+            output += "</div></div><hr>"
+        }
+        $("#søkeForslag").html(output);
+        $("#søkeForslag").css("border", "1px solid black");
+    }
+
+</script>

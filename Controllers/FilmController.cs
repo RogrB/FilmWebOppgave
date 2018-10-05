@@ -342,6 +342,15 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
+        public string HentSøkeforslag(string streng)
+        {
+            var jsonSerializer = new JavaScriptSerializer();
+            var db = new DB();
+            var søkeforslag = db.HentSøkeforslag(streng);
+
+            return jsonSerializer.Serialize(søkeforslag);
+        }
+
         public ActionResult Dbinsert()
         {
             var db = new DB();

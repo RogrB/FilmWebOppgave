@@ -44,6 +44,12 @@ textarea {
     width: 50%;
 }
 
+#søkeFelt {
+    position: relative;
+    top: 8px;
+    left: 30px;
+}
+
 #footerDiv {
     background-color: #1e1e1e;
     padding: 25px;
@@ -54,12 +60,26 @@ textarea {
     min-height: 200px;
 }
 
+#søkeForslag {
+    position: absolute;
+    z-index: 100;
+    background-color: #1e1e1e;
+    color: #808080;
+}
+
 @media (max-width: 600px) {
     .carousel-caption {
         display: none;
     }
 }
 
+@media only screen and (max-width : 960px) {
+    #søkeFelt {
+        position: relative;   
+        
+        left: 0px;
+    }
+}
 
 /*
     Farger:
