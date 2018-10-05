@@ -5,22 +5,25 @@ using System.Linq;
 using System.Web;
 
 namespace Graubakken_Filmsjappe.Models
-{ 
+{
     public class Kunde
     {
         public int id { get; set; }
 
         [Required(ErrorMessage = "Fornavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Fornavn kan ikke inneholde spesialtegn")]
         public string Fornavn { get; set; }
 
         [Required(ErrorMessage = "Etternavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Etternavn kan ikke inneholde spesialtegn")]
         public string Etternavn { get; set; }
 
         [Required(ErrorMessage = "Brukernavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Brukernavn kan ikke inneholde spesialtegn")]
         public string Brukernavn { get; set; }
 
         [Required(ErrorMessage = "Passord må oppgis")]
-        [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 
 
@@ -54,12 +57,18 @@ namespace Graubakken_Filmsjappe.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = "Fornavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Fornavn kan ikke inneholde spesialtegn")]
         public string Fornavn { get; set; }
 
         [Required(ErrorMessage = "Etternavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Etternavn kan ikke inneholde spesialtegn")]
         public string Etternavn { get; set; }
 
-        [RegularExpression(@"[a-zA-Z0-9@*#]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
+        [Required(ErrorMessage = "Brukernavn må oppgis")]
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{1,}", ErrorMessage = "Brukernavn kan ikke inneholde spesialtegn")]
+        public string Brukernavn { get; set; }
+
+        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 
         [Required(ErrorMessage = "Kortinfo må oppgis")]
