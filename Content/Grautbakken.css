@@ -72,6 +72,10 @@ textarea {
     color: #1e1e1e;
 }
 
+#søkeForslag p {
+    text-transform: capitalize;
+}
+
 @media (max-width: 600px) {
     .carousel-caption {
         display: none;

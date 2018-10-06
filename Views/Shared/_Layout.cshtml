@@ -149,7 +149,7 @@
             output += "</a></div>";
             output += "<div class='col-sm-8'>";
             output += link;
-            output += navn;
+            output += "<p>" + navn + "</p>";
             output += "</a><br>";
             if (data[i].Type == "Film") {
                 output += "Film";
@@ -169,7 +169,6 @@
         var søkeTekst = $("#søkeInput").val();
         var markering = "<span>" + søkeTekst + "</span>";
         var formatering = tekst.replace(søkeTekst, markering);
-
         return formatering;
     }
 
