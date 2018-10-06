@@ -135,6 +135,7 @@
         var output = "";
         var link = "";
         for (var i = 0; i < data.length; i++) {
+            var navn = markerSøk(data[i].Navn);
             if (data[i].Type == "Film") {
                 link = "<a href='/Film/Film?id=" + data[i].id + "'>";
             }
@@ -144,11 +145,11 @@
             output += "<div class='row'>";
             output += "<div class='col-sm-4'>";
             output += link;
-            output += "<img src='/" + data[i].Bilde + "' class='img' width='50' height='50' alt='" + data[i].Navn + "'>";
+            output += "<img src='/" + data[i].Bilde + "' class='img' width='50' height='75' alt='" + data[i].Navn + "'>";
             output += "</a></div>";
             output += "<div class='col-sm-8'>";
             output += link;
-            output += data[i].Navn;
+            output += navn;
             output += "</a><br>";
             if (data[i].Type == "Film") {
                 output += "Film";
@@ -159,18 +160,17 @@
             output += "</div></div><hr>"
         }
 
-        markerSøk(output);
+        $("#søkeForslag").html(output);
+        $("#søkeForslag").css("border", "1px solid black");
     }
 
-    function markerSøk(output) {
+    function markerSøk(tekst) {
+        tekst = tekst.toLowerCase();
         var søkeTekst = $("#søkeInput").val();
-        var markering = new RegExp("(\\b" + søkeTekst + "\\b)", "gim");
+        var markering = "<span>" + søkeTekst + "</span>";
+        var formatering = tekst.replace(søkeTekst, markering);
 
-        var slettFormatering = output.replace(/(<span>|<\/span>)/igm, "");
-        var nyFormatering = slettFormatering.replace(markering, "<span>$1</span>");
-
-        $("#søkeForslag").html(nyFormatering);
-        $("#søkeForslag").css("border", "1px solid black");
+        return formatering;
     }
 
 </script>
