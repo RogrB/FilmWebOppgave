@@ -136,15 +136,15 @@
         var link = "";
         for (var i = 0; i < data.length; i++) {
             if (data[i].Type == "Film") {
-                link = "<a href='Film/Film?id=" + data[i].id + "'>";
+                link = "<a href='/Film/Film?id=" + data[i].id + "'>";
             }
             else {
-                link = "<a href='Film/Skuespiller?id=" + data[i].id + "'>";
+                link = "<a href='/Film/Skuespiller?id=" + data[i].id + "'>";
             }
             output += "<div class='row'>";
             output += "<div class='col-sm-4'>";
             output += link;
-            output += "<img src='" + data[i].Bilde + "' class='img' width='50' height='50' alt='" + data[i].Navn + "'>";
+            output += "<img src='/" + data[i].Bilde + "' class='img' width='50' height='50' alt='" + data[i].Navn + "'>";
             output += "</a></div>";
             output += "<div class='col-sm-8'>";
             output += link;
