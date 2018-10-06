@@ -43,6 +43,18 @@
                         Basert på @Model.Stemmer.Count() stemmer
                     </p>
                 </div>
+                <div id="stemmeDIV">
+                    <span id="filmIDSpan" hidden>@Model.id</span>
+                    <div id="stjerner">
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+                    </div>
+                    <div id="stemmeFeedback"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -220,3 +232,5 @@ else
         $("#kommentarTarget").html(output);
     }
 </script>
+
+<script type="text/javascript" src="~/Scripts/StemmeScript.js"></script>
