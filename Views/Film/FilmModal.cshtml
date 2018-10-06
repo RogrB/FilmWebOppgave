@@ -108,10 +108,10 @@
         info += "<img src='../" + data.bilde + "' alt='" + data.navn + "' height='100' width='100' class='img img-responsive'>";
         info += "</div>";
         info += "<div class='col-sm-9'>";
-        info += "<p>Utgiver: " + data.studio + "<br>";
-        info += "Fra: " + data.kontinent + "</p>";
-        info += "<p>Antall Visninger: " + data.visninger + "<br>";
-        info += "Terningkast: " + data.gjennomsnitt + "</p>";
+        info += "<p><span class='infoText'>Utgiver:</span> " + data.studio + "<br>";
+        info += "<span class='infoText'>Fra:</span> " + data.kontinent + "</p>";
+        info += "<p><span class='infoText'>Antall Visninger:</span> " + data.visninger + "<br>";
+        info += "<span class='infoText'>Terningkast:</span> " + data.gjennomsnitt + "</p>";
         info += "<br><a href='Film?id=" + data.id + "' class='btn btn-info'>Mer Info</a>"
         info += "</div></div>";
 

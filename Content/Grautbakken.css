@@ -1,12 +1,20 @@
 ﻿.body-content {
     background-color: #191142;
-    color: white;
+    color: #dcdcdc;
 }
 
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.infoText {
+    color: #808080;
+}
+
+.infoTextModal {
+    color: #5c5c5c;
 }
 
 #headerDiv {

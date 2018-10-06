@@ -33,7 +33,7 @@ namespace Graubakken_Filmsjappe
                     alleFilmer = db.Filmer.OrderByDescending(f => f.Visninger).ToList();
                     break;
                 case "Stjerner":
-                    alleFilmer = db.Filmer.OrderBy(f => f.Gjennomsnitt).ToList();
+                    alleFilmer = db.Filmer.OrderByDescending(f => f.Gjennomsnitt).ToList();
                     break;
                 case "Kontinent":
                     alleFilmer = db.Filmer.OrderBy(f => f.Kontinent).ToList();
@@ -43,6 +43,9 @@ namespace Graubakken_Filmsjappe
                     break;
                 case "Alfabetisk":
                     alleFilmer = db.Filmer.OrderBy(f => f.Navn).ToList();
+                    break;
+                case "Pris":
+                    alleFilmer = db.Filmer.OrderBy(f => f.Pris).ToList();
                     break;
                 default:
                     alleFilmer = db.Filmer.ToList();

@@ -31,16 +31,16 @@
                 </p>
                 <br />
                 <p>
-                    Utgiver: @Model.Studio &nbsp; &nbsp;
-                    Utgivelsesår: @Model.Produksjonsår &nbsp; &nbsp;
-                    Fra: @Model.Kontinent <br />
-                    Vår preimeredato: @Model.ReleaseDate <br />
-                    Visninger: @Model.Visninger
+                    <span class="infoText">Utgiver:</span> @Model.Studio &nbsp; &nbsp;
+                    <span class="infoText">Utgivelsesår:</span> @Model.Produksjonsår &nbsp; &nbsp;
+                    <span class="infoText">Fra:</span> @Model.Kontinent <br />
+                    <span class="infoText">Vår preimeredato:</span> @Model.ReleaseDate <br />
+                    <span class="infoText">Visninger:</span> @Model.Visninger
                 </p>
                 <div id="stemmeStatistikk">
                     <p>
-                        Terningkast: @Model.Gjennomsnitt <br />
-                        Basert på @Model.Stemmer.Count() stemmer
+                        <span class="infoText">Terningkast:</span> @Model.Gjennomsnitt <br />
+                        <span class="infoText">Basert på</span> @Model.Stemmer.Count() stemmer
                     </p>
                 </div>
                 <div id="stemmeDIV">
@@ -86,7 +86,7 @@
                     </a>
                     <p>
                         @skuespiller.Alder år <br />
-                    Fra: @skuespiller.Land
+                    <span class="infoText">Fra:</span> @skuespiller.Land
                 </p>
             </div>
         </div>

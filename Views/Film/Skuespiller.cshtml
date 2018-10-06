@@ -17,7 +17,7 @@
                 <br />
                 <p>
                     @Model.Alder år <br />
-                    Fra: @Model.Land
+                    <span class="infoText">Fra:</span> @Model.Land
                 </p>
                 <br />
             </div>
@@ -42,8 +42,8 @@
                     </a>
                     <p>
                         @film.Sjanger[0].sjanger <br />
-                        Visninger: @film.Visninger <br />
-                        Terningkast: @film.Gjennomsnitt
+                        <span class="infoText">Visninger:</span> @film.Visninger <br />
+                        <span class="infoText">Terningkast:</span> @film.Gjennomsnitt
                 </p>
             </div>
         </div>

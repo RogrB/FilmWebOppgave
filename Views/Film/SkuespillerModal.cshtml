@@ -36,8 +36,8 @@
             info += "</div>";
             info += "<div class='col-md-8'>";
             info += "<h4>" + navn + "</h4>";
-            info += "<p>Alder: " + alder + " år</p>";
-            info += "<p>Fra: " + land + "</p>";
+            info += "<p>Alder: <b>" + alder + "</b> år</p>";
+            info += "<p>Fra: <b>" + land + "</b></p>";
             info += "<br><a href='Skuespiller?id=" + id + "' class='btn btn-info'>Mer info</a>";
             info += "</div></div>";
             $("#modalContent").html(info);
@@ -67,9 +67,9 @@
         $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
             filmer += "<div class='row'><div class='col-sm-6'>";
             filmer += "<a href='Film?id=" + this.id + "'><b>" + this.Navn + "</b></a><br>";
-            filmer += "<p>Utgiver: " + this.Studio + "<br>";
-            filmer += "Antall Visninger: " + this.Visninger + "<br>";
-            filmer += "Terningkast: " + this.Gjennomsnitt + "</p>";
+            filmer += "<p><span class='infoTextModal'>Utgiver:</span> " + this.Studio + "<br>";
+            filmer += "<span class='infoTextModal'>Antall Visninger:</span> " + this.Visninger + "<br>";
+            filmer += "<span class='infoTextModal'>Terningkast:</span> " + this.Gjennomsnitt + "</p>";
             filmer += "</div><div class='col-sm-6'>";
             filmer += "<a href='Film?id=" + this.id + "'><img src='../" + this.Bilde + "' alt='" + this.Navn + "' class='img img-responsive' width='50' height='50'></a>";
             filmer += "</div></div>";
