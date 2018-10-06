@@ -15,14 +15,14 @@
                 <h2>@Model.Navn</h2>
                 <hr />
                 <p>
-                @{
-                    string sjangere = Model.Sjanger[0].sjanger;
-                    if(Model.Sjanger.ElementAtOrDefault(1) != null)
-                    {
-                        sjangere += " | ";
-                        sjangere += Model.Sjanger[1].sjanger;
+                    @{
+                        string sjangere = Model.Sjanger[0].sjanger;
+                        if (Model.Sjanger.ElementAtOrDefault(1) != null)
+                        {
+                            sjangere += " | ";
+                            sjangere += Model.Sjanger[1].sjanger;
+                        }
                     }
-                }
                     @sjangere
                 </p>
                 <br />
@@ -57,10 +57,10 @@
         }
     </p>
     <hr />
-    
+
     <div class="container">
         <h3>Skuespillere</h3>
-        @foreach(var skuespiller in Model.Skuespillere)
+        @foreach (var skuespiller in Model.Skuespillere)
         {
             <div class="row">
                 <div class="col-md-3">
@@ -72,35 +72,68 @@
                     <a href="Skuespiller?id=@skuespiller.id">
                         <p>@skuespiller.Fornavn @skuespiller.Etternavn</p>
                     </a>
-                    <p>@skuespiller.Alder år <br />
-                    Fra: @skuespiller.Land </p>
-                </div>
+                    <p>
+                        @skuespiller.Alder år <br />
+                    Fra: @skuespiller.Land
+                </p>
             </div>
-            <br />
+        </div>
+        <br />
+    }
+    </div>
+    <hr />
+
+    if (Model.Kommentarer.Any())
+    {
+    <div class="well" style="background-color:#242424">
+        <h3>Kommentarer:</h3><br />
+        @foreach(var kommentar in Model.Kommentarer)
+        {
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/Content/images/defaultprofile.jpg" alt="Profilbilde" width="100" height="100" class="img img-responsive" />
+            </div>
+            <div class="col-md-11">
+                <h4 class="media-heading">@kommentar.Kunde.Brukernavn &nbsp; &nbsp;<small><i>@kommentar.Dato</i></small></h4>
+                <p>@kommentar.Melding</p>
+            </div>
+            <hr /><br /><br />
+        </div>
         }
     </div>
+    }
+    else
+    {
+        <h4>Bli den første til å skrive en kommentar her:</h4>
+    }
 
-    <div id="bekreftModal" class="modal fade" style="color: #242424">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <span hidden id="filmIDSpan">@Model.id</span>
-                    <p>Bekreft kjøp av film <b>@Model.Navn </b>for <b>@Model.Pris </b>kr</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="bekreft">Ok</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
-                </div>
+<div>
+    <textarea rows="4" cols="75" placeholder="Skriv en kommentar.." id="kommentarFelt" class="form-control"></textarea><br />
+    <button class="btn btn-success" onclick="skrivKommentar(@Model.id)">Kommmenter!</button>
+    <div id="kommentarTarget"></div>
+</div>
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span hidden id="filmIDSpan">@Model.id</span>
+                <p>Bekreft kjøp av film <b>@Model.Navn </b>for <b>@Model.Pris </b>kr</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="bekreft">Ok</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
             </div>
         </div>
     </div>
+</div>
 }
 else
 {
-    <h3>Fant ikke filminformasjon</h3>
+<h3>Fant ikke filminformasjon</h3>
 }
 
 <script type="text/javascript">
@@ -145,5 +178,45 @@ else
             output += "Klarte ikke å legge film til i ønskelisten</div>";
         }
         $("#alertTarget").html(output);
+    }
+
+    function skrivKommentar(id) {
+        var melding = $("#kommentarFelt").val();
+        $.ajax({
+            url: '/Film/SkrivKommentar?id=' + id + "&Melding=" + melding,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    location.reload();
+                }
+                else if (data === "Feil innlogging") {
+                    kommentarFeedback("innlogging");
+                }
+                else {
+                    kommentarFeedback("Feil");
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å skrive kommentar");
+            }
+        });
+    }
+
+    function kommentarFeedback(resultat) {
+        var output = "";
+        if (resultat === "innlogging") {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "<a href='/Film/Loginn'>Logg inn</a> for å skrive en kommentar</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Kunne ikke skrive kommentar</div>";
+        }
+
+        $("#kommentarTarget").html(output);
     }
 </script>

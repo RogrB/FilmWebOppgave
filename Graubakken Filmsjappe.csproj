@@ -98,6 +98,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Grautbakken.css" />
+    <Content Include="Content\images\defaultprofile.jpg" />
     <Content Include="Content\images\filmvisning\filmvisning01.jpg" />
     <Content Include="Content\images\filmvisning\filmvisning02.jpg" />
     <Content Include="Content\images\filmvisning\filmvisning03.jpg" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\DBData\StemmeData.cs" />
     <Compile Include="Models\DBInit.cs" />
     <Compile Include="Models\Film.cs" />
+    <Compile Include="Models\Kommentar.cs" />
     <Compile Include="Models\Nyhet.cs" />
     <Compile Include="Models\Sjanger.cs" />
     <Compile Include="Models\Skuespiller.cs" />

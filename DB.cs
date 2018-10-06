@@ -545,7 +545,7 @@ namespace Graubakken_Filmsjappe
             var db = new DBContext();
             List<Søkeresultat> søkeresultater = new List<Søkeresultat>();
             var filmer = db.Filmer.Where(f => f.Navn.Contains(input));
-            var skuespillere = db.Skuespillere.Where(s => s.Fornavn.Contains(input) || s.Etternavn.Contains(input));
+            var skuespillere = db.Skuespillere.Where(s => (s.Fornavn + s.Etternavn).Contains(input));
             foreach(var film in filmer)
             {
                 var resultat = new Søkeresultat()
@@ -570,6 +570,33 @@ namespace Graubakken_Filmsjappe
             }
             
             return søkeresultater;
+        }
+
+        public bool SkrivKommentar (int id, string Melding, string Brukernavn)
+        {
+            bool resultat = true;
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    KundeDB bruker = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
+                    Kommentar kommentar = new Kommentar()
+                    {
+                        Kunde = bruker,
+                        Melding = Melding,
+                        Dato = DateTime.Now.ToString()
+                    };
+                    var film = db.Filmer.Find(id);
+                    film.Kommentarer.Add(kommentar);
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    resultat = false;
+                }
+            }
+
+            return resultat;
         }
 
     }
