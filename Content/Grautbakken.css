@@ -67,6 +67,11 @@ textarea {
     color: #808080;
 }
 
+#søkeForslag span {
+    background-color: #ffd800;
+    color: #1e1e1e;
+}
+
 @media (max-width: 600px) {
     .carousel-caption {
         display: none;

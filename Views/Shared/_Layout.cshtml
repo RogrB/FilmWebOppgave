@@ -59,7 +59,7 @@
                     <li>
                         <div id="søkeFelt">
                             <form autocomplete="off">
-                                <input type="text" size="30" onkeyup="visSøk(this.value)" class="form-control" placeholder="Søk på film, person" />
+                                <input type="text" id="søkeInput" size="30" onkeyup="visSøk(this.value)" class="form-control" placeholder="Søk på film, person" />
                                 <div id="søkeForslag"></div>
                             </form>
                         </div>
@@ -158,7 +158,18 @@
             }
             output += "</div></div><hr>"
         }
-        $("#søkeForslag").html(output);
+
+        markerSøk(output);
+    }
+
+    function markerSøk(output) {
+        var søkeTekst = $("#søkeInput").val();
+        var markering = new RegExp("(\\b" + søkeTekst + "\\b)", "gim");
+
+        var slettFormatering = output.replace(/(<span>|<\/span>)/igm, "");
+        var nyFormatering = slettFormatering.replace(markering, "<span>$1</span>");
+
+        $("#søkeForslag").html(nyFormatering);
         $("#søkeForslag").css("border", "1px solid black");
     }
 
