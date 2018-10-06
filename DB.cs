@@ -86,30 +86,54 @@ namespace Graubakken_Filmsjappe
             var db = new DBContext();
             bool resultat = true;
             KundeDB Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == brukernavn);
+            Film film = db.Filmer.Find(filmID);
             Stemme vurdering = new Stemme()
             {
                 AntallStjerner = stemme,
                 Kunde = Kunde
             };
+
             try
             {
-                Film film = db.Filmer.Find(filmID);
                 if (film.Stemmer == null)
                 {
                     film.Stemmer = new List<Stemme>();
                 }
-                film.Stemmer.Add(vurdering);
-                db.SaveChanges();
-                if (!OppdaterGjennomsnitt(filmID))
+                var sjekkStemme = HarStemt(film, Kunde);
+                if (sjekkStemme != null)
                 {
-                    resultat = false;
+                    db.Stemmer.Remove(sjekkStemme);
                 }
+                    film.Stemmer.Add(vurdering);
+
+                db.SaveChanges();
             }
             catch (Exception e)
             {
                 resultat = false;
             }
+
+            if (!OppdaterGjennomsnitt(filmID))
+            {
+                resultat = false;
+            }
+
             return resultat;
+        }
+
+        public Stemme HarStemt(Film film, KundeDB bruker)
+        {
+            foreach(var stemme in film.Stemmer)
+            {
+                if(stemme.Kunde != null)
+                {
+                    if (stemme.Kunde.id == bruker.id)
+                    {
+                        return stemme;
+                    }
+                }
+            }
+            return null;
         }
 
         public bool OppdaterGjennomsnitt(int filmID)

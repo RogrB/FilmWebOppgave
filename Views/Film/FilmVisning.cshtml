@@ -22,16 +22,21 @@
                         Basert på <span id="antallSpan">@Model.Stemmer.Count()</span> stemmer
                     </p>
                 </div>
-                <span id="filmIDSpan" hidden>@Model.id</span>
-                <div id="stjerner">
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
-                    <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+
+                <div id="stemmeDIV">
+                    <span id="filmIDSpan" hidden>@Model.id</span>
+                    <div id="stjerner">
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+                    </div>
+                    <button onclick="stemPåFilm(@Model.id, '@Session["Brukernavn"]', 4)" class="btn btn-info">Stem!</button>
+                    <div id="stemmeFeedback"></div>
                 </div>
-                <button onclick="stemPåFilm(@Model.id, '@Session["Brukernavn"]', 4)" class="btn btn-info">Stem!</button>
+
             </div>
         </div>
     </div>
@@ -71,13 +76,13 @@ else
             success: function (data) {
                 if (data === "OK") {
                     console.log("Stemme registrert");
-                    oppdaterStatistikk();
+                    location.reload();
                 }
                 else if (data === "Feil innlogging") {
-                    console.log("Må være innlogget for å stemme på film");
+                    stemmeFeedback("innlogging");
                 }
                 else {
-                    console.log("Klarte ikke å registrere stemme");
+                    stemmeFeedback("Feil");
                 }
             },
             error: function (x, y, z) {
@@ -86,9 +91,20 @@ else
         });
     }
 
-    function oppdaterStatistikk() {
-        var antall = parseInt($("#antallSpan").html(), 10);
-        $("#antallSpan").html(antall+1);
+    function stemmeFeedback(resultat) {
+        var output = "";
+        if (resultat === "innlogging") {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "<a href='/Film/Loginn'>Logg inn</a> for å stemme</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Kunne ikke stemme</div>";
+        }
+
+        $("#stemmeFeedback").html(output);
     }
 
     function stjerneDisplay(antall) {
