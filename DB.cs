@@ -365,10 +365,11 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        public void OppdaterFilmVisningData(int id)
+        public bool OppdaterFilmVisningData(int id)
         {
             using (var db= new DBContext())
             {
+                bool resultat = true;
                 try
                 {
                     var oppdaterFilm = db.Filmer.Find(id);
@@ -377,15 +378,17 @@ namespace Graubakken_Filmsjappe
                 }
                 catch (Exception e)
                 {
-                    // exception her da..
+                    resultat = false;
                 }
+                return resultat;
             }
         }
 
-        public void LeggFilmIKundeObjekt(string innBruker, int filmID)
+        public bool LeggFilmIKundeObjekt(string innBruker, int filmID)
         {
             using (var db = new DBContext())
             {
+                bool resultat = true;
                 try
                 {
                     var filmKunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == innBruker);
@@ -398,8 +401,9 @@ namespace Graubakken_Filmsjappe
                 }
                 catch(Exception e)
                 {
-                    // exception
+                    resultat = false;
                 }
+                return resultat;
             }
         }
 
@@ -624,6 +628,46 @@ namespace Graubakken_Filmsjappe
             }
 
             return resultat;
+        }
+
+        public List<ForeslåttFilm> ForeslåFilm(string Brukernavn)
+        {
+            using (var db = new DBContext())
+            {
+                var Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
+                if(Kunde.Filmer.Any())
+                {
+                    var tilfeldigTall = new Random();
+                    int antallSjangere = Kunde.Filmer.Count();
+                    int tilfeldigSjanger = tilfeldigTall.Next(0, antallSjangere);
+                    Sjanger sjanger = Kunde.Filmer[tilfeldigSjanger].Sjanger[0];
+                    List<ForeslåttFilm> foreslåtteFilmer = new List<ForeslåttFilm>();
+
+                    int teller = 0;
+                    foreach(var film in sjanger.Filmer)
+                    {
+                        ForeslåttFilm nyFilm = new ForeslåttFilm()
+                        {
+                            Bilde = film.Bilde,
+                            Navn = film.Navn,
+                            Pris = film.Pris,
+                            id = film.id,
+                            Sjanger = sjanger.sjanger
+                        };
+                        foreslåtteFilmer.Add(nyFilm);
+                        teller++;
+                        if(teller == 3)
+                        {
+                            break;
+                        }
+                    }
+                    return foreslåtteFilmer;
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
     }

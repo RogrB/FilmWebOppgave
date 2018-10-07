@@ -25,4 +25,13 @@ namespace Graubakken_Filmsjappe.Models
         public virtual List<Ønskeliste> Ønskeliste { get; set; }
         public virtual List<Kommentar> Kommentarer { get; set; }
     }
+
+    public class ForeslåttFilm
+    {
+        public int id { get; set; }
+        public string Navn { get; set; }
+        public string Bilde { get; set; }
+        public int Pris { get; set; }
+        public string Sjanger { get; set; }
+    }
 }

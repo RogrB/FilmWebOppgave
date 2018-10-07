@@ -9,6 +9,8 @@ namespace Graubakken_Filmsjappe.Controllers
 {
     public class FilmController : Controller
     {
+
+        /// Metoder for views
         public ActionResult Index()
         {
             var db = new DB();
@@ -69,6 +71,7 @@ namespace Graubakken_Filmsjappe.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Registrer(Models.Kunde innKunde)
         {
             if(!ModelState.IsValid)
@@ -160,9 +163,9 @@ namespace Graubakken_Filmsjappe.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Bruker(Models.EndreKunde innKunde)
         {
-            // Foretar ikke noe innloggingssjekk her, da det ikke skal være mulig å komme hit uten å være innlogget
             var db = new DB();
             if (ModelState.IsValid)
             {
@@ -201,16 +204,18 @@ namespace Graubakken_Filmsjappe.Controllers
                 if ((bool)Session["LoggetInn"])
                 {
                     var db = new DB();
-                    db.OppdaterFilmVisningData(id);
+                    if (!db.OppdaterFilmVisningData(id) || !db.LeggFilmIKundeObjekt((string)Session["Brukernavn"], id))
+                    {
+                        ViewBag.VisningsInfo = "En databasefeil har oppstått";
+                    }
                     var film = db.HentFilmInfo(id);
-                    db.LeggFilmIKundeObjekt((string)Session["Brukernavn"], id);
-
                     return View(film);
                 }
             }
             return RedirectToAction("Loginn");
         }
 
+        /// Metoder for ajax-kall
         public string HentEnFilm(int id)
         {
             var db = new DB();
@@ -230,10 +235,6 @@ namespace Graubakken_Filmsjappe.Controllers
                 Stemmer = new List<Models.Stemme>(),
                 Skuespillere = new List<Models.Skuespiller>()
             };
-
-            //utFilm.Skuespillere = enFilm.Skuespillere;
-            //utFilm.Stemmer = enFilm.Stemmer;
-            //utFilm.Sjanger = enFilm.Sjanger;
             
             var jsonSerializer = new JavaScriptSerializer();
             string jsonData = jsonSerializer.Serialize(utFilm);
@@ -374,6 +375,33 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
+        public string ForeslåFilm()
+        {
+            var jsonSerializer = new JavaScriptSerializer();
+            if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+            {
+                var db = new DB();
+                var Filmer = db.ForeslåFilm((string)Session["Brukernavn"]);
+                if (Filmer != null)
+                {
+                    return jsonSerializer.Serialize(Filmer);
+                }
+                else
+                {
+                    return jsonSerializer.Serialize("Feil");
+                }
+            }
+            else
+            {
+                return jsonSerializer.Serialize("Feil innlogging");
+            }
+        }
+
+
+
+        /// Metoder som ikke er del av løsningen, men har blitt brukt under utvikling
+
+        // Metode som mater data inn i DB fra DBData mappen
         public ActionResult Dbinsert()
         {
             var db = new DB();
@@ -388,6 +416,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return View();
         }
 
+        // Viser Kundeviewet - alle registrerte brukere
         public ActionResult Kunder()
         {
             var db = new DB();

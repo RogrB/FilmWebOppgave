@@ -6,7 +6,10 @@
 {
     var tilfeldigtall = new Random();
     int filmPlakat = tilfeldigtall.Next(1, 5);
-
+    if(ViewBag.VisningsInfo != null)
+    {
+        <p>@ViewBag.VisningsInfo</p>
+    }
 
     <img src="~/Content/images/filmvisning/filmvisning0@(filmPlakat).jpg" alt="Filmen Vises" class="img img-responsive" />
     <h2>@Model.Navn</h2>
