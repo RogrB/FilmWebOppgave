@@ -1,4 +1,6 @@
-﻿<span id="tempNavn" hidden></span>
+﻿<!-- Film Modal Partialview -->
+
+<span id="tempNavn" hidden></span>
 <span id="tempPris" hidden></span>
 <div id="filmModal" class="modal fade" style="color: #242424">
     <div class="modal-dialog">
@@ -67,6 +69,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // Flytter over data når man åpner modalen
         $('a[data-visFilm=true]').click(function () {
             var data = {
                 navn : $(this).data("navn"),
@@ -88,18 +91,21 @@
             hentSkuespillerData(data.id);
         })
 
+        // Ber om bekreftelse når en bruker trykker på "kjøp" knappen
         $("#kjop").click(function () {
             $("#bekreftModal").modal("show");
             $("#filmNavnBekreft").html($("#tempNavn").html());
             $("#prisSpanBekreft").html($("#tempPris").html());
         })
 
+        // Går til filmvisning når bruker bekrefter kjøp
         $("#bekreft").click(function () {
             window.location.href = "FilmVisning?id=" + $("#filmIDSpan").html();
         })
 
     });
 
+    // Formaterer filmdata for visning i modalen
     function formaterFilmData(data) {
         $("#filmNavn").html(data.navn);
         var info = "";
@@ -119,6 +125,7 @@
         return info;
     }
 
+    // Ajax kall for å hente skuespillere i filmen
     function hentSkuespillerData(id) {
         $.ajax({
             url: '/Film/HentSkuespillereIFilm/' + id,
@@ -134,6 +141,7 @@
         });
     }
 
+    // Formaterer data fra ajax kallet om skuespillere
     function formaterSkuespillerData(data) {
         var skuespillere = "";
         skuespillere += '<br><div class="well" style="background - color: #1e1e1e">';
@@ -182,6 +190,7 @@
         });
     }
 
+    // Gir feedback til brukeren om resultatet av ajax kallet for å legge film i ønskelisten
     function alertFeedback(resultat) {
         var output = "";
         if (resultat) {
@@ -196,6 +205,7 @@
         }
         $("#alertTarget").html(output);
     }
+
 
     // Stemme script - må være custom for film modal
 
@@ -223,6 +233,7 @@
         });
     }
 
+    // Feedback etter ajax kall for å stemme på film
     function stemmeFeedback(resultat) {
         var output = "";
         if (resultat === "innlogging") {
@@ -244,6 +255,7 @@
         $("#stemmeFeedback").html(output);
     }
 
+    // Oppdaterer stjernedisplayet når bruker beveger musepekeren over stjernene for å stemme på film
     function stjerneDisplay(antall) {
         var output = "";
         for (var i = 1; i <= antall; i++) {
@@ -256,6 +268,7 @@
         $("#stjerner").html(output);
     }
 
+    // Resetter stjernene til "tomme" stjerner - når brukeren ikke lenger har musepekeren over noen stjerner
     function clearStjerner() {
         var output = "";
         output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />';

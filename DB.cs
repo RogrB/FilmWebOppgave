@@ -10,6 +10,7 @@ namespace Graubakken_Filmsjappe
 {
     public class DB
     {
+        // Produserer visning av IndexView - forsiden hvor det vises informasjon fra flere klasser
         public IndexView HentIndexView()
         {
             IndexView indexView = new IndexView();
@@ -20,6 +21,7 @@ namespace Graubakken_Filmsjappe
             return indexView;
         }
 
+        // Henter filmliste etter angitt sortering
         public List<Film> HentFilmView(string sortering)
         {
             var db = new DBContext();
@@ -53,6 +55,7 @@ namespace Graubakken_Filmsjappe
             }
             return alleFilmer;
         }
+
         public List<Film> HentAlleFilmer()
         {
             using (var db = new Models.DBContext())
@@ -84,6 +87,8 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Metode for å stemme på film.
+        // Hvis brukeren allerede har stemt på den aktuelle filmen blir den gamle stemmen slettet
         public bool StemPåFilm(int filmID, string brukernavn, int stemme)
         {
             var db = new DBContext();
@@ -124,6 +129,7 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        // Sjekker om den angitte kunden har stemt på den angitte filmen
         public Stemme HarStemt(Film film, KundeDB bruker)
         {
             foreach(var stemme in film.Stemmer)
@@ -139,6 +145,7 @@ namespace Graubakken_Filmsjappe
             return null;
         }
 
+        // Metode som oppdaterer "terningkast" gjennomsnittet når en film får en ny stemme/vurdering
         public bool OppdaterGjennomsnitt(int filmID)
         {
             bool resultat = true;
@@ -245,6 +252,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Henter kunde for "Bruker" viewet - hvor en innlogget bruker kan endre sin egen informasjon
         public EndreKunde HentBruker(string brukernavn)
         {
             var db = new DBContext();
@@ -269,6 +277,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Metode som lagrer kundeendring i databasen
         public bool EndreBruker(EndreKunde innKunde, string brukernavn)
         {
             var db = new DBContext();
@@ -315,6 +324,7 @@ namespace Graubakken_Filmsjappe
             return utSkuespiller;
         }
 
+        // Henter alle filmer fra kategorien "action" - vises på forsiden under egen kategori
         public List<Film> HentActionFilmer()
         {
             using (var db = new DBContext())
@@ -341,6 +351,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Henter liste av skuespillere etter angitt sortering - for å vises i Skuespillerviewet
         public List<Skuespiller> HentSkuespillerView(string sortering)
         {
             using (var db = new DBContext())
@@ -365,6 +376,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Oppdaterer antall visninger en film har - når en bruker "kjøper" en film
         public bool OppdaterFilmVisningData(int id)
         {
             using (var db= new DBContext())
@@ -384,6 +396,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Legger til film i kundeobjektet for å registrere hvilke filmer den aktuelle kunden har kjøpt
         public bool LeggFilmIKundeObjekt(string innBruker, int filmID)
         {
             using (var db = new DBContext())
@@ -415,6 +428,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
+        // Henter nyheter til indexviewet
         public List<Nyhet> HentIndexNyheter()
         {
             using (var db = new DBContext())
@@ -437,6 +451,7 @@ namespace Graubakken_Filmsjappe
             return alleSjangere;
         }
 
+        // Henter alle filmer en angitt skuespiller har vært med i
         public List<Film> HentFilmerFraSkuespillerID(int id)
         {
             var db = new DBContext();
@@ -455,6 +470,7 @@ namespace Graubakken_Filmsjappe
             return filmer;
         }
 
+        // Henter alle skuespillere i en angitt film
         public List<Skuespiller> HentSkuespillereIFilm(int id)
         {
             var db = new DBContext();
@@ -469,35 +485,6 @@ namespace Graubakken_Filmsjappe
                 Land = s.Land
             }).ToList();
             return skuespillere;
-        }
-
-        public bool InsertDBData()
-        {
-            var dbInsert = new DBinsert();
-            bool ok = dbInsert.settInnIDB();
-            if (ok)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public List<Kunde> HentKunder()
-        {
-            var db = new DBContext();
-            var alleKunder = db.Kunder.Select(k => new Kunde()
-            {
-                Fornavn = k.Fornavn,
-                Etternavn = k.Etternavn,
-                id = k.id,
-                Brukernavn = k.Brukernavn,
-                Filmer = k.Filmer
-            }).ToList();
-
-            return alleKunder;
         }
 
         public bool SjekkOmBrukernavnErLedig(string brukernavn)
@@ -571,6 +558,7 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        // Henter ut en liste av filmer og skuespillere som søkeforslag når en bruker skriver inn et søk i søkefeltet
         public List<Søkeresultat> HentSøkeforslag(string input)
         {
             var db = new DBContext();
@@ -603,6 +591,7 @@ namespace Graubakken_Filmsjappe
             return søkeresultater;
         }
 
+        // Metode som lar en bruker skrive en kommentar under en angitt film
         public bool SkrivKommentar (int id, string Melding, string Brukernavn)
         {
             bool resultat = true;
@@ -630,6 +619,7 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        // Henter ut 3 filmer fra en tilfeldig sjanger som brukeren har sett før - vises som filmforslag på brukersiden
         public List<ForeslåttFilm> ForeslåFilm(string Brukernavn)
         {
             using (var db = new DBContext())
@@ -668,6 +658,40 @@ namespace Graubakken_Filmsjappe
                     return null;
                 }
             }
+        }
+
+
+
+        /// Metoder som ikke er en del av løsningen, men har blitt brukt under utviklingen
+        
+
+        public bool InsertDBData()
+        {
+            var dbInsert = new DBinsert();
+            bool ok = dbInsert.settInnIDB();
+            if (ok)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public List<Kunde> HentKunder()
+        {
+            var db = new DBContext();
+            var alleKunder = db.Kunder.Select(k => new Kunde()
+            {
+                Fornavn = k.Fornavn,
+                Etternavn = k.Etternavn,
+                id = k.id,
+                Brukernavn = k.Brukernavn,
+                Filmer = k.Filmer
+            }).ToList();
+
+            return alleKunder;
         }
 
     }

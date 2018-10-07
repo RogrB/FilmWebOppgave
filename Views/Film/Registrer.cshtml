@@ -80,6 +80,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        // Sender ajax forespørsel for å sjekke om brukernavnet er ledig
         $('#Brukernavn').on("change", function () {
             var brukernavn = $("#Brukernavn").val();
             sjekkOmBrukernavnErLedig(brukernavn);

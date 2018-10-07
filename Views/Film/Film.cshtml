@@ -177,6 +177,7 @@ else
         });
     }
 
+    // Viser resultatet av ajaxkallet "legg i ønskeliste" som bootstrap-alertbox
     function alertFeedback(resultat) {
         var output = "";
         if (resultat) {
@@ -192,6 +193,7 @@ else
         $("#alertTarget").html(output);
     }
 
+    // Lar brukeren skrive en kommentar på den angitte filmen
     function skrivKommentar(id) {
         var melding = $("#kommentarFelt").val();
         $.ajax({
@@ -216,6 +218,7 @@ else
         });
     }
 
+    // Til tilbakemelding fra ajax kallet for å skrive kommentar
     function kommentarFeedback(resultat) {
         var output = "";
         if (resultat === "innlogging") {

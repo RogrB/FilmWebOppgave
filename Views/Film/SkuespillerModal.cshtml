@@ -1,4 +1,6 @@
-﻿<div id="skuespillerModal" class="modal fade" style="color: #242424">
+﻿<!-- Skuespillermodal Partial view -->
+
+<div id="skuespillerModal" class="modal fade" style="color: #242424">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,6 +24,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        // Henter inn data, når man åpner modalen
         $('a[data-visSkuespiller=true]').click(function () {
             var navn = $(this).data("navn");
             var alder = $(this).data("alder");
@@ -45,6 +49,7 @@
         })
     });
 
+    // Henter andre filmer skuespilleren har vært med i
     function hentFilmData(innID) {
         $.ajax({
             url: '/Film/HentFilmerFraSkuespillerID/' + innID,
@@ -60,6 +65,7 @@
         });
     }
 
+    // Formaterer filmdata for visning i modal
     function formaterFilmData(data) {
         var filmer = "";
         filmer += '<br><div class="well" style="background - color: #1e1e1e">';

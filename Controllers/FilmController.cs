@@ -242,6 +242,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonData;
         }
 
+        // Lar en bruker gi en "terningkast" stemme på en angitt film
         public string StemPåFilm(int FilmID, int stemme)
         {
             string resultat = "";
@@ -265,6 +266,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
+        // Henter alle filmer en angitt skuespiller har vært med i
         public string HentFilmerFraSkuespillerID(int id)
         {
             var db = new DB();
@@ -276,6 +278,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonData;
         }
 
+        // Henter alle skuespillere i en angitt film
         public string HentSkuespillereIFilm(int id)
         {
             var db = new DB();
@@ -343,6 +346,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
+        // Henter en liste av filmer og skuespillere som søkeforslag når en bruker skriver inn i søkefeltet
         public string HentSøkeforslag(string streng)
         {
             var jsonSerializer = new JavaScriptSerializer();
@@ -352,6 +356,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(søkeforslag);
         }
 
+        // Lar en bruker skrive en kommentar på en angitt film
         public string SkrivKommentar(int id, string Melding)
         {
             string resultat = "";
@@ -375,6 +380,7 @@ namespace Graubakken_Filmsjappe.Controllers
             return jsonSerializer.Serialize(resultat);
         }
 
+        // Henter 3 filmer fra en tilfeldig sjanger som en kunde har sett tidligere
         public string ForeslåFilm()
         {
             var jsonSerializer = new JavaScriptSerializer();
@@ -401,7 +407,7 @@ namespace Graubakken_Filmsjappe.Controllers
 
         /// Metoder som ikke er del av løsningen, men har blitt brukt under utvikling
 
-        // Metode som mater data inn i DB fra DBData mappen
+        // Metode som mater data inn i DB fra DBData mappen - brukes som erstatning for DBInit
         public ActionResult Dbinsert()
         {
             var db = new DB();

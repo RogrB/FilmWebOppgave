@@ -71,13 +71,13 @@ namespace Graubakken_Filmsjappe
                 ok = false;
             }
 
-            /*
+            
             // Legger kundene inn i databasen
             try
             {
                 for (int i = 0; i < alleKunder.Count(); i++)
                 {
-                    alleKunder[i].Stemmer = new List<Stemmer>();
+                    alleKunder[i].Stemmer = new List<Models.Stemme>();
                     db.Kunder.Add(alleKunder[i]);
                 }
                 db.SaveChanges();
@@ -85,9 +85,10 @@ namespace Graubakken_Filmsjappe
             catch (Exception e)
             {
                 ok = false;
-            }*/
+            }
 
             // Note: Skuespillere, Sjangere og Stemmer blir lagt inn i databasen gjennom Film-objektet
+
 
             // Kaller metode for å opprette stemme-data
             if (!OpprettStemmer())
@@ -120,7 +121,7 @@ namespace Graubakken_Filmsjappe
             }
         }
 
-        // Metode som setter et tilfeldig utvalg av filmer inn i kunde-objektene
+        // Metode som setter et tilfeldig utvalg av filmer inn i kunde-objektene (filmer som kundene har sett)
         public void SettFilmerInnIKundeObjekt()
         {
             List<Film> alleFilmer = db.Filmer.ToList();
@@ -180,6 +181,7 @@ namespace Graubakken_Filmsjappe
             return resultat;
         }
 
+        // Setter opp sjangere for hver enkelt film
         public void SettSjangerInnIFilmer()
         {
             alleFilmer[0].Sjanger.Add(alleSjangere.Find(sjanger => sjanger.sjanger == "Action"));

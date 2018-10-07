@@ -175,6 +175,7 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // Henter filmforslag fra en tilfeldig sjanger som brukeren har sett tidligere
         $.ajax({
             url: '/Film/ForeslåFilm',
             type: 'GET',
@@ -191,6 +192,7 @@ else
         });
     });
 
+    // Formaterer jsondata for visning på siden
     function formaterFilmForslag(data) {
         var output = "";
         output += "<h4>Filmforslag - basert på filmer du har sett i kategorien <b>" + data[0].Sjanger + "</b>:</h4>";
@@ -207,6 +209,7 @@ else
 
         $("#foreslåtteFilmerDiv").html(output);
     }
+
 
     // Det her trenger egentlig ikke være et ajax-kall, men jeg får ikke brukt vanlig mvc-slett funksjon pga validate i samme view
     function slettFraØnskeliste(innID) {

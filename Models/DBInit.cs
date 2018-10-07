@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+// Denne klassen utgår - DB init blir gjort "manuelt" igjennom DBinsert.cshtml viewet
+
 namespace Graubakken_Filmsjappe.Models
 {
     public class DBInit : DropCreateDatabaseAlways<DBContext>

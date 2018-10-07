@@ -120,6 +120,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // En collapse-meny for å vise mer info om en film som trykkes på
         $('a[data-visCollapse=true]').click(function (evt) {
             evt.preventDefault();
             var data = {
@@ -160,6 +161,7 @@
 
         });
 
+        // Samme collapse meny, men for action film kategorien lenger ned på siden
         $('a[data-visActionFilmCollapse=true]').click(function (evt) {
             evt.preventDefault();
             var data = {
@@ -197,6 +199,7 @@
 
     })
 
+    // Formaterer data for visning i collapse menyen
     function formaterCollapseFilmData(data) {
         var utData = "";
         utData += '<div class="container">';
