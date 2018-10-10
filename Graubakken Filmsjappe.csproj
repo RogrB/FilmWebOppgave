@@ -164,12 +164,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="DBinsert.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\DBData\FilmData.cs" />
     <Compile Include="Models\IndexView.cs" />
@@ -215,6 +217,8 @@
     <Content Include="Views\Film\Film.cshtml" />
     <Content Include="Views\Film\Skuespiller.cshtml" />
     <Content Include="Views\Film\FilmVisning.cshtml" />
+    <Content Include="Views\Admin\AdminLoginn.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
