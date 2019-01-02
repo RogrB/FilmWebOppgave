@@ -11,3 +11,5 @@ Film-forslag basert på tidligere filmkjøp,
 Sortering av listevisning, 
 Ønskelistesystem, 
 Søkefunksjon
+
+Utført i .net MVC
